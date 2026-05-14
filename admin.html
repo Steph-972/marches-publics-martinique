@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Procurement Insider</title>
+<style>
+:root{--navy:#0F2342;--gold:#C9A84C;--white:#fff;--cream:#F8F5EF;--gray:#6B7080;--gray-l:#E8EBF0;--green:#1B5E20;--green-bg:#E8F5E9;--red:#B71C1C;--red-bg:#FFEBEE}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#F0F2F5;color:#1C1C2E;min-height:100vh}
+
+/* LOGIN */
+#login{display:flex;align-items:center;justify-content:center;min-height:100vh;background:var(--navy)}
+.login-box{background:var(--white);border-radius:8px;padding:3rem;width:380px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.login-logo{margin-bottom:2rem}
+.login-logo svg{height:44px}
+.login-box h2{font-size:1.3rem;color:var(--navy);margin-bottom:.5rem}
+.login-box p{color:var(--gray);font-size:.9rem;margin-bottom:2rem}
+.login-box input{width:100%;padding:.85rem 1rem;border:1px solid var(--gray-l);border-radius:4px;font-size:1rem;margin-bottom:1rem;outline:none;transition:border .2s}
+.login-box input:focus{border-color:var(--navy)}
+.btn-login{width:100%;background:var(--navy);color:var(--white);border:none;padding:.9rem;border-radius:4px;font-size:1rem;font-weight:600;cursor:pointer;transition:background .2s}
+.btn-login:hover{background:#1A3A6B}
+.login-error{color:var(--red);font-size:.875rem;margin-top:.5rem;display:none}
+
+/* ADMIN LAYOUT */
+#admin{display:none}
+.admin-header{background:var(--navy);padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between}
+.admin-header svg{height:32px}
+.admin-nav{display:flex;gap:.5rem}
+.nav-btn{background:rgba(255,255,255,.12);color:var(--white);border:none;padding:.5rem 1.2rem;border-radius:4px;cursor:pointer;font-size:.875rem;transition:background .2s}
+.nav-btn.active,.nav-btn:hover{background:var(--gold);color:var(--navy);font-weight:600}
+.logout-btn{background:transparent;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.2);padding:.5rem 1rem;border-radius:4px;cursor:pointer;font-size:.8rem}
+.logout-btn:hover{color:var(--white);border-color:var(--white)}
+
+.admin-body{padding:2rem;max-width:1100px;margin:0 auto}
+
+/* PANELS */
+.panel{display:none}
+.panel.active{display:block}
+
+/* ARTICLES LIST */
+.panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem}
+.panel-header h2{font-size:1.4rem;color:var(--navy)}
+.btn-new{background:var(--gold);color:var(--navy);border:none;padding:.7rem 1.5rem;border-radius:4px;font-weight:600;cursor:pointer;font-size:.875rem;display:flex;align-items:center;gap:.5rem;transition:all .2s}
+.btn-new:hover{background:#E8C96A;transform:translateY(-1px)}
+
+.article-card{background:var(--white);border-radius:6px;padding:1.25rem 1.5rem;margin-bottom:.75rem;display:flex;align-items:center;gap:1.5rem;border:1px solid var(--gray-l);transition:all .2s}
+.article-card:hover{border-color:var(--gold);box-shadow:0 4px 16px rgba(15,35,66,.1)}
+.ac-cat{padding:.25rem .75rem;border-radius:20px;font-size:.72rem;font-weight:600;white-space:nowrap}
+.ac-info{flex:1}
+.ac-title{font-weight:600;color:var(--navy);margin-bottom:.2rem;font-size:.975rem}
+.ac-meta{font-size:.8rem;color:var(--gray)}
+.ac-doc{display:flex;align-items:center;gap:.3rem;font-size:.78rem;color:var(--gold);font-weight:500}
+.ac-actions{display:flex;gap:.5rem}
+.btn-edit{background:var(--navy);color:var(--white);border:none;padding:.4rem 1rem;border-radius:4px;cursor:pointer;font-size:.8rem;transition:background .2s}
+.btn-edit:hover{background:#1A3A6B}
+.btn-del{background:var(--red-bg);color:var(--red);border:1px solid #FFCDD2;padding:.4rem 1rem;border-radius:4px;cursor:pointer;font-size:.8rem;transition:all .2s}
+.btn-del:hover{background:var(--red);color:var(--white)}
+.badge-pub{background:var(--green-bg);color:var(--green);padding:.2rem .6rem;border-radius:20px;font-size:.72rem;font-weight:600}
+.badge-draft{background:#FFF3E0;color:#E65100;padding:.2rem .6rem;border-radius:20px;font-size:.72rem;font-weight:600}
+
+/* EDITOR */
+.editor-form{background:var(--white);border-radius:8px;padding:2rem;border:1px solid var(--gray-l)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.25rem}
+.fg{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.25rem}
+.fg label{font-size:.82rem;font-weight:600;color:var(--navy);text-transform:uppercase;letter-spacing:.05em}
+.fg input,.fg select,.fg textarea{border:1px solid var(--gray-l);border-radius:4px;padding:.75rem 1rem;font-size:.925rem;font-family:inherit;outline:none;transition:border .2s;width:100%}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(15,35,66,.08)}
+.fg textarea{min-height:300px;resize:vertical;font-family:'Courier New',monospace;font-size:.875rem;line-height:1.6}
+
+/* Toolbar */
+.editor-toolbar{display:flex;gap:.3rem;flex-wrap:wrap;margin-bottom:.5rem;padding:.5rem;background:var(--cream);border:1px solid var(--gray-l);border-radius:4px 4px 0 0}
+.tb-btn{background:var(--white);border:1px solid var(--gray-l);color:var(--navy);padding:.3rem .7rem;border-radius:3px;cursor:pointer;font-size:.8rem;font-weight:600;transition:all .2s}
+.tb-btn:hover{background:var(--navy);color:var(--white);border-color:var(--navy)}
+#content-editor{border-radius:0 0 4px 4px!important}
+
+/* Upload zone */
+.upload-zone{border:2px dashed var(--gray-l);border-radius:6px;padding:2rem;text-align:center;cursor:pointer;transition:all .2s;background:var(--cream)}
+.upload-zone:hover,.upload-zone.drag{border-color:var(--gold);background:#FFFBF0}
+.upload-zone .uz-icon{font-size:2rem;margin-bottom:.75rem}
+.upload-zone p{color:var(--gray);font-size:.875rem}
+.upload-zone strong{color:var(--navy)}
+.upload-zone input{display:none}
+.file-preview{display:flex;align-items:center;gap.75rem;padding:.75rem 1rem;background:var(--green-bg);border:1px solid #A5D6A7;border-radius:4px;margin-top:.75rem}
+.file-preview .fp-name{font-size:.875rem;font-weight:600;color:var(--green);flex:1}
+.btn-remove-file{background:none;border:none;color:var(--red);cursor:pointer;font-size:1.1rem;padding:.2rem}
+
+/* Preview */
+.preview-box{background:var(--cream);border:1px solid var(--gray-l);border-radius:4px;padding:1.5rem;min-height:200px;font-size:.9rem;line-height:1.8;color:#333}
+.preview-box h3{color:var(--navy);font-size:1.1rem;margin:1rem 0 .5rem}
+.preview-box p{margin-bottom:.75rem}
+
+/* Actions bar */
+.editor-actions{display:flex;align-items:center;gap:1rem;padding:1.5rem 0 0;border-top:1px solid var(--gray-l);margin-top:1.5rem}
+.btn-publish{background:var(--navy);color:var(--white);border:none;padding:.85rem 2rem;border-radius:4px;font-size:.95rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:.5rem;transition:all .2s}
+.btn-publish:hover{background:#1A3A6B;transform:translateY(-1px)}
+.btn-publish:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.btn-draft{background:var(--cream);color:var(--navy);border:1px solid var(--gray-l);padding:.85rem 1.5rem;border-radius:4px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s}
+.btn-draft:hover{border-color:var(--navy)}
+.btn-cancel{background:none;border:none;color:var(--gray);cursor:pointer;font-size:.875rem;text-decoration:underline}
+.publish-status{font-size:.875rem;padding:.5rem 1rem;border-radius:4px;display:none}
+.publish-status.ok{background:var(--green-bg);color:var(--green);display:block}
+.publish-status.err{background:var(--red-bg);color:var(--red);display:block}
+.publish-status.loading{background:#E3F2FD;color:#1565C0;display:block}
+
+/* Tabs in editor */
+.editor-tabs{display:flex;gap:0;border-bottom:2px solid var(--gray-l);margin-bottom:1.5rem}
+.etab{padding:.6rem 1.2rem;border:none;background:none;cursor:pointer;font-size:.875rem;color:var(--gray);border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+.etab.active{color:var(--navy);border-bottom-color:var(--navy);font-weight:600}
+
+/* Stats */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:2rem}
+.stat-card{background:var(--white);border-radius:6px;padding:1.25rem;border:1px solid var(--gray-l);text-align:center}
+.stat-num{font-size:2rem;font-weight:700;color:var(--navy)}
+.stat-lbl{font-size:.8rem;color:var(--gray);margin-top:.3rem}
+
+/* Toast */
+.toast{position:fixed;bottom:2rem;right:2rem;background:var(--navy);color:var(--white);padding:1rem 1.5rem;border-radius:6px;font-size:.875rem;transform:translateY(100px);opacity:0;transition:all .3s;z-index:9999;max-width:320px}
+.toast.show{transform:none;opacity:1}
+.toast.success{background:var(--green)}
+.toast.error{background:var(--red)}
+
+@media(max-width:768px){.form-row{grid-template-columns:1fr}.admin-nav{display:none}}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login">
+  <div class="login-box">
+    <div class="login-logo">
+      <svg viewBox="0 0 290 50" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="4" width="5" height="42" rx="2.5" fill="#C9A84C"/>
+        <text x="13" y="30" font-family="Arial Black,Arial,sans-serif" font-size="16" font-weight="900" fill="#0F2342" letter-spacing="0.8">PROCUREMENT INSIDER</text>
+        <rect x="13" y="35" width="270" height="1" fill="#C9A84C"/>
+        <text x="13" y="46" font-family="Arial,sans-serif" font-size="7.5" fill="#C9A84C" letter-spacing="3">L'ŒIL DE L'ACHETEUR</text>
+      </svg>
+    </div>
+    <h2>Espace administration</h2>
+    <p>Connectez-vous pour gérer vos articles et documents</p>
+    <input type="password" id="pwd-input" placeholder="Mot de passe" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="btn-login" onclick="doLogin()">Se connecter</button>
+    <p class="login-error" id="login-err">Mot de passe incorrect</p>
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div id="admin">
+  <div class="admin-header">
+    <svg viewBox="0 0 290 50" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="4" width="5" height="42" rx="2.5" fill="#C9A84C"/>
+      <text x="13" y="30" font-family="Arial Black,Arial,sans-serif" font-size="16" font-weight="900" fill="#FFFFFF" letter-spacing="0.8">PROCUREMENT INSIDER</text>
+      <rect x="13" y="35" width="270" height="1" fill="#C9A84C"/>
+      <text x="13" y="46" font-family="Arial,sans-serif" font-size="7.5" fill="#C9A84C" letter-spacing="3">ADMINISTRATION</text>
+    </svg>
+    <div class="admin-nav">
+      <button class="nav-btn active" onclick="showPanel('articles')">📄 Articles</button>
+      <button class="nav-btn" onclick="showPanel('editor')">✏️ Nouvel article</button>
+      <button class="nav-btn" onclick="showPanel('settings')">⚙️ Paramètres</button>
+      <a href="/" target="_blank" style="text-decoration:none"><button class="nav-btn">🌐 Voir le site</button></a>
+    </div>
+    <button class="logout-btn" onclick="logout()">Déconnexion</button>
+  </div>
+
+  <div class="admin-body">
+
+    <!-- PANEL : LISTE ARTICLES -->
+    <div class="panel active" id="panel-articles">
+      <div class="panel-header">
+        <h2>Mes articles <span id="art-count" style="font-size:.9rem;color:var(--gray);font-weight:400"></span></h2>
+        <button class="btn-new" onclick="newArticle()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Nouvel article
+        </button>
+      </div>
+      <div id="articles-list">
+        <p style="color:var(--gray);font-size:.9rem">Chargement des articles...</p>
+      </div>
+    </div>
+
+    <!-- PANEL : ÉDITEUR -->
+    <div class="panel" id="panel-editor">
+      <div class="panel-header">
+        <h2 id="editor-title">Nouvel article</h2>
+        <button class="btn-cancel" onclick="showPanel('articles')">← Retour à la liste</button>
+      </div>
+
+      <div class="editor-form">
+        <input type="hidden" id="edit-id">
+
+        <div class="form-row">
+          <div class="fg">
+            <label>Titre de l'article *</label>
+            <input type="text" id="art-title" placeholder="Ex : Comment répondre à un MAPA en Martinique...">
+          </div>
+          <div class="fg">
+            <label>Catégorie</label>
+            <select id="art-cat">
+              <option value="Astuce terrain" data-color="#C9A84C" data-bg="#F5E9C0">💡 Astuce terrain</option>
+              <option value="Jurisprudence" data-color="#1A237E" data-bg="#E8EAF6">⚖️ Jurisprudence</option>
+              <option value="Stratégie" data-color="#0F2342" data-bg="#F5E9C0">🎯 Stratégie</option>
+              <option value="Réglementation" data-color="#4A148C" data-bg="#F3E5F5">📋 Réglementation</option>
+              <option value="Formation" data-color="#1B5E20" data-bg="#E8F5E9">🎓 Formation</option>
+              <option value="Actualité" data-color="#B71C1C" data-bg="#FFEBEE">📰 Actualité</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="fg">
+          <label>Résumé (affiché sur la liste) *</label>
+          <input type="text" id="art-excerpt" placeholder="En une ou deux phrases, résumez l'article pour donner envie de lire...">
+        </div>
+
+        <div class="fg">
+          <label>Contenu de l'article *</label>
+          <div class="editor-tabs">
+            <button class="etab active" onclick="switchTab('edit',this)">✏️ Éditer</button>
+            <button class="etab" onclick="switchTab('preview',this)">👁️ Aperçu</button>
+            <button class="etab" onclick="switchTab('help',this)">❓ Aide</button>
+          </div>
+          <div id="tab-edit">
+            <div class="editor-toolbar">
+              <button class="tb-btn" onclick="ins('<h3>','</h3>')">H3</button>
+              <button class="tb-btn" onclick="ins('<p>','</p>')">¶ P</button>
+              <button class="tb-btn" onclick="ins('<strong>','</strong>')"><b>B</b></button>
+              <button class="tb-btn" onclick="ins('<em>','</em>')"><i>I</i></button>
+              <button class="tb-btn" onclick="ins('<ul>\n  <li>','</li>\n  <li>...</li>\n</ul>')">Liste</button>
+              <button class="tb-btn" onclick="ins('<li>','</li>')">• Li</button>
+              <button class="tb-btn" onclick="ins('<br>','')">↵ BR</button>
+              <button class="tb-btn" onclick="ins('<a href=\'\'>','</a>')">🔗 Lien</button>
+            </div>
+            <textarea id="content-editor" placeholder="Écrivez votre contenu ici en HTML simple.&#10;&#10;Exemple :&#10;&lt;p&gt;Introduction de l'article...&lt;/p&gt;&#10;&lt;h3&gt;Premier point&lt;/h3&gt;&#10;&lt;p&gt;Explication...&lt;/p&gt;"></textarea>
+          </div>
+          <div id="tab-preview" style="display:none">
+            <div class="preview-box" id="preview-content"></div>
+          </div>
+          <div id="tab-help" style="display:none">
+            <div style="background:var(--cream);border-radius:4px;padding:1.5rem;font-size:.875rem;line-height:1.8">
+              <h4 style="color:var(--navy);margin-bottom:1rem">Guide rapide HTML</h4>
+              <table style="width:100%;border-collapse:collapse">
+                <tr style="border-bottom:1px solid var(--gray-l)"><td style="padding:.4rem .75rem;font-family:monospace;color:#1A3A6B">&lt;p&gt;texte&lt;/p&gt;</td><td style="padding:.4rem .75rem;color:var(--gray)">Paragraphe de texte normal</td></tr>
+                <tr style="border-bottom:1px solid var(--gray-l)"><td style="padding:.4rem .75rem;font-family:monospace;color:#1A3A6B">&lt;h3&gt;titre&lt;/h3&gt;</td><td style="padding:.4rem .75rem;color:var(--gray)">Sous-titre de section</td></tr>
+                <tr style="border-bottom:1px solid var(--gray-l)"><td style="padding:.4rem .75rem;font-family:monospace;color:#1A3A6B">&lt;strong&gt;texte&lt;/strong&gt;</td><td style="padding:.4rem .75rem;color:var(--gray)"><strong>Texte en gras</strong></td></tr>
+                <tr style="border-bottom:1px solid var(--gray-l)"><td style="padding:.4rem .75rem;font-family:monospace;color:#1A3A6B">&lt;em&gt;texte&lt;/em&gt;</td><td style="padding:.4rem .75rem;color:var(--gray)"><em>Texte en italique</em></td></tr>
+                <tr style="border-bottom:1px solid var(--gray-l)"><td style="padding:.4rem .75rem;font-family:monospace;color:#1A3A6B">&lt;ul&gt;&lt;li&gt;item&lt;/li&gt;&lt;/ul&gt;</td><td style="padding:.4rem .75rem;color:var(--gray)">Liste à puces</td></tr>
+                <tr><td style="padding:.4rem .75rem;font-family:monospace;color:#1A3A6B">&lt;br&gt;</td><td style="padding:.4rem .75rem;color:var(--gray)">Retour à la ligne</td></tr>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Upload document -->
+        <div class="fg">
+          <label>Document téléchargeable (PDF, Word...)</label>
+          <div class="upload-zone" id="upload-zone" onclick="document.getElementById('file-input').click()" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropFile(event)">
+            <div class="uz-icon">📎</div>
+            <p><strong>Cliquez pour uploader</strong> ou glissez-déposez votre fichier</p>
+            <p style="margin-top:.4rem;font-size:.8rem">PDF, Word, Excel — Max 10 MB</p>
+            <input type="file" id="file-input" accept=".pdf,.doc,.docx,.xls,.xlsx" onchange="fileSelected(this)">
+          </div>
+          <div class="file-preview" id="file-preview" style="display:none">
+            <span style="font-size:1.3rem">📄</span>
+            <span class="fp-name" id="fp-name">document.pdf</span>
+            <button class="btn-remove-file" onclick="removeFile()" title="Supprimer">✕</button>
+          </div>
+          <input type="hidden" id="existing-doc">
+          <input type="hidden" id="existing-doc-name">
+        </div>
+
+        <div class="editor-actions">
+          <button class="btn-publish" id="btn-pub" onclick="publishArticle(true)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13"/><path d="M22 2L15 22 11 13 2 9l20-7z"/></svg>
+            Publier l'article
+          </button>
+          <button class="btn-draft" onclick="publishArticle(false)">💾 Enregistrer en brouillon</button>
+          <div class="publish-status" id="pub-status"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL : PARAMÈTRES -->
+    <div class="panel" id="panel-settings">
+      <div class="panel-header"><h2>Paramètres</h2></div>
+      <div style="background:var(--white);border-radius:8px;padding:2rem;border:1px solid var(--gray-l)">
+        <div class="fg">
+          <label>Token GitHub (pour la publication)</label>
+          <input type="password" id="gh-token" placeholder="votre-token-github">
+          <small style="color:var(--gray);font-size:.8rem">Token GitHub avec accès au repo — nécessaire pour publier des articles.</small>
+        </div>
+        <div class="fg">
+          <label>Nouveau mot de passe admin</label>
+          <input type="password" id="new-pwd" placeholder="Laissez vide pour ne pas changer">
+        </div>
+        <button class="btn-publish" onclick="saveSettings()" style="margin-top:.5rem">💾 Sauvegarder</button>
+        <div id="settings-status" style="margin-top:1rem;font-size:.875rem;display:none"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ─── CONFIG ──────────────────────────────────────────────────────────────────
+const REPO   = 'Steph-972/marches-publics-martinique';
+const BRANCH = 'main';
+// Token et mot de passe stockés dans localStorage
+let GH_TOKEN = localStorage.getItem('pi_gh_token') || '';
+let ADMIN_PWD = localStorage.getItem('pi_pwd') || 'PI@2025!';
+
+// ─── AUTH ─────────────────────────────────────────────────────────────────────
+function doLogin() {
+  const val = document.getElementById('pwd-input').value;
+  if (val === ADMIN_PWD) {
+    document.getElementById('login').style.display = 'none';
+    document.getElementById('admin').style.display = 'block';
+    loadArticles();
+  } else {
+    document.getElementById('login-err').style.display = 'block';
+    document.getElementById('pwd-input').value = '';
+  }
+}
+function logout() {
+  document.getElementById('login').style.display = 'flex';
+  document.getElementById('admin').style.display = 'none';
+  document.getElementById('pwd-input').value = '';
+}
+
+// ─── NAVIGATION ──────────────────────────────────────────────────────────────
+function showPanel(name) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach((b,i) => {
+    const names = ['articles','editor','settings'];
+    b.classList.toggle('active', names[i] === name);
+  });
+  if (name === 'articles') loadArticles();
+  if (name === 'settings') loadSettings();
+}
+
+// ─── GITHUB API ───────────────────────────────────────────────────────────────
+async function ghGet(path) {
+  const r = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
+    headers: { 'Authorization': `Bearer ${GH_TOKEN}`, 'Accept': 'application/vnd.github+json' }
+  });
+  return r.json();
+}
+
+async function ghPut(path, content, message, sha) {
+  const body = { message, content: btoa(unescape(encodeURIComponent(content))), branch: BRANCH };
+  if (sha) body.sha = sha;
+  const r = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
+    method: 'PUT',
+    headers: { 'Authorization': `Bearer ${GH_TOKEN}`, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  });
+  return r.json();
+}
+
+async function ghPutBinary(path, base64content, message, sha) {
+  const body = { message, content: base64content, branch: BRANCH };
+  if (sha) body.sha = sha;
+  const r = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
+    method: 'PUT',
+    headers: { 'Authorization': `Bearer ${GH_TOKEN}`, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  });
+  return r.json();
+}
+
+// ─── ARTICLES ─────────────────────────────────────────────────────────────────
+let articlesData = [];
+let currentSha = null;
+
+async function loadArticles() {
+  const el = document.getElementById('articles-list');
+  el.innerHTML = '<p style="color:var(--gray)">Chargement...</p>';
+  try {
+    const d = await ghGet('articles.json');
+    currentSha = d.sha;
+    articlesData = JSON.parse(atob(d.content.replace(/\n/g,'')));
+    renderArticlesList();
+  } catch(e) {
+    el.innerHTML = '<p style="color:var(--red)">Erreur de chargement. Vérifiez votre token GitHub dans les paramètres.</p>';
+  }
+}
+
+function renderArticlesList() {
+  const el = document.getElementById('articles-list');
+  document.getElementById('art-count').textContent = `— ${articlesData.length} article(s)`;
+  if (!articlesData.length) {
+    el.innerHTML = '<p style="color:var(--gray);text-align:center;padding:3rem">Aucun article. Créez votre premier article !</p>';
+    return;
+  }
+  el.innerHTML = articlesData.map((a, i) => `
+    <div class="article-card">
+      <span class="ac-cat" style="background:${a.categoryBg};color:${a.categoryColor}">${a.category}</span>
+      <div class="ac-info">
+        <div class="ac-title">${a.title}</div>
+        <div class="ac-meta">${a.dateLabel} ${a.document ? '· <span class="ac-doc">📎 ' + a.documentName + '</span>' : ''}</div>
+      </div>
+      <span class="${a.published ? 'badge-pub' : 'badge-draft'}">${a.published ? '✓ Publié' : '⏳ Brouillon'}</span>
+      <div class="ac-actions">
+        <button class="btn-edit" onclick="editArticle(${i})">✏️ Éditer</button>
+        <button class="btn-del" onclick="deleteArticle(${i})">🗑️</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function newArticle() {
+  document.getElementById('edit-id').value = '';
+  document.getElementById('editor-title').textContent = 'Nouvel article';
+  document.getElementById('art-title').value = '';
+  document.getElementById('art-excerpt').value = '';
+  document.getElementById('content-editor').value = '';
+  document.getElementById('art-cat').value = 'Astuce terrain';
+  document.getElementById('existing-doc').value = '';
+  document.getElementById('existing-doc-name').value = '';
+  document.getElementById('file-preview').style.display = 'none';
+  document.getElementById('upload-zone').style.display = 'block';
+  currentFile = null;
+  showPanel('editor');
+}
+
+function editArticle(i) {
+  const a = articlesData[i];
+  document.getElementById('edit-id').value = a.id;
+  document.getElementById('editor-title').textContent = 'Modifier : ' + a.title.substring(0,40) + '...';
+  document.getElementById('art-title').value = a.title;
+  document.getElementById('art-excerpt').value = a.excerpt;
+  document.getElementById('content-editor').value = a.content;
+  document.getElementById('art-cat').value = a.category;
+  document.getElementById('existing-doc').value = a.document || '';
+  document.getElementById('existing-doc-name').value = a.documentName || '';
+  if (a.document) {
+    document.getElementById('fp-name').textContent = a.documentName;
+    document.getElementById('file-preview').style.display = 'flex';
+    document.getElementById('upload-zone').style.display = 'none';
+  }
+  currentFile = null;
+  showPanel('editor');
+}
+
+async function deleteArticle(i) {
+  if (!confirm(`Supprimer "${articlesData[i].title}" ?`)) return;
+  articlesData.splice(i, 1);
+  await saveArticlesJson('Suppression article');
+  toast('Article supprimé', 'success');
+  renderArticlesList();
+}
+
+// ─── ÉDITEUR ──────────────────────────────────────────────────────────────────
+function ins(open, close) {
+  const ta = document.getElementById('content-editor');
+  const start = ta.selectionStart, end = ta.selectionEnd;
+  const sel = ta.value.substring(start, end);
+  ta.value = ta.value.substring(0, start) + open + sel + close + ta.value.substring(end);
+  ta.focus();
+  ta.selectionStart = ta.selectionEnd = start + open.length + sel.length + close.length;
+}
+
+function switchTab(tab, btn) {
+  document.querySelectorAll('.etab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  ['edit','preview','help'].forEach(t => {
+    document.getElementById('tab-' + t).style.display = t === tab ? 'block' : 'none';
+  });
+  if (tab === 'preview') {
+    document.getElementById('preview-content').innerHTML = document.getElementById('content-editor').value || '<p style="color:var(--gray);font-style:italic">Aucun contenu à prévisualiser</p>';
+  }
+}
+
+// ─── UPLOAD FICHIER ───────────────────────────────────────────────────────────
+let currentFile = null;
+
+function fileSelected(input) {
+  if (input.files[0]) setFile(input.files[0]);
+}
+function dragOver(e) { e.preventDefault(); document.getElementById('upload-zone').classList.add('drag'); }
+function dragLeave(e) { document.getElementById('upload-zone').classList.remove('drag'); }
+function dropFile(e) {
+  e.preventDefault();
+  document.getElementById('upload-zone').classList.remove('drag');
+  if (e.dataTransfer.files[0]) setFile(e.dataTransfer.files[0]);
+}
+function setFile(f) {
+  if (f.size > 10 * 1024 * 1024) { toast('Fichier trop lourd (max 10MB)', 'error'); return; }
+  currentFile = f;
+  document.getElementById('fp-name').textContent = f.name;
+  document.getElementById('file-preview').style.display = 'flex';
+  document.getElementById('upload-zone').style.display = 'none';
+}
+function removeFile() {
+  currentFile = null;
+  document.getElementById('existing-doc').value = '';
+  document.getElementById('existing-doc-name').value = '';
+  document.getElementById('file-preview').style.display = 'none';
+  document.getElementById('upload-zone').style.display = 'block';
+  document.getElementById('file-input').value = '';
+}
+
+async function uploadFile(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+      const b64 = e.target.result.split(',')[1];
+      const fname = 'docs/' + Date.now() + '_' + file.name.replace(/\s+/g, '_');
+      try {
+        const d = await ghPutBinary(fname, b64, `Upload document: ${file.name}`);
+        resolve({ path: fname, name: file.name, url: `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${fname}` });
+      } catch(err) { reject(err); }
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+// ─── PUBLICATION ──────────────────────────────────────────────────────────────
+async function publishArticle(publish) {
+  const title   = document.getElementById('art-title').value.trim();
+  const excerpt = document.getElementById('art-excerpt').value.trim();
+  const content = document.getElementById('content-editor').value.trim();
+  if (!title || !excerpt || !content) { toast('Titre, résumé et contenu sont obligatoires', 'error'); return; }
+
+  const btn = document.getElementById('btn-pub');
+  const status = document.getElementById('pub-status');
+  btn.disabled = true;
+  status.className = 'publish-status loading';
+  status.textContent = currentFile ? 'Upload du fichier...' : 'Publication en cours...';
+
+  try {
+    // Upload fichier si présent
+    let docInfo = { path: null, name: null };
+    if (currentFile) {
+      status.textContent = 'Upload du fichier en cours...';
+      docInfo = await uploadFile(currentFile);
+    } else if (document.getElementById('existing-doc').value) {
+      docInfo.path = document.getElementById('existing-doc').value;
+      docInfo.name = document.getElementById('existing-doc-name').value;
+    }
+
+    status.textContent = 'Mise à jour des articles...';
+
+    // Catégorie
+    const catEl = document.getElementById('art-cat');
+    const catOpt = catEl.options[catEl.selectedIndex];
+    const catColor = catOpt.dataset.color;
+    const catBg    = catOpt.dataset.bg;
+
+    const now = new Date();
+    const dateLabel = now.toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' }).toUpperCase();
+    const dateISO   = now.toISOString().split('T')[0];
+
+    const editId = document.getElementById('edit-id').value;
+    const article = {
+      id: editId || String(Date.now()),
+      title, excerpt, content,
+      category: catEl.value, categoryColor: catColor, categoryBg: catBg,
+      date: dateISO, dateLabel,
+      document: docInfo.path, documentName: docInfo.name,
+      published: publish
+    };
+
+    if (editId) {
+      const idx = articlesData.findIndex(a => a.id === editId);
+      if (idx >= 0) articlesData[idx] = article;
+      else articlesData.unshift(article);
+    } else {
+      articlesData.unshift(article);
+    }
+
+    await saveArticlesJson(publish ? `Publication: ${title}` : `Brouillon: ${title}`);
+
+    status.className = 'publish-status ok';
+    status.textContent = publish ? '✓ Article publié ! Le site se met à jour dans ~30 secondes.' : '✓ Brouillon sauvegardé.';
+    toast(publish ? 'Article publié !' : 'Brouillon sauvegardé', 'success');
+    currentFile = null;
+    setTimeout(() => { showPanel('articles'); }, 2000);
+  } catch(e) {
+    status.className = 'publish-status err';
+    status.textContent = 'Erreur : ' + (e.message || 'Vérifiez votre token GitHub dans Paramètres.');
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+async function saveArticlesJson(message) {
+  const content = JSON.stringify(articlesData, null, 2);
+  // Récupérer le SHA actuel
+  const existing = await ghGet('articles.json');
+  const sha = existing.sha;
+  await ghPut('articles.json', content, message, sha);
+}
+
+// ─── PARAMÈTRES ───────────────────────────────────────────────────────────────
+function loadSettings() {
+  document.getElementById('gh-token').value = GH_TOKEN !== 'REPLACE_WITH_TOKEN' ? GH_TOKEN : '';
+}
+function saveSettings() {
+  const token = document.getElementById('gh-token').value.trim();
+  const pwd   = document.getElementById('new-pwd').value.trim();
+  if (token) { GH_TOKEN = token; localStorage.setItem('pi_gh_token', token); }
+  if (pwd)   { ADMIN_PWD = pwd;  localStorage.setItem('pi_pwd', pwd); }
+  const s = document.getElementById('settings-status');
+  s.style.display = 'block';
+  s.style.color = 'var(--green)';
+  s.textContent = '✓ Paramètres sauvegardés avec succès.';
+  setTimeout(() => s.style.display = 'none', 3000);
+}
+
+// ─── TOAST ────────────────────────────────────────────────────────────────────
+function toast(msg, type='') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show ' + type;
+  setTimeout(() => t.className = 'toast', 3000);
+}
+
+// Pré-remplir le token si disponible
+// Vérifier si le token est configuré au chargement
+window.addEventListener('DOMContentLoaded', () => {
+  if (!GH_TOKEN) {
+    const banner = document.createElement('div');
+    banner.id = 'token-banner';
+    banner.style.cssText = 'background:#E65100;color:white;padding:.75rem 2rem;text-align:center;font-size:.875rem;position:sticky;top:0;z-index:100';
+    banner.innerHTML = '⚠️ Token GitHub non configuré — <strong>allez dans Paramètres</strong> pour l\'ajouter avant de pouvoir publier.';
+    document.getElementById('admin')?.prepend(banner);
+  }
+});
+</script>
+</body>
+</html>
