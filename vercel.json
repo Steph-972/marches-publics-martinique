@@ -32,6 +32,10 @@
       "destination": "/services.html"
     },
     {
+      "source": "/img/:file",
+      "destination": "/img/:file"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

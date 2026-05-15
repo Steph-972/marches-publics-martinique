@@ -1127,22 +1127,34 @@ body.splash-active section {
 @media(max-width:600px){ #stats-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; } }
 </style>
 
-<!-- À PROPOS + TÉMOIGNAGE -->
-<section id="about">
-  <div class="container">
-    <div class="about-grid">
+<!-- À PROPOS + IMAGE -->
+<section id="about" style="background:var(--white);padding:0 0 clamp(5rem,8vw,9rem);">
 
-      <!-- COLONNE GAUCHE : Témoignage client -->
+  <!-- IMAGE PLEINE LARGEUR -->
+  <div class="about-hero-img reveal">
+    <img
+      src="/img/collaboration-pro.jpg"
+      srcset="/img/collaboration-pro.jpg 1440w"
+      sizes="100vw"
+      alt="Collaboration professionnelle en marchés publics — Procurement Insider Martinique"
+      loading="lazy"
+      decoding="async"
+    >
+  </div>
+
+  <!-- CONTENU : About + Témoignage -->
+  <div class="container">
+    <div class="about-grid" style="padding-top:clamp(3rem,5vw,5rem)">
+
+      <!-- COLONNE GAUCHE : Témoignage -->
       <div class="about-left reveal">
         <span class="label" style="color:var(--gold);margin-bottom:0.6rem;display:block;">Ce que disent nos clients</span>
         <span class="accent-line" style="margin-bottom:1.5rem;"></span>
         <div class="about-temoignage-card">
           <blockquote>
-            <p>Nous avions soumissionné six fois de suite sans jamais passer la phase de sélection. On pensait que c'était notre tarif qui posait problème. Stéphane a analysé nos dossiers et identifié en moins de 48&nbsp;heures ce que les acheteurs cherchaient et que nous ne valorisions absolument pas&nbsp;: nos références locales, notre réactivité, notre capacité à mobiliser en urgence. Il a restructuré notre mémoire technique de A à Z. Deux mois plus tard, nous décrochions un marché de 280&nbsp;000&nbsp;€ avec une collectivité avec laquelle nous n'avions jamais travaillé. Pour la première fois, l'acheteur nous a appelés après notification pour nous dire que notre dossier était le plus solide.</p>
+            <p>Nous avions soumissionné six fois de suite sans jamais passer la phase de sélection. On pensait que c'était notre tarif qui posait problème. Stéphane a analysé nos dossiers et identifié en moins de 48&nbsp;heures ce que les acheteurs cherchaient et que nous ne valorisions absolument pas&nbsp;: nos références locales, notre réactivité, notre capacité à mobiliser en urgence. Il a restructuré notre mémoire technique de A à Z. Deux mois plus tard, nous décrochions un marché de 280&nbsp;000&nbsp;€ avec une collectivité avec laquelle nous n'avions jamais travaillé.</p>
             <footer class="about-temoignage-footer">
-              <div class="about-temoignage-avatar">
-                <span>MC</span>
-              </div>
+              <div class="about-temoignage-avatar"><span>MC</span></div>
               <div>
                 <strong class="about-temoignage-name">M. C.</strong>
                 <span class="about-temoignage-role">Gérant · Entreprise BTP, Martinique</span>
@@ -1176,6 +1188,8 @@ body.splash-active section {
           <p>« Je m'engage sur la qualité de mes conseils et de mes méthodes. Jamais sur l'attribution d'un marché — c'est une décision qui appartient exclusivement à l'acheteur public. »</p>
         </div>
       </div>
+
+    <
 
     </div>
   </div>
