@@ -243,30 +243,61 @@ section[id] { scroll-margin-top: 80px; }
    À PROPOS
 ═══════════════════════════════════════════════════════ */
 #about { background: var(--white); }
-.about-grid { display: grid; grid-template-columns: 1fr 1.35fr; gap: clamp(3rem,6vw,7rem); align-items: center; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2.5rem,5vw,6rem); align-items: start; }
 .about-left { position: relative; }
-.about-portrait {
+.about-temoignage-card {
   background: var(--navy);
-  border-radius: 2px;
-  aspect-ratio: 4/5;
-  position: relative; overflow: hidden;
+  border-radius: 10px;
+  padding: clamp(2rem,4vw,3rem);
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  box-sizing: border-box;
+}
+.about-temoignage-card::before {
+  content: '\201C';
+  font-family: Georgia, serif;
+  font-size: 9rem;
+  color: var(--gold);
+  opacity: 0.15;
+  position: absolute;
+  top: -1.5rem;
+  left: 1.5rem;
+  line-height: 1;
+  pointer-events: none;
+}
+.about-temoignage-card blockquote { margin: 0; padding: 0; }
+.about-temoignage-card p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(0.9rem,1.6vw,1.05rem);
+  line-height: 1.85;
+  color: rgba(255,255,255,0.9);
+  position: relative;
+  z-index: 1;
+  margin: 0 0 2rem 0;
+}
+.about-temoignage-footer {
+  display: flex; align-items: center; gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(201,168,76,0.25);
+}
+.about-temoignage-avatar {
+  width: 46px; height: 46px; border-radius: 50%;
+  background: rgba(201,168,76,0.15);
+  border: 1.5px solid var(--gold);
   display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
 }
-.portrait-initials {
-  font-family: var(--serif); font-size: 4.5rem; font-weight: 700;
-  color: var(--gold); opacity: 0.9; letter-spacing: -0.03em;
+.about-temoignage-avatar span {
+  color: var(--gold);
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
 }
-.about-portrait::before {
-  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
-  height: 35%; background: linear-gradient(to top, rgba(15,35,66,0.8), transparent);
-}
-.about-badge {
-  position: absolute; bottom: -1.5rem; right: -1.5rem;
-  background: var(--gold); padding: 1.2rem 1.5rem;
-  border-radius: 2px; text-align: center;
-}
-.about-badge .num { font-family: var(--serif); font-size: 2.2rem; font-weight: 700; color: var(--navy); line-height: 1; }
-.about-badge .txt { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em; color: var(--navy); text-transform: uppercase; margin-top: 3px; }
+.about-temoignage-name { display: block; font-family: var(--sans); font-size: 0.88rem; color: white; font-weight: 600; letter-spacing: 0.02em; }
+.about-temoignage-role { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.1em; color: var(--gold); text-transform: uppercase; opacity: 0.85; }
 .about-right .section-label { margin-bottom: 1.2rem; }
 .about-right h2 { margin-bottom: 1.5rem; }
 .about-right p { color: var(--gray); margin-bottom: 1.2rem; }
@@ -591,8 +622,7 @@ footer { background: var(--navy); color: var(--white); padding: 4rem 0 2rem; }
   .nav-links { display: none; }
   .nav-hamburger { display: flex; }
   .about-grid { grid-template-columns: 1fr; }
-  .about-portrait { max-width: 300px; margin: 0 auto; }
-  .about-badge { right: -0.5rem; }
+  .about-temoignage-card { height: auto; }
   .services-grid { grid-template-columns: 1fr; }
   .services-grid .service-col:first-child { border-right: none; border-bottom: 2px solid var(--cream); }
   .why-grid { grid-template-columns: 1fr; }
@@ -967,19 +997,31 @@ body.splash-active section {
   </div>
 </div>
 
-<!-- À PROPOS -->
+<!-- À PROPOS + TÉMOIGNAGE -->
 <section id="about">
   <div class="container">
     <div class="about-grid">
+
+      <!-- COLONNE GAUCHE : Témoignage client -->
       <div class="about-left reveal">
-        <div class="about-portrait">
-          <div class="portrait-initials">SL</div>
-        </div>
-        <div class="about-badge">
-          <div class="num">10</div>
-          <div class="txt">Ans terrain</div>
+        <span class="label accent-line" style="margin-bottom:1.5rem;display:block;">Ce que disent nos clients</span>
+        <div class="about-temoignage-card">
+          <blockquote>
+            <p>Nous avions soumissionné six fois de suite sans jamais passer la phase de sélection. On pensait que c'était notre tarif qui posait problème. Stéphane a analysé nos dossiers et identifié en moins de 48&nbsp;heures ce que les acheteurs cherchaient et que nous ne valorisions absolument pas&nbsp;: nos références locales, notre réactivité, notre capacité à mobiliser en urgence. Il a restructuré notre mémoire technique de A à Z. Deux mois plus tard, nous décrochions un marché de 280&nbsp;000&nbsp;€ avec une collectivité avec laquelle nous n'avions jamais travaillé. Pour la première fois, l'acheteur nous a appelés après notification pour nous dire que notre dossier était le plus solide.</p>
+            <footer class="about-temoignage-footer">
+              <div class="about-temoignage-avatar">
+                <span>MC</span>
+              </div>
+              <div>
+                <strong class="about-temoignage-name">M. C.</strong>
+                <span class="about-temoignage-role">Gérant · Entreprise BTP, Martinique</span>
+              </div>
+            </footer>
+          </blockquote>
         </div>
       </div>
+
+      <!-- COLONNE DROITE : À propos -->
       <div class="about-right">
         <span class="label accent-line reveal">À propos</span>
         <h2 class="h1 reveal reveal-delay-1">Praticien avant tout.<br>Pas théoricien.</h2>
@@ -1002,34 +1044,7 @@ body.splash-active section {
           <p>« Je m'engage sur la qualité de mes conseils et de mes méthodes. Jamais sur l'attribution d'un marché — c'est une décision qui appartient exclusivement à l'acheteur public. »</p>
         </div>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- TÉMOIGNAGE CLIENT -->
-<section id="temoignage" style="background:var(--cream);padding:clamp(4rem,7vw,7rem) 0;">
-  <div class="container" style="max-width:860px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);">
-    <div style="text-align:center;margin-bottom:3rem;">
-      <span style="display:block;width:3.5rem;height:3px;background:var(--gold);margin:0 auto 1.5rem;"></span>
-      <h2 style="font-family:var(--serif);font-size:clamp(1.5rem,2.8vw,2.2rem);font-weight:600;color:var(--navy);">Ce que disent nos clients</h2>
-    </div>
-    <div style="background:white;border-radius:12px;box-shadow:0 4px 32px rgba(15,35,66,0.09);padding:clamp(2rem,5vw,3.5rem);position:relative;">
-      <!-- Guillemet décoratif -->
-      <span style="font-family:Georgia,serif;font-size:7rem;color:var(--gold);opacity:0.18;position:absolute;top:-1.2rem;left:2rem;line-height:1;pointer-events:none;">&#8220;</span>
-      <blockquote style="margin:0;padding:0;">
-        <p style="font-family:var(--serif);font-style:italic;font-size:clamp(1rem,2vw,1.2rem);line-height:1.85;color:var(--navy);padding-left:1.5rem;position:relative;z-index:1;">
-          Nous avions soumissionné six fois de suite sans jamais passer la phase de sélection. On pensait que c'était notre tarif qui posait problème. Stéphane a analysé nos dossiers et a identifié en moins de 48&nbsp;heures ce que les acheteurs cherchaient et que nous ne valorisions absolument pas&nbsp;: nos références locales, notre réactivité, notre capacité à mobiliser en urgence. Il a restructuré notre mémoire technique de A à Z. Deux mois plus tard, nous décrochio ns un marché de 280&nbsp;000&nbsp;€ avec une collectivité avec laquelle nous n'avions jamais travaillé. Pour la première fois, l'acheteur nous a appelés après notification pour nous dire que notre dossier était le plus solide.
-        </p>
-        <footer style="margin-top:2rem;padding-left:1.5rem;display:flex;align-items:center;gap:1.25rem;">
-          <div style="width:52px;height:52px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <span style="color:var(--gold);font-family:var(--sans);font-weight:700;font-size:0.85rem;letter-spacing:0.05em;">MC</span>
-          </div>
-          <div>
-            <strong style="display:block;font-family:var(--sans);font-size:0.95rem;color:var(--navy);letter-spacing:0.02em;">M. C.</strong>
-            <span style="font-family:var(--mono);font-size:0.72rem;letter-spacing:0.1em;color:var(--gray);text-transform:uppercase;">Gérant, entreprise BTP — Martinique</span>
-          </div>
-        </footer>
-      </blockquote>
     </div>
   </div>
 </section>
