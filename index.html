@@ -113,29 +113,17 @@ section[id] { scroll-margin-top: 80px; }
 ═══════════════════════════════════════════════════════ */
 #navbar {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  transition: background var(--transition), box-shadow var(--transition),
-              padding var(--transition), color var(--transition);
   padding: 1.5rem 0;
-  --nav-text: rgba(255,255,255,0.82);
-  --nav-text-hover: var(--gold);
-  --nav-hamburger-color: #fff;
+  background: transparent;
+  transition: background 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
 }
-/* ÉTAT DARK — sur sections sombres (navy) ou hero */
+/* Au top uniquement : transparent sur le hero sombre */
 #navbar.scrolled {
-  background: rgba(15,35,66,0.97); backdrop-filter: blur(12px);
-  box-shadow: 0 2px 20px rgba(0,0,0,0.25); padding: 1rem 0;
-}
-/* ÉTAT LIGHT — sur sections blanches/cream, nav gets opaque white bg */
-#navbar.nav-light {
-  background: rgba(255,255,255,0.97); backdrop-filter: blur(12px);
-  box-shadow: 0 2px 16px rgba(15,35,66,0.10);
-  --nav-text: rgba(15,35,66,0.85);
-  --nav-text-hover: var(--gold);
-  --nav-hamburger-color: var(--navy);
-}
-#navbar.nav-light.scrolled {
-  background: rgba(255,255,255,0.97);
-  box-shadow: 0 2px 20px rgba(15,35,66,0.12);
+  background: rgba(15,35,66,0.97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.25);
+  padding: 1rem 0;
 }
 .nav-inner { display: flex; align-items: center; justify-content: space-between; }
 .nav-logo {
@@ -144,8 +132,8 @@ section[id] { scroll-margin-top: 80px; }
 }
 .nav-logo span { display: block; font-size: 0.65rem; font-family: var(--mono); letter-spacing: 0.15em; color: var(--gold); font-weight: 400; margin-top: 1px; }
 .nav-links { display: flex; align-items: center; gap: 2.2rem; list-style: none; }
-.nav-links a { color: var(--nav-text); font-size: 0.875rem; font-weight: 400; transition: color var(--transition); }
-.nav-links a:hover { color: var(--nav-text-hover); }
+.nav-links a { color: rgba(255,255,255,0.88); font-size: 0.875rem; font-weight: 400; transition: color var(--transition); }
+.nav-links a:hover { color: var(--gold); }
 .nav-cta {
   background: var(--gold); color: var(--navy) !important; padding: 0.55rem 1.4rem;
   border-radius: var(--radius); font-weight: 600 !important; font-size: 0.85rem !important;
@@ -156,7 +144,7 @@ section[id] { scroll-margin-top: 80px; }
   display: none; flex-direction: column; gap: 5px; background: none; border: none;
   padding: 6px; cursor: pointer;
 }
-.nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--nav-hamburger-color, var(--white)); border-radius: 2px; transition: all 0.3s; }
+.nav-hamburger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: all 0.3s; }
 .mobile-menu {
   display: none; position: fixed; inset: 0; background: var(--navy);
   z-index: 999; padding: 5rem 2rem 2rem;
@@ -1840,48 +1828,10 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') closeArticle(
 <script>
 // ─── NAVBAR SCROLL ────────────────────────────────────────────────────────────
 const navbar = document.getElementById('navbar');
-
-// Sections claires (fond blanc ou cream) — la nav y passe en mode light
-const LIGHT_SECTIONS = ['about', 'services', 'why', 'diagnostic', 'contact'];
-
-// IntersectionObserver : détecte quelle section chevauche la zone de la nav
-(function initNavObserver() {
-  let isLight = false;
-
-  function updateNav() {
-    const scrolled = window.scrollY > 20;
-    navbar.classList.toggle('scrolled', scrolled);
-    navbar.classList.toggle('nav-light', isLight && scrolled);
-  }
-
-  // Observer chaque section claire
-  const observerOptions = {
-    root: null,
-    // On surveille une mince bande en haut de l'écran (= zone de la nav)
-    rootMargin: '-64px 0px -90% 0px',
-    threshold: 0
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        isLight = LIGHT_SECTIONS.includes(entry.target.id);
-      }
-    });
-    updateNav();
-  }, observerOptions);
-
-  // Observer toutes les sections
-  document.querySelectorAll('section[id], div[id]').forEach(el => {
-    observer.observe(el);
-  });
-
-  // Scroll listener pour le toggle scrolled
-  window.addEventListener('scroll', updateNav, { passive: true });
-
-  // Init immédiate
-  updateNav();
-})();
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 10);
+}, { passive: true });
+if (window.scrollY > 10) navbar.classList.add('scrolled');
 
 // ─── MOBILE MENU ─────────────────────────────────────────────────────────────
 function toggleMenu() {
