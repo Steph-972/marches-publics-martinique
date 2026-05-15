@@ -102,8 +102,8 @@ section[id] { scroll-margin-top: 80px; }
 #cookie-banner p { font-size: 0.875rem; flex: 1 1 280px; line-height: 1.6; opacity: 0.9; }
 #cookie-banner a { color: var(--gold); text-decoration: underline; }
 .cookie-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
-.btn-cookie-accept { background: var(--gold); color: var(--navy); padding: 0.5rem 1.5rem; border: none; border-radius: var(--radius); font-weight: 600; font-size: 0.875rem; }
-.btn-cookie-refuse { background: transparent; color: var(--white); padding: 0.5rem 1.5rem; border: 1px solid rgba(255,255,255,0.35); border-radius: var(--radius); font-size: 0.875rem; }
+.btn-cookie-accept { background: var(--gold); color: var(--navy); padding: 0.5rem 1.5rem; border: none; border-radius: var(--radius); font-weight: 600; font-size: 0.875rem; cursor: pointer; }
+.btn-cookie-refuse { background: transparent; color: var(--white); padding: 0.5rem 1.5rem; border: 1px solid rgba(255,255,255,0.35); border-radius: var(--radius); font-size: 0.875rem; cursor: pointer; }
 #cookie-banner.hidden { transform: translateY(110%); }
 
 /* ═══════════════════════════════════════════════════════
@@ -828,6 +828,7 @@ body.splash-active section {
   function exitSplash() {
     cancelAnimationFrame(raf);
     const splash = document.getElementById('splash');
+    splash.style.pointerEvents = 'none'; // Fix: libère les clics immédiatement
     splash.classList.add('fade-out');
     document.body.classList.remove('splash-active');
     splash.addEventListener('animationend', function() {
@@ -1001,6 +1002,34 @@ body.splash-active section {
           <p>« Je m'engage sur la qualité de mes conseils et de mes méthodes. Jamais sur l'attribution d'un marché — c'est une décision qui appartient exclusivement à l'acheteur public. »</p>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- TÉMOIGNAGE CLIENT -->
+<section id="temoignage" style="background:var(--cream);padding:clamp(4rem,7vw,7rem) 0;">
+  <div class="container" style="max-width:860px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem);">
+    <div style="text-align:center;margin-bottom:3rem;">
+      <span style="display:block;width:3.5rem;height:3px;background:var(--gold);margin:0 auto 1.5rem;"></span>
+      <h2 style="font-family:var(--serif);font-size:clamp(1.5rem,2.8vw,2.2rem);font-weight:600;color:var(--navy);">Ce que disent nos clients</h2>
+    </div>
+    <div style="background:white;border-radius:12px;box-shadow:0 4px 32px rgba(15,35,66,0.09);padding:clamp(2rem,5vw,3.5rem);position:relative;">
+      <!-- Guillemet décoratif -->
+      <span style="font-family:Georgia,serif;font-size:7rem;color:var(--gold);opacity:0.18;position:absolute;top:-1.2rem;left:2rem;line-height:1;pointer-events:none;">&#8220;</span>
+      <blockquote style="margin:0;padding:0;">
+        <p style="font-family:var(--serif);font-style:italic;font-size:clamp(1rem,2vw,1.2rem);line-height:1.85;color:var(--navy);padding-left:1.5rem;position:relative;z-index:1;">
+          Nous avions soumissionné six fois de suite sans jamais passer la phase de sélection. On pensait que c'était notre tarif qui posait problème. Stéphane a analysé nos dossiers et a identifié en moins de 48&nbsp;heures ce que les acheteurs cherchaient et que nous ne valorisions absolument pas&nbsp;: nos références locales, notre réactivité, notre capacité à mobiliser en urgence. Il a restructuré notre mémoire technique de A à Z. Deux mois plus tard, nous décrochio ns un marché de 280&nbsp;000&nbsp;€ avec une collectivité avec laquelle nous n'avions jamais travaillé. Pour la première fois, l'acheteur nous a appelés après notification pour nous dire que notre dossier était le plus solide.
+        </p>
+        <footer style="margin-top:2rem;padding-left:1.5rem;display:flex;align-items:center;gap:1.25rem;">
+          <div style="width:52px;height:52px;border-radius:50%;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <span style="color:var(--gold);font-family:var(--sans);font-weight:700;font-size:0.85rem;letter-spacing:0.05em;">MC</span>
+          </div>
+          <div>
+            <strong style="display:block;font-family:var(--sans);font-size:0.95rem;color:var(--navy);letter-spacing:0.02em;">M. C.</strong>
+            <span style="font-family:var(--mono);font-size:0.72rem;letter-spacing:0.1em;color:var(--gray);text-transform:uppercase;">Gérant, entreprise BTP — Martinique</span>
+          </div>
+        </footer>
+      </blockquote>
     </div>
   </div>
 </section>
