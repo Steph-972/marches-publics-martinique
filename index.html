@@ -2026,6 +2026,33 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 </script>
 
+
+<!-- WHATSAPP FLOATING BUTTON (mobile only) -->
+<a id="wa-btn" href="https://wa.me/596696266231?text=Bonjour%20St%C3%A9phane%2C%20je%20souhaite%20en%20savoir%20plus%20sur%20vos%20services." target="_blank" rel="noopener" aria-label="Contacter sur WhatsApp">
+  <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="16" cy="16" r="16" fill="#25D366"/>
+    <path d="M23.5 8.5C21.6 6.6 19.1 5.5 16.4 5.5C10.9 5.5 6.4 10 6.4 15.5C6.4 17.3 6.9 19.1 7.8 20.6L6.3 26L11.8 24.5C13.3 25.3 14.8 25.8 16.4 25.8C21.9 25.8 26.4 21.3 26.4 15.8C26.4 13.1 25.4 10.6 23.5 8.5ZM16.4 24C14.9 24 13.5 23.6 12.2 22.8L11.9 22.6L8.8 23.4L9.6 20.4L9.4 20.1C8.5 18.7 8.1 17.1 8.1 15.5C8.1 11 11.9 7.2 16.4 7.2C18.6 7.2 20.6 8.1 22.1 9.6C23.6 11.1 24.5 13.1 24.5 15.5C24.7 20.1 20.9 24 16.4 24ZM20.9 17.6C20.7 17.5 19.4 16.9 19.2 16.8C19 16.7 18.9 16.7 18.7 16.9C18.5 17.1 18.1 17.6 18 17.8C17.9 17.9 17.7 18 17.6 17.9C17.4 17.8 16.5 17.5 15.4 16.5C14.6 15.7 14.1 14.8 13.9 14.6C13.8 14.4 13.9 14.3 14 14.1C14.1 14 14.3 13.8 14.4 13.7C14.5 13.6 14.5 13.5 14.6 13.3C14.7 13.1 14.6 13 14.5 12.9C14.4 12.8 13.9 11.5 13.7 11C13.5 10.5 13.3 10.6 13.1 10.6C13 10.6 12.8 10.6 12.6 10.6C12.4 10.6 12.1 10.7 11.9 10.9C11.7 11.1 11.1 11.7 11.1 13C11.1 14.3 11.9 15.5 12.1 15.7C12.2 15.9 13.9 18.4 16.4 19.5C17 19.8 17.5 19.9 17.9 20.1C18.5 20.3 19.1 20.2 19.5 20.1C20 20 21.1 19.5 21.3 19C21.5 18.4 21.5 18 21.4 17.9C21.3 17.7 21.1 17.7 20.9 17.6Z" fill="white"/>
+  </svg>
+</a>
+<style>
+#wa-btn {
+  position: fixed;
+  bottom: 5.5rem;
+  right: 1.25rem;
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  display: none;
+  align-items: center; justify-content: center;
+  box-shadow: 0 4px 16px rgba(37,211,102,0.45);
+  z-index: 8887;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+}
+#wa-btn:hover { transform: scale(1.08); box-shadow: 0 6px 22px rgba(37,211,102,0.6); }
+#wa-btn svg { width: 52px; height: 52px; }
+@media(max-width:768px) { #wa-btn { display: flex; } }
+</style>
+
 <!-- FLOATING CTA MOBILE -->
 <div id="floating-cta" style="display:none;">
   <a href="#diagnostic" id="floating-cta-link" onclick="setFormMode('diagnostic');return false;">

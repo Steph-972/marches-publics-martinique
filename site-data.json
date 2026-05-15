@@ -1,9 +1,29 @@
 {
   "stats": [
-    {"value": "0", "suffix": "+", "label": "Dossiers analysés", "icon": "📁"},
-    {"value": "0", "suffix": "%", "label": "Satisfaction clients", "icon": "⭐"},
-    {"value": "0", "suffix": "+", "label": "Collectivités accompagnées", "icon": "🏛️"},
-    {"value": "0", "suffix": "+", "label": "Formations dispensées", "icon": "🎓"}
+    {
+      "value": "52",
+      "suffix": "+",
+      "label": "Dossiers analysés",
+      "icon": "📁"
+    },
+    {
+      "value": "93",
+      "suffix": "%",
+      "label": "Satisfaction clients",
+      "icon": "⭐"
+    },
+    {
+      "value": "4",
+      "suffix": "",
+      "label": "Collectivités accompagnées",
+      "icon": "🏛️"
+    },
+    {
+      "value": "7",
+      "suffix": "",
+      "label": "Formations dispensées",
+      "icon": "🎓"
+    }
   ],
   "faq": [
     {
@@ -56,28 +76,52 @@
           "price": "À partir de 990 €",
           "unit": "HT / mission",
           "description": "Analyse complète d'une procédure de marché public : conformité réglementaire, rédaction des pièces, grille d'analyse des offres.",
-          "features": ["Revue du DCE complet", "Analyse de conformité juridique", "Rapport d'audit détaillé", "Recommandations correctives", "1 réunion de restitution"]
+          "features": [
+            "Revue du DCE complet",
+            "Analyse de conformité juridique",
+            "Rapport d'audit détaillé",
+            "Recommandations correctives",
+            "1 réunion de restitution"
+          ]
         },
         {
           "name": "Rédaction DCE / CCTP",
           "price": "À partir de 1 490 €",
           "unit": "HT / marché",
           "description": "Rédaction ou relecture du Dossier de Consultation des Entreprises, incluant CCAP, CCTP, RC et AE.",
-          "features": ["Rédaction des pièces administratives", "Rédaction ou relecture du CCTP", "Critères de sélection optimisés", "Mise en conformité réglementaire", "Livraison sous 10 jours ouvrés"]
+          "features": [
+            "Rédaction des pièces administratives",
+            "Rédaction ou relecture du CCTP",
+            "Critères de sélection optimisés",
+            "Mise en conformité réglementaire",
+            "Livraison sous 10 jours ouvrés"
+          ]
         },
         {
           "name": "Formation Équipe Achat",
           "price": "À partir de 750 €",
           "unit": "HT / jour / groupe",
           "description": "Formation sur-mesure pour vos équipes achat : procédures, jurisprudence, rédaction, sécurisation juridique.",
-          "features": ["Programme adapté à votre niveau", "Cas pratiques martiniquais", "Support de formation fourni", "Jusqu'à 12 participants", "Éligible financement OPCO"]
+          "features": [
+            "Programme adapté à votre niveau",
+            "Cas pratiques martiniquais",
+            "Support de formation fourni",
+            "Jusqu'à 12 participants",
+            "Éligible financement OPCO"
+          ]
         },
         {
           "name": "Accompagnement Annuel",
           "price": "Sur devis",
           "unit": "",
           "description": "Partenariat continu : conseiller dédié pour toutes vos procédures, veille réglementaire, assistance ad hoc tout au long de l'année.",
-          "features": ["Hotline juridique marchés publics", "Revue de toutes vos procédures", "Veille réglementaire mensuelle", "Formations incluses", "Disponibilité prioritaire"]
+          "features": [
+            "Hotline juridique marchés publics",
+            "Revue de toutes vos procédures",
+            "Veille réglementaire mensuelle",
+            "Formations incluses",
+            "Disponibilité prioritaire"
+          ]
         }
       ]
     },
@@ -89,28 +133,52 @@
           "price": "À partir de 490 €",
           "unit": "HT / dossier",
           "description": "Analyse complète de votre dernier dossier de candidature perdu : identification des failles, axes d'amélioration prioritaires.",
-          "features": ["Revue de votre DC1/DC2", "Analyse du mémoire technique", "Comparaison avec le gagnant (si possible)", "Rapport de recommandations", "Échange téléphonique de restitution"]
+          "features": [
+            "Revue de votre DC1/DC2",
+            "Analyse du mémoire technique",
+            "Comparaison avec le gagnant (si possible)",
+            "Rapport de recommandations",
+            "Échange téléphonique de restitution"
+          ]
         },
         {
           "name": "Pack Mémoire Technique",
           "price": "À partir de 790 €",
           "unit": "HT / appel d'offres",
           "description": "Rédaction ou restructuration de votre mémoire technique pour maximiser votre score sur les critères de jugement.",
-          "features": ["Analyse du cahier des charges", "Structuration argumentation", "Rédaction orientée critères acheteur", "Mise en valeur de vos références", "Livraison en 5 jours ouvrés"]
+          "features": [
+            "Analyse du cahier des charges",
+            "Structuration argumentation",
+            "Rédaction orientée critères acheteur",
+            "Mise en valeur de vos références",
+            "Livraison en 5 jours ouvrés"
+          ]
         },
         {
           "name": "Pack Réponse Complète",
           "price": "À partir de 1 290 €",
           "unit": "HT / appel d'offres",
           "description": "Accompagnement intégral de votre réponse : de l'analyse du DCE à la remise de l'offre. Le plus complet.",
-          "features": ["Analyse DCE et stratégie d'offre", "Constitution dossier administratif", "Rédaction mémoire technique", "Relecture et optimisation prix", "Dépôt et suivi jusqu'à l'attribution"]
+          "features": [
+            "Analyse DCE et stratégie d'offre",
+            "Constitution dossier administratif",
+            "Rédaction mémoire technique",
+            "Relecture et optimisation prix",
+            "Dépôt et suivi jusqu'à l'attribution"
+          ]
         },
         {
           "name": "Coaching Intensif",
           "price": "Sur devis",
           "unit": "",
           "description": "Programme d'autonomisation de votre équipe : formation + outils + templates pour répondre seuls aux prochains marchés.",
-          "features": ["Formation équipe commerciale", "Bibliothèque de templates", "Checklist procédures", "Suivi 3 mois post-formation", "Hotline questions urgentes"]
+          "features": [
+            "Formation équipe commerciale",
+            "Bibliothèque de templates",
+            "Checklist procédures",
+            "Suivi 3 mois post-formation",
+            "Hotline questions urgentes"
+          ]
         }
       ]
     }
