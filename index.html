@@ -938,7 +938,7 @@ body.splash-active section {
         <li><a href="#insights">Insights</a></li>
         <li><a href="/faq">FAQ</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="#contact" class="nav-cta" data-form-mode="diagnostic">Diagnostic gratuit</a></li>
+        <li><a href="#contact" class="nav-cta" onclick="setFormMode('diagnostic');return false;">Diagnostic gratuit</a></li>
       </ul>
       <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -958,7 +958,7 @@ body.splash-active section {
   <a href="/entites-publiques" onclick="toggleMenu()">Entités publiques</a>
   <a href="/entreprises-privees" onclick="toggleMenu()">Entreprises privées</a>
   <a href="#contact" onclick="toggleMenu()">Contact</a>
-  <a href="#contact" class="mobile-cta" data-form-mode="diagnostic" onclick="toggleMenu()">Diagnostic gratuit</a>
+  <a href="#contact" class="mobile-cta" onclick="toggleMenu();setFormMode('diagnostic');return false;">Diagnostic gratuit</a>
 </div>
 
 <!-- HERO -->
@@ -987,7 +987,7 @@ body.splash-active section {
         Dix ans de pratique opérationnelle au service des entreprises qui souhaitent améliorer leurs réponses aux appels d'offres et des entités publiques qui structurent leur stratégie d'achat.
       </p>
       <div class="hero-actions">
-        <a href="#contact" class="btn-primary" data-form-mode="diagnostic">
+        <a href="#contact" class="btn-primary" onclick="setFormMode('diagnostic');return false;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           Diagnostic gratuit 30 min
         </a>
@@ -1131,11 +1131,24 @@ body.splash-active section {
       <span class="accent-line accent-line-center"></span>
       <h2 class="h1">Deux expertises,<br>un seul terrain.</h2>
       <p style="color:var(--gray);margin-top:1rem;">Une offre pensée pour les deux acteurs de la commande publique : ceux qui achètent, et ceux qui soumissionnent.</p>
+      <!-- Onglets cibles -->
+      <div class="services-tabs">
+        <a href="/entites-publiques" class="services-tab">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Entités publiques
+          <span class="tab-arrow">→</span>
+        </a>
+        <a href="/entreprises-privees" class="services-tab">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-4 0v2"/><line x1="12" y1="12" x2="12" y2="16"/></svg>
+          Entreprises privées
+          <span class="tab-arrow">→</span>
+        </a>
+      </div>
     </div>
     <div class="services-grid">
       <!-- Entités publiques -->
       <div class="service-col reveal">
-        <div class="service-col-header">
+        <a href="/entites-publiques" class="service-col-header service-col-header-link" title="Voir tous les services — Entités publiques">
           <div class="service-col-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
           </div>
@@ -1143,7 +1156,8 @@ body.splash-active section {
             <h3>Entités publiques</h3>
             <span>Collectivités · EPCI · Établissements publics</span>
           </div>
-        </div>
+          <svg class="col-header-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
         <ul class="service-list">
           <li class="service-item">
             <span class="service-item-num">01</span>
@@ -1186,7 +1200,7 @@ body.splash-active section {
             </div>
           </li>
         </ul>
-        <p style="font-size:0.8rem;color:var(--gray);margin-top:0.75rem;font-family:var(--mono)">Devis personnalisé sous 48h sur demande</p>
+        <a href="/entites-publiques" class="service-col-link-full">Voir tous les services & tarifs <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         <div class="service-offer">
           <span class="label">Porte d'entrée recommandée</span>
           <p>Vous avez une procédure à lancer ou une stratégie à structurer ?</p>
@@ -1196,7 +1210,7 @@ body.splash-active section {
       </div>
       <!-- Entreprises -->
       <div class="service-col reveal reveal-delay-2">
-        <div class="service-col-header">
+        <a href="/entreprises-privees" class="service-col-header service-col-header-link" title="Voir toutes les offres — Entreprises privées">
           <div class="service-col-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-4 0v2"/></svg>
           </div>
@@ -1204,7 +1218,8 @@ body.splash-active section {
             <h3>Entreprises privées</h3>
             <span>TPE · PME · Artisans · BTP · Prestataires</span>
           </div>
-        </div>
+          <svg class="col-header-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
         <ul class="service-list">
           <li class="service-item">
             <span class="service-item-num">01</span>
@@ -1247,7 +1262,7 @@ body.splash-active section {
             </div>
           </li>
         </ul>
-        <p style="font-size:0.8rem;color:var(--gray);margin-top:0.75rem;font-family:var(--mono)">Devis personnalisé sous 48h sur demande</p>
+        <a href="/entreprises-privees" class="service-col-link-full">Voir toutes les offres & tarifs <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
         <div class="service-offer">
           <span class="label">Offre de lancement</span>
           <p>Première mission ? Commencez par un diagnostic express :</p>
@@ -1562,7 +1577,7 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') closeArticle(
         <span class="diag-feat">Recommandations personnalisées</span>
         <span class="diag-feat">Sans engagement</span>
       </div>
-      <a href="#contact" class="btn-diag" data-form-mode="diagnostic">
+      <a href="#contact" class="btn-diag" onclick="setFormMode('diagnostic');return false;">
         Réserver mon diagnostic gratuit
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
@@ -2026,20 +2041,9 @@ function setFormMode(mode) {
   }
 }
 
-// Intercepter tous les liens avec data-form-mode
-document.addEventListener('click', function(e) {
-  const link = e.target.closest('a[data-form-mode]');
-  if (!link) return;
-  const mode = link.getAttribute('data-form-mode');
-  if (!mode) return;
-  e.preventDefault();
-  setFormMode(mode);
-});
-
-// Détecter si on arrive directement sur #contact ou #diagnostic via URL
+// Détecter si on arrive directement sur #diagnostic via URL
 (function() {
-  const hash = window.location.hash;
-  if (hash === '#diagnostic') setFormMode('diagnostic');
+  if (window.location.hash === '#diagnostic') setFormMode('diagnostic');
 })();
 
 // ─── SMOOTH SCROLL OFFSET (FIXED NAV) ────────────────────────────────────────
@@ -2146,7 +2150,7 @@ window.addEventListener('scroll', () => {
 
 <!-- FLOATING CTA MOBILE -->
 <div id="floating-cta" style="display:none;">
-  <a href="#diagnostic" id="floating-cta-link">
+  <a href="#diagnostic" id="floating-cta-link" onclick="setFormMode('diagnostic');return false;">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
     Diagnostic gratuit
   </a>
