@@ -14,6 +14,10 @@ const ALLOWED_FILES = new Set([
   'grille-mapa.html'
 ]);
 
+const GUARANTEE_STATEMENT = "« Je m'engage sur la qualité de mes conseils et de mes méthodes. Jamais sur l'attribution d'un marché — c'est une décision qui appartient exclusivement à l'acheteur public. »";
+const FOUNDER_PERSPECTIVE = "Dix années au cœur de la commande publique m'ont donné une lecture que peu de prestataires possèdent : comprendre ce qu'un acheteur attend réellement au moment d'analyser une offre. Aujourd'hui, je transforme cette expérience terrain en méthode claire pour aider les entreprises à mieux répondre et les entités publiques à acheter plus juste.";
+const ABOUT_PERSPECTIVE = "Dix années de pratique opérationnelle en Martinique, au contact direct des besoins, des DCE, des CCTP, des MAPA et des procédures formalisées, m'ont donné une lecture concrète des attentes d'un acheteur public : ce qui sécurise un dossier, ce qui le fragilise, et ce qui fait réellement la différence à l'analyse.";
+
 const HOTFIX_CSS = `
 <style id="display-hotfix-secondary-pages">
 /* Correctif d'affichage transversal pour pages secondaires.
@@ -90,6 +94,70 @@ footer .footer-links-matrix a {
 footer .footer-links-matrix a:hover {
   color: var(--gold, #C9A84C);
 }
+.founder-statement {
+  position: relative;
+  margin: 1.35rem 0;
+  padding: 1.25rem 1.45rem 1.25rem 1.7rem;
+  border: 1px solid rgba(201,168,76,0.28);
+  border-left: 3px solid var(--gold, #C9A84C);
+  border-radius: 10px;
+  background: rgba(201,168,76,0.10);
+  font-family: var(--serif, Georgia, serif);
+  font-size: clamp(0.98rem, 1.35vw, 1.12rem);
+  line-height: 1.78;
+  font-style: italic;
+  letter-spacing: -0.01em;
+  box-shadow: 0 14px 38px rgba(15,35,66,0.12);
+}
+.founder-statement::before {
+  content: '“';
+  position: absolute;
+  top: -0.35rem;
+  left: 0.8rem;
+  font-family: Georgia, serif;
+  font-size: 4.8rem;
+  line-height: 1;
+  color: var(--gold, #C9A84C);
+  opacity: 0.18;
+  pointer-events: none;
+}
+.founder-statement p {
+  position: relative;
+  z-index: 1;
+  margin: 0 !important;
+}
+.founder-statement-hero {
+  max-width: 620px;
+  color: rgba(255,255,255,0.86);
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(201,168,76,0.34);
+  border-left-color: var(--gold, #C9A84C);
+  box-shadow: 0 18px 48px rgba(0,0,0,0.18);
+}
+.founder-statement-hero p {
+  color: rgba(255,255,255,0.86) !important;
+}
+.founder-statement-compact {
+  max-width: 560px;
+  font-size: 0.95rem;
+  line-height: 1.72;
+  margin-top: 1.25rem;
+  margin-bottom: 0;
+}
+.founder-statement-light {
+  color: var(--navy, #0F2342);
+  background: var(--cream, #F8F5EF);
+  border-color: rgba(201,168,76,0.35);
+  border-left-color: var(--gold, #C9A84C);
+}
+.founder-statement-light p {
+  color: var(--navy, #0F2342) !important;
+}
+.about-guarantee {
+  background: transparent !important;
+  border-left: 0 !important;
+  padding: 0 !important;
+}
 img {
   max-width: 100%;
   height: auto;
@@ -126,6 +194,10 @@ img {
   footer nav {
     flex-direction: column !important;
     gap: 1.5rem !important;
+  }
+  .founder-statement {
+    padding: 1.1rem 1.15rem 1.1rem 1.35rem;
+    font-size: 0.95rem;
   }
 }
 @media (max-width: 560px) {
@@ -187,15 +259,45 @@ function normalizeHomePageTexts(html, file) {
   return html
     .replace(
       /Je ne promets jamais l'attribution d'un marché\. J'aide à construire le meilleur dossier possible, conforme aux règles et aligné sur les attentes de l'acheteur\./g,
-      "« Je m'engage sur la qualité de mes conseils et de mes méthodes. Jamais sur l'attribution d'un marché — c'est une décision qui appartient exclusivement à l'acheteur public. »"
+      GUARANTEE_STATEMENT
     )
     .replace(
       /Pendant 10 ans, j'ai piloté des procédures d'achats publics au sein d'entités martiniquaises — de la définition du besoin jusqu'à la notification du marché\. Des centaines de DCE rédigés, des procédures formalisées et des MAPA conduits, des offres analysées, des attributions décidées\./g,
-      "Pendant 10 ans, j'ai exercé au cœur de la commande publique en Martinique, de la définition du besoin jusqu'à la notification des marchés. DCE, CCTP, procédures formalisées, MAPA, analyse des offres : cette pratique m'a donné une lecture concrète de ce qu'un acheteur attend vraiment d'un dossier."
+      ABOUT_PERSPECTIVE
+    )
+    .replace(
+      /Pendant 10 ans, j'ai exercé au cœur de la commande publique en Martinique, de la définition du besoin jusqu'à la notification des marchés\. DCE, CCTP, procédures formalisées, MAPA, analyse des offres : cette pratique m'a donné une lecture concrète de ce qu'un acheteur attend vraiment d'un dossier\./g,
+      ABOUT_PERSPECTIVE
+    )
+    .replace(
+      /Acheteur public pendant 10 ans, j'ai analysé des centaines de dossiers et décidé des attributions\. Aujourd'hui je mets cette connaissance de l'autre côté de la table — au service des entreprises qui veulent gagner, et des entités qui veulent acheter mieux\./g,
+      FOUNDER_PERSPECTIVE
     )
     .replace(
       /Un jour, j'ai changé de côté\. Pas pour tourner le dos à la commande publique, mais pour en démocratiser l'accès\. Trop d'entreprises locales perdent des marchés non pas parce qu'elles ne sont pas compétentes, mais parce qu'elles ne savent pas comment valoriser cette compétence face à un acheteur public\. J'ai créé <strong>Procurement Insider<\/strong> pour ça\./g,
       "J'ai créé <strong>Procurement Insider</strong> pour rendre cette lecture terrain plus accessible. Trop d'entreprises locales perdent des opportunités non pas par manque de compétence, mais parce que leur dossier ne valorise pas suffisamment leurs moyens, leurs références et leur méthodologie face aux attentes de l'acheteur public."
+    );
+}
+
+function normalizeFounderStatementBlocks(html, file) {
+  if (file !== 'index.html') return html;
+
+  return html
+    .replace(
+      /<p class="lead hero-subtitle">\s*(?:Acheteur public pendant 10 ans,[\s\S]*?|Dix années au cœur de la commande publique[\s\S]*?)\s*<\/p>/i,
+      `<div class="founder-statement founder-statement-hero founder-statement-main"><p>${FOUNDER_PERSPECTIVE}</p></div>`
+    )
+    .replace(
+      /<p style="font-size:\.78rem;color:rgba\(255,255,255,\.45\);margin-top:1\.25rem;font-family:var\(--mono\);letter-spacing:\.03em;line-height:1\.6;max-width:480px">\s*(?:Je ne promets jamais l'attribution d'un marché\. J'aide à construire le meilleur dossier possible, conforme aux règles et aligné sur les attentes de l'acheteur\.|« Je m'engage sur la qualité de mes conseils et de mes méthodes\. Jamais sur l'attribution d'un marché — c'est une décision qui appartient exclusivement à l'acheteur public\. »)\s*<\/p>/i,
+      `<blockquote class="founder-statement founder-statement-hero founder-statement-compact"><p>${GUARANTEE_STATEMENT}</p></blockquote>`
+    )
+    .replace(
+      /<p class="reveal reveal-delay-2">\s*(?:Pendant 10 ans,[\s\S]*?|Dix années de pratique opérationnelle en Martinique[\s\S]*?)\s*<\/p>/i,
+      `<div class="founder-statement founder-statement-light reveal reveal-delay-2"><p>${ABOUT_PERSPECTIVE}</p></div>`
+    )
+    .replace(
+      /<div class="about-guarantee reveal reveal-delay-4">\s*<p>\s*« Je m'engage sur la qualité de mes conseils et de mes méthodes\. Jamais sur l'attribution d'un marché — c'est une décision qui appartient exclusivement à l'acheteur public\. »\s*<\/p>\s*<\/div>/i,
+      `<div class="about-guarantee reveal reveal-delay-4"><blockquote class="founder-statement founder-statement-light founder-statement-compact"><p>${GUARANTEE_STATEMENT}</p></blockquote></div>`
     );
 }
 
@@ -273,6 +375,9 @@ module.exports = async function handler(req, res) {
 
     // Harmonise les textes stratégiques de l'accueil.
     html = normalizeHomePageTexts(html, file);
+
+    // Harmonise les prises de parole du fondateur dans un style graphique commun.
+    html = normalizeFounderStatementBlocks(html, file);
 
     // Réorganise le footer en colonnes lisibles.
     html = normalizeFooterColumns(html);
