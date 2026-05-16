@@ -1769,55 +1769,21 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') closeArticle(
   </div>
 </section>
 
-<!-- LEAD MAGNET -->
-<section id="lead-magnet" style="background:var(--white);padding:clamp(4rem,6vw,6rem) 0;border-top:1px solid var(--gray-light)">
-  <div class="container">
-    <div style="max-width:640px;margin:0 auto;text-align:center">
-      <span class="label reveal" style="color:var(--gold);display:block;margin-bottom:.6rem">Outil gratuit</span>
-      <span class="accent-line accent-line-center reveal" style="margin-bottom:1.5rem"></span>
-      <h2 class="h1 reveal reveal-delay-1" style="margin-bottom:1rem">Grille gratuite : les 12 points<br>qui font perdre une offre en MAPA</h2>
-      <p class="reveal reveal-delay-2" style="color:var(--gray);margin-bottom:2.5rem;max-width:520px;margin-left:auto;margin-right:auto">Avant de déposer une offre, vérifiez les erreurs qui coûtent le plus cher : pièces manquantes, mémoire hors sujet, critères mal traités, prix incohérent, absence de preuves, mauvaise lecture du RC.</p>
-      <div id="lead-form-container" class="reveal reveal-delay-3" style="background:var(--cream);border-radius:8px;padding:2rem;text-align:left;max-width:480px;margin:0 auto">
-        <div id="lead-form-fields">
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
-            <div>
-              <label style="font-size:.8rem;font-weight:600;color:var(--navy);display:block;margin-bottom:.4rem">Prénom *</label>
-              <input type="text" id="lead-prenom" placeholder="Votre prénom" style="width:100%;padding:.7rem .9rem;border:1px solid var(--gray-light);border-radius:4px;font-family:var(--sans);font-size:.875rem" onfocus="this.style.borderColor='var(--navy)'" onblur="this.style.borderColor='var(--gray-light)'">
-            </div>
-            <div>
-              <label style="font-size:.8rem;font-weight:600;color:var(--navy);display:block;margin-bottom:.4rem">Email *</label>
-              <input type="email" id="lead-email" placeholder="votre@email.fr" style="width:100%;padding:.7rem .9rem;border:1px solid var(--gray-light);border-radius:4px;font-family:var(--sans);font-size:.875rem" onfocus="this.style.borderColor='var(--navy)'" onblur="this.style.borderColor='var(--gray-light)'">
-            </div>
-          </div>
-          <div style="margin-bottom:1rem">
-            <label style="font-size:.8rem;font-weight:600;color:var(--navy);display:block;margin-bottom:.4rem">Vous êtes *</label>
-            <select id="lead-profil" style="width:100%;padding:.7rem .9rem;border:1px solid var(--gray-light);border-radius:4px;font-family:var(--sans);font-size:.875rem;background:white">
-              <option value="">Sélectionnez votre profil</option>
-              <option value="entreprise">Entreprise / PME / TPE / Artisan</option>
-              <option value="entite">Collectivité / Entité publique</option>
-              <option value="autre">Autre</option>
-            </select>
-          </div>
-          <div style="margin-bottom:1.25rem">
-            <label style="display:flex;align-items:flex-start;gap:.6rem;cursor:pointer">
-              <input type="checkbox" id="lead-consent" style="margin-top:3px;flex-shrink:0;accent-color:var(--navy)">
-              <span style="font-size:.75rem;color:var(--gray);line-height:1.5">J'accepte que mes coordonnées soient utilisées pour me transmettre la grille et d'éventuelles informations liées à la commande publique. Aucune transmission à des tiers. Droit d'accès et de suppression sur simple demande.</span>
-            </label>
-          </div>
-          <button onclick="submitLeadForm()" style="width:100%;background:var(--gold);color:var(--navy);padding:.85rem 1.5rem;border:none;border-radius:4px;font-weight:700;font-size:.925rem;cursor:pointer;font-family:var(--sans)">
-            Recevoir la grille gratuite
-          </button>
-        </div>
-        <div id="lead-success" style="display:none;text-align:center;padding:1.5rem 0">
-          <div style="font-size:2rem;margin-bottom:.75rem">✓</div>
-          <p style="font-weight:600;color:var(--navy);margin-bottom:.5rem">Demande bien reçue.</p>
-          <p style="font-size:.875rem;color:var(--gray);line-height:1.6;margin-bottom:1rem">La grille vient de vous être envoyée par email. Vérifiez vos spams si vous ne la recevez pas dans 5 minutes.</p>
-          <a href="/grille-mapa" target="_blank" style="display:inline-flex;align-items:center;gap:.5rem;background:var(--gold);color:var(--navy);padding:.65rem 1.25rem;border-radius:4px;font-weight:700;font-size:.85rem;text-decoration:none">Accéder directement à la grille →</a>
-        </div>
-      </div>
-    </div>
+<!-- OUTILS GRATUITS CTA -->
+<section id="outils" style="background:var(--white);padding:clamp(3.5rem,5vw,5rem) 0;border-top:1px solid var(--gray-light)">
+  <div class="container" style="text-align:center">
+    <span class="label" style="color:var(--gold);display:block;margin-bottom:.5rem">Ressources gratuites</span>
+    <span class="accent-line accent-line-center" style="margin-bottom:1.5rem"></span>
+    <h2 class="h1" style="margin-bottom:.9rem">Outils gratuits<br>issus du terrain</h2>
+    <p style="color:var(--gray);max-width:480px;margin:0 auto 2rem;font-size:.95rem;line-height:1.7">Grilles de vérification, guides pratiques, ressources opérationnelles — développés à partir de 10 ans de pratique de la commande publique.</p>
+    <a href="/outils-gratuits" style="display:inline-flex;align-items:center;gap:.6rem;background:var(--navy);color:var(--white);padding:.9rem 2.2rem;border-radius:4px;font-weight:700;font-size:.95rem;text-decoration:none;transition:all .25s" onmouseover="this.style.background='#1A3A6B'" onmouseout="this.style.background='#0F2342'">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Accéder aux outils gratuits
+    </a>
+    <p style="font-size:.75rem;color:var(--gray);margin-top:1rem;font-family:var(--mono)">Accès immédiat · Sans engagement · Déontologie respectée</p>
   </div>
 </section>
+
 
 <section id="contact">
   <div class="container">
@@ -2067,6 +2033,7 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') closeArticle(
         <ul>
           <li><a href="#about">À propos</a></li>
           <li><a href="#cas-pratiques">Cas pratiques</a></li>
+          <li><a href="/outils-gratuits">Outils gratuits</a></li>
           <li><a href="#methode">Méthode</a></li>
           <li><a href="#deontologie">Déontologie</a></li>
           <li><a href="/services">Tous les services</a></li>
@@ -2180,57 +2147,6 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 });
 
 
-// ─── LEAD MAGNET ──────────────────────────────────────────────────────────────
-async function submitLeadForm() {
-  var prenomEl  = document.getElementById('lead-prenom');
-  var emailEl   = document.getElementById('lead-email');
-  var profilEl  = document.getElementById('lead-profil');
-  var consentEl = document.getElementById('lead-consent');
-  var btn       = document.querySelector('#lead-form-fields button');
-
-  // Validation
-  var ok = true;
-  if (!prenomEl || !prenomEl.value.trim()) {
-    if (prenomEl) prenomEl.style.borderColor = '#E53935';
-    ok = false;
-  }
-  if (!emailEl || !emailEl.value.trim() || !emailEl.value.includes('@')) {
-    if (emailEl) emailEl.style.borderColor = '#E53935';
-    ok = false;
-  }
-  if (!consentEl || !consentEl.checked) {
-    alert('Merci de cocher la case de consentement pour recevoir la grille.');
-    ok = false;
-  }
-  if (!ok) return;
-
-  // État chargement
-  if (btn) { btn.disabled = true; btn.textContent = 'Envoi en cours…'; }
-
-  try {
-    var resp = await fetch('/api/lead-magnet', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        prenom: prenomEl.value.trim(),
-        email:  emailEl.value.trim(),
-        profil: profilEl ? profilEl.value : ''
-      })
-    });
-
-    if (resp.ok) {
-      var fields  = document.getElementById('lead-form-fields');
-      var success = document.getElementById('lead-success');
-      if (fields)  fields.style.display  = 'none';
-      if (success) success.style.display = 'block';
-    } else {
-      throw new Error('Erreur serveur');
-    }
-  } catch (e) {
-    if (btn) { btn.disabled = false; btn.textContent = 'Recevoir la grille gratuite'; }
-    alert('Une erreur est survenue. Écrivez-moi directement à loeildelacheteur@gmail.com pour recevoir la grille.');
-  }
-}
 
 // ─── ACTIVE NAV LINK ─────────────────────────────────────────────────────────
 const sections = document.querySelectorAll('section[id]');

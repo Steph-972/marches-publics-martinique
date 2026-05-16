@@ -48,6 +48,10 @@
       "destination": "/grille-mapa.html"
     },
     {
+      "source": "/outils-gratuits",
+      "destination": "/outils-gratuits.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

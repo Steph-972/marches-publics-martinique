@@ -30,4 +30,10 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://procurement-insider-git-main-procurement-insiders-projects.vercel.app/outils-gratuits</loc>
+    <lastmod>2025-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
