@@ -104,6 +104,12 @@ function normalizeHeaderNav(html) {
   return html.replace(/<nav(?=[\s>])/i, '<nav id="navbar"');
 }
 
+function removeAccueilNavLink(html) {
+  // Sur les pages secondaires, le retour accueil doit rester porté par le logo / lien retour,
+  // sans bouton texte Accueil dans la navigation principale.
+  return html.replace(/\s*<li>\s*<a\s+href=["']\/["']>Accueil<\/a>\s*<\/li>/gi, '');
+}
+
 module.exports = async function handler(req, res) {
   const file = safeFile(req.query.file);
 
@@ -130,6 +136,9 @@ module.exports = async function handler(req, res) {
     // Normalise la navigation principale : certaines pages utilisaient <nav> sans id,
     // ce qui rendait les correctifs CSS et JS moins fiables.
     html = normalizeHeaderNav(html);
+
+    // Harmonise la navigation des pages secondaires : pas de bouton texte Accueil.
+    html = removeAccueilNavLink(html);
 
     // Sécurise aussi le JS sur les pages où document.querySelector('nav') existe.
     html = html
