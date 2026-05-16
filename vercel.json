@@ -5,11 +5,31 @@
   "rewrites": [
     {
       "source": "/entites-publiques",
-      "destination": "/entites-publiques.html"
+      "destination": "/api/render-page?file=entites-publiques.html"
     },
     {
       "source": "/entreprises-privees",
-      "destination": "/entreprises-privees.html"
+      "destination": "/api/render-page?file=entreprises-privees.html"
+    },
+    {
+      "source": "/services",
+      "destination": "/api/render-page?file=services.html"
+    },
+    {
+      "source": "/faq",
+      "destination": "/api/render-page?file=faq.html"
+    },
+    {
+      "source": "/mentions-legales",
+      "destination": "/api/render-page?file=mentions-legales.html"
+    },
+    {
+      "source": "/outils-gratuits",
+      "destination": "/api/render-page?file=outils-gratuits.html"
+    },
+    {
+      "source": "/grille-mapa",
+      "destination": "/api/render-page?file=grille-mapa.html"
     },
     {
       "source": "/sitemap.xml",
@@ -24,32 +44,12 @@
       "destination": "/admin.html"
     },
     {
-      "source": "/faq",
-      "destination": "/faq.html"
-    },
-    {
-      "source": "/services",
-      "destination": "/services.html"
-    },
-    {
       "source": "/img/:file",
       "destination": "/img/:file"
     },
     {
       "source": "/robots.txt",
       "destination": "/robots.txt"
-    },
-    {
-      "source": "/mentions-legales",
-      "destination": "/mentions-legales.html"
-    },
-    {
-      "source": "/grille-mapa",
-      "destination": "/grille-mapa.html"
-    },
-    {
-      "source": "/outils-gratuits",
-      "destination": "/outils-gratuits.html"
     },
     {
       "source": "/(.*)",
