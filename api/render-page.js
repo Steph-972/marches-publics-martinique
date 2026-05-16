@@ -4,6 +4,7 @@ const REPO_OWNER = 'Steph-972';
 const REPO_NAME = 'marches-publics-martinique';
 
 const ALLOWED_FILES = new Set([
+  'index.html',
   'services.html',
   'entreprises-privees.html',
   'entites-publiques.html',
@@ -104,9 +105,11 @@ function normalizeHeaderNav(html) {
   return html.replace(/<nav(?=[\s>])/i, '<nav id="navbar"');
 }
 
-function removeAccueilNavLink(html) {
+function removeAccueilNavLink(html, file) {
   // Sur les pages secondaires, le retour accueil doit rester porté par le logo / lien retour,
   // sans bouton texte Accueil dans la navigation principale ni dans le menu mobile.
+  if (file === 'index.html') return html;
+
   return html
     .replace(/\s*<li>\s*<a\s+href=["']\/["']>Accueil<\/a>\s*<\/li>/gi, '')
     .replace(/\s*<a\s+href=["']\/["']\s+onclick=["']toggleMenu\(\)["']>Accueil<\/a>/gi, '')
@@ -126,6 +129,24 @@ function normalizeFounderSignature(html, file) {
       '<div class="brand-footer">Stéphane Loudoux<br>Fondateur Procurement Insider</div>')
     .replace(/<div class="brand-footer">Stéphane Loudoux — Procurement Insider \| L'Œil de l'Acheteur<\/div>\s*Responsable Achat &amp; Marchés Publics, ODYSSI – Régie des Eaux de la CACEM · Fondateur Procurement Insider<br>/gi,
       '<div class="brand-footer">Stéphane Loudoux<br>Fondateur Procurement Insider</div>');
+}
+
+function normalizeHomePageTexts(html, file) {
+  if (file !== 'index.html') return html;
+
+  return html
+    .replace(
+      /Je ne promets jamais l'attribution d'un marché\. J'aide à construire le meilleur dossier possible, conforme aux règles et aligné sur les attentes de l'acheteur\./g,
+      "« Je m'engage sur la qualité de mes conseils et de mes méthodes. Jamais sur l'attribution d'un marché — c'est une décision qui appartient exclusivement à l'acheteur public. »"
+    )
+    .replace(
+      /Pendant 10 ans, j'ai piloté des procédures d'achats publics au sein d'entités martiniquaises — de la définition du besoin jusqu'à la notification du marché\. Des centaines de DCE rédigés, des procédures formalisées et des MAPA conduits, des offres analysées, des attributions décidées\./g,
+      "Pendant 10 ans, j'ai exercé au cœur de la commande publique en Martinique, de la définition du besoin jusqu'à la notification des marchés. DCE, CCTP, procédures formalisées, MAPA, analyse des offres : cette pratique m'a donné une lecture concrète de ce qu'un acheteur attend vraiment d'un dossier."
+    )
+    .replace(
+      /Un jour, j'ai changé de côté\. Pas pour tourner le dos à la commande publique, mais pour en démocratiser l'accès\. Trop d'entreprises locales perdent des marchés non pas parce qu'elles ne sont pas compétentes, mais parce qu'elles ne savent pas comment valoriser cette compétence face à un acheteur public\. J'ai créé <strong>Procurement Insider<\/strong> pour ça\./g,
+      "J'ai créé <strong>Procurement Insider</strong> pour rendre cette lecture terrain plus accessible. Trop d'entreprises locales perdent des opportunités non pas par manque de compétence, mais parce que leur dossier ne valorise pas suffisamment leurs moyens, leurs références et leur méthodologie face aux attentes de l'acheteur public."
+    );
 }
 
 module.exports = async function handler(req, res) {
@@ -156,10 +177,13 @@ module.exports = async function handler(req, res) {
     html = normalizeHeaderNav(html);
 
     // Harmonise la navigation des pages secondaires : pas de bouton texte Accueil.
-    html = removeAccueilNavLink(html);
+    html = removeAccueilNavLink(html, file);
 
     // Harmonise la signature publique hors FAQ.
     html = normalizeFounderSignature(html, file);
+
+    // Harmonise les textes stratégiques de l'accueil.
+    html = normalizeHomePageTexts(html, file);
 
     // Sécurise aussi le JS sur les pages où document.querySelector('nav') existe.
     html = html
