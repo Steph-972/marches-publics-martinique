@@ -11,7 +11,7 @@
 <meta property="og:type" content="website">
 <title>Procurement Insider | Expert Marchés Publics Martinique – L'Œil de l'Acheteur</title>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Procurement Insider","alternateName":"L-Oeil de l-Acheteur","description":"Expert en marches publics et commande publique en Martinique. Accompagnement des entreprises et entites publiques depuis 10 ans.","url":"https://procurement-insider-git-main-procurement-insiders-projects.vercel.app","telephone":"+596696266231","email":"loeildelacheteur@gmail.com","founder":{"@type":"Person","name":"Stephane Loudoux","jobTitle":"Consultant Expert Marches Publics"},"address":{"@type":"PostalAddress","addressLocality":"Fort-de-France","addressRegion":"Martinique","postalCode":"97200","addressCountry":"MQ"},"areaServed":["Martinique","Guadeloupe","Guyane","Antilles francaises"],"serviceType":["Conseil marches publics","Redaction DCE","Formation commande publique","Audit procedures achat"],"priceRange":"EE","openingHours":"Mo-Fr 08:00-18:00"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","name":"Procurement Insider","alternateName":"L-Oeil de l-Acheteur","description":"Expert en marches publics et commande publique en Martinique. Accompagnement des entreprises et entites publiques depuis 10 ans.","url":"https://procurement-insider-git-main-procurement-insiders-projects.vercel.app","telephone":"+596696266231","email":"<a href="mailto:loeildelacheteur@gmail.com" style="color:inherit">loeildelacheteur@gmail.com</a>","founder":{"@type":"Person","name":"Stephane Loudoux","jobTitle":"Consultant Expert Marches Publics"},"address":{"@type":"PostalAddress","addressLocality":"Fort-de-France","addressRegion":"Martinique","postalCode":"97200","addressCountry":"MQ"},"areaServed":["Martinique","Guadeloupe","Guyane","Antilles francaises"],"serviceType":["Conseil marches publics","Redaction DCE","Formation commande publique","Audit procedures achat"],"priceRange":"EE","openingHours":"Mo-Fr 08:00-18:00"}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -232,7 +232,7 @@ section[id] { scroll-margin-top: 80px; }
 ═══════════════════════════════════════════════════════ */
 #targets { padding: 0; background: var(--cream); overflow: hidden; }
 .targets-split { display: grid; grid-template-columns: 1fr 1fr; min-height: 120px; }
-.target-block {
+.target-block { min-height: 140px;
   padding: clamp(2.5rem,5vw,3.5rem) clamp(2rem,5vw,4rem);
   display: flex; align-items: center; gap: 1.5rem;
   transition: all var(--transition);
@@ -1176,7 +1176,7 @@ body.splash-active section {
 </style>
 
 <!-- À PROPOS + IMAGE -->
-<section id="about" style="background:var(--cream);padding:clamp(4rem,6vw,6rem) 0 clamp(5rem,8vw,9rem);">
+<section id="about" style="background:var(--cream);padding:0 0 clamp(5rem,8vw,9rem);">
 
   <!-- IMAGE PLEINE LARGEUR -->
   <div class="about-hero-img reveal">
@@ -1759,6 +1759,10 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') closeArticle(
             <input type="email" id="email" name="email" placeholder="votre@email.fr" required>
           </div>
           <div class="form-group">
+            <label for="telephone">Téléphone <span style="color:var(--gray);font-weight:400;font-size:.8rem">(optionnel)</span></label>
+            <input type="tel" id="telephone" name="telephone" placeholder="+596 6XX XX XX XX">
+          </div>
+          <div class="form-group">
             <label for="organisation">Organisation / Entreprise</label>
             <input type="text" id="organisation" name="organisation" placeholder="Nom de votre structure">
           </div>
@@ -1829,7 +1833,7 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') closeArticle(
           <strong>SIRET :</strong> En cours d'immatriculation<br>
           <strong>Code APE :</strong> 70.22Z — Conseil pour les affaires et autres conseils de gestion<br>
           <strong>Adresse :</strong> Martinique (972), Martinique (972)<br>
-          <strong>Email :</strong> loeildelacheteur@gmail.com<br>
+          <strong>Email :</strong> <a href="mailto:loeildelacheteur@gmail.com" style="color:inherit">loeildelacheteur@gmail.com</a><br>
           <strong>Téléphone :</strong> +596 696 266 231</p>
           <h4>Hébergement</h4>
           <p>Vercel Inc. — 340 Pine Street, Suite 701, San Francisco, CA 94104, USA. Données servies via CDN avec points de présence en Europe (conformité RGPD assurée par clauses contractuelles types).</p>
@@ -1846,7 +1850,7 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') closeArticle(
         </button>
         <div class="accordion-content">
           <h4>Responsable du traitement</h4>
-          <p>Stéphane Loudoux — loeildelacheteur@gmail.com — Martinique (972)</p>
+          <p>Stéphane Loudoux — <a href="mailto:loeildelacheteur@gmail.com" style="color:inherit">loeildelacheteur@gmail.com</a> — Martinique (972)</p>
           <h4>Données collectées</h4>
           <p>Via le formulaire de contact : nom, prénom, adresse email, téléphone (optionnel), organisation, message. Ces données sont collectées uniquement avec votre consentement explicite.</p>
           <h4>Finalités du traitement</h4>
@@ -1854,7 +1858,7 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') closeArticle(
           <h4>Durée de conservation</h4>
           <p>Prospects : 3 ans maximum à compter du dernier contact. Clients : 5 ans (obligations comptables et légales).</p>
           <h4>Vos droits (RGPD)</h4>
-          <p>Conformément au RGPD (Règlement UE 2016/679), vous disposez d'un droit d'accès, de rectification, d'effacement, de portabilité et d'opposition à vos données. Pour exercer ces droits : loeildelacheteur@gmail.com. En cas de litige, vous pouvez saisir la CNIL (cnil.fr).</p>
+          <p>Conformément au RGPD (Règlement UE 2016/679), vous disposez d'un droit d'accès, de rectification, d'effacement, de portabilité et d'opposition à vos données. Pour exercer ces droits : <a href="mailto:loeildelacheteur@gmail.com" style="color:inherit">loeildelacheteur@gmail.com</a>. En cas de litige, vous pouvez saisir la CNIL (cnil.fr).</p>
           <h4>Cookies</h4>
           <p>Ce site n'utilise pas de cookies de traçage ou d'analyse. Le formulaire de contact est traité sans cookie tiers. Aucun outil de mesure d'audience n'est activé.</p>
           <h4>Transfert de données</h4>
@@ -1934,7 +1938,7 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') closeArticle(
           <a href="#legal">Politique de confidentialité</a>
           <a href="#legal">CGV</a>
         </div>
-        <p class="footer-rgpd">Site conforme RGPD. Aucun cookie de traçage. Données hébergées en Union Européenne. Droits RGPD exercés à : loeildelacheteur@gmail.com</p>
+        <p class="footer-rgpd">Site conforme RGPD. Aucun cookie de traçage. Données hébergées en Union Européenne. Droits RGPD exercés à : <a href="mailto:loeildelacheteur@gmail.com" style="color:inherit">loeildelacheteur@gmail.com</a></p>
       </div>
     </div>
   </div>
@@ -2085,7 +2089,7 @@ function downloadArticlePDF() {
     body,
     '<div class="ft">',
     '<p><strong>Stéphane Loudoux</strong> \u2014 Responsable Achat &amp; March\u00e9s Publics, ODYSSI \u2013 R\u00e9gie des Eaux de la CACEM</p>',
-    '<p style="margin-top:.5rem">Fort-de-France, Martinique &nbsp;\u00b7&nbsp; loeildelacheteur@gmail.com</p>',
+    '<p style="margin-top:.5rem">Fort-de-France, Martinique &nbsp;\u00b7&nbsp; <a href="mailto:loeildelacheteur@gmail.com" style="color:inherit">loeildelacheteur@gmail.com</a></p>',
     '</div></body></html>'
   ];
   var html = parts.join('');
