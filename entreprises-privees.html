@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Procurement Insider — Remportez plus de marchés publics en Martinique. Accompagnement TPE/PME : audit candidature, rédaction mémoire technique, réponse aux appels d'offres.">
+<meta name="description" content="Procurement Insider — Augmentez vos chances aux marchés publics en Martinique. Accompagnement TPE/PME : audit candidature, rédaction mémoire technique, réponse aux appels d'offres.">
 <meta name="robots" content="index, follow">
 <meta property="og:title" content="Entreprises Privées | Procurement Insider Martinique">
-<meta property="og:description" content="Remportez plus de marchés publics. Mémoire technique, réponse aux AO, coaching — Expert commande publique Martinique.">
-<title>Entreprises Privées | Procurement Insider — Remportez plus de marchés publics</title>
+<meta property="og:description" content="Augmentez vos chances aux marchés publics. Mémoire technique, réponse aux AO, coaching — Expert commande publique Martinique.">
+<title>Entreprises Privées | Procurement Insider — Augmentez vos chances aux marchés publics</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -302,7 +302,7 @@ footer a{color:var(--gold)}
       <span class="label">Pour qui</span>
       <span class="accent-bar"></span>
       <h2>Ces entreprises que j'accompagne</h2>
-      <p>Vous vous reconnaissez dans l'un de ces profils ? Nous avons probablement des choses à faire ensemble.</p>
+      <p>Vous vous reconnaissez dans l'un de ces profils ? Nous avons probablement matière à travailler ensemble.</p>
     </div>
     <div class="profils-grid">
       <div class="profil-card">
@@ -348,8 +348,65 @@ footer a{color:var(--gold)}
       <h2>Des offres claires,<br>sans mauvaise surprise</h2>
       <p>Le diagnostic de 30 minutes est toujours gratuit et sans engagement. Les tarifs ci-dessous sont indicatifs selon la complexité du marché.</p>
     </div>
-    <div class="pricing-grid" id="pricing-private">
-      <!-- Chargé dynamiquement depuis site-data.json -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:2.5rem">
+
+      <!-- Pack 1 -->
+      <div style="background:var(--white);border:1px solid var(--gray-light);border-radius:8px;padding:2rem;display:flex;flex-direction:column;gap:1rem;position:relative">
+        <div>
+          <span style="font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600">Pack Diagnostic AO</span>
+          <div style="font-size:1.6rem;font-weight:700;color:var(--navy);margin:.5rem 0 .25rem">À partir de 490 € HT</div>
+          <p style="font-size:.82rem;color:var(--gray);line-height:1.5">Idéal pour un premier marché ou une décision Go / No Go rapide.</p>
+        </div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:.6rem;flex:1">
+          <li style="font-size:.875rem;color:var(--text);display:flex;gap:.6rem"><span style="color:var(--gold);flex-shrink:0">—</span>Lecture du DCE, RC et CCTP</li>
+          <li style="font-size:.875rem;color:var(--text);display:flex;gap:.6rem"><span style="color:var(--gold);flex-shrink:0">—</span>Analyse des critères de jugement et pondérations</li>
+          <li style="font-size:.875rem;color:var(--text);display:flex;gap:.6rem"><span style="color:var(--gold);flex-shrink:0">—</span>Décision Go / No Go argumentée</li>
+          <li style="font-size:.875rem;color:var(--text);display:flex;gap:.6rem"><span style="color:var(--gold);flex-shrink:0">—</span>Identification des risques et points de vigilance</li>
+          <li style="font-size:.875rem;color:var(--text);display:flex;gap:.6rem"><span style="color:var(--gold);flex-shrink:0">—</span>Stratégie de réponse et recommandations opérationnelles</li>
+        </ul>
+        <a href="/#contact" onclick="if(window.setFormMode)setFormMode('diagnostic');return false;" style="display:inline-flex;align-items:center;justify-content:center;gap:.5rem;background:var(--navy);color:white;padding:.75rem 1.5rem;border-radius:4px;font-weight:600;font-size:.875rem;text-decoration:none;margin-top:.5rem">
+          Demander un diagnostic
+        </a>
+      </div>
+
+      <!-- Pack 2 -->
+      <div style="background:var(--navy);border:2px solid var(--gold);border-radius:8px;padding:2rem;display:flex;flex-direction:column;gap:1rem;position:relative">
+        <div style="position:absolute;top:-1px;right:1.5rem;background:var(--gold);color:var(--navy);font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;padding:.25rem .75rem;border-radius:0 0 4px 4px;font-weight:700">LE PLUS DEMANDÉ</div>
+        <div>
+          <span style="font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600">Pack Mémoire Technique</span>
+          <div style="font-size:1.6rem;font-weight:700;color:white;margin:.5rem 0 .25rem">À partir de 900 € HT</div>
+          <p style="font-size:.82rem;color:rgba(255,255,255,.65);line-height:1.5">Pour un mémoire plus lisible, mieux argumenté et aligné sur les critères.</p>
+        </div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:.6rem;flex:1">
+          <li style="font-size:.875rem;color:rgba(255,255,255,.85);display:flex;gap:.6rem"><span style="color:var(--gold);flex-shrink:0">—</span>Structuration ou refonte du mémoire technique</li>
+          <li style="font-size:.875rem;color:rgba(255,255,255,.85);display:flex;gap:.6rem"><span style="color:var(--gold);flex-shrink:0">—</span>Adaptation aux critères et sous-critères de jugement</li>
+          <li style="font-size:.875rem;color:rgba(255,255,255,.85);display:flex;gap:.6rem"><span style="color:var(--gold);flex-shrink:0">—</span>Valorisation des références, moyens, méthodologie et qualité</li>
+          <li style="font-size:.875rem;color:rgba(255,255,255,.85);display:flex;gap:.6rem"><span style="color:var(--gold);flex-shrink:0">—</span>Relecture critique et optimisation de la clarté</li>
+          <li style="font-size:.875rem;color:rgba(255,255,255,.85);display:flex;gap:.6rem"><span style="color:var(--gold);flex-shrink:0">—</span>Amélioration de la notation potentielle</li>
+        </ul>
+        <a href="/#contact" onclick="if(window.setFormMode)setFormMode('diagnostic');return false;" style="display:inline-flex;align-items:center;justify-content:center;gap:.5rem;background:var(--gold);color:var(--navy);padding:.75rem 1.5rem;border-radius:4px;font-weight:700;font-size:.875rem;text-decoration:none;margin-top:.5rem">
+          Optimiser mon mémoire technique
+        </a>
+      </div>
+
+      <!-- Pack 3 -->
+      <div style="background:var(--white);border:1px solid var(--gray-light);border-radius:8px;padding:2rem;display:flex;flex-direction:column;gap:1rem">
+        <div>
+          <span style="font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600">Pack Réponse Complète</span>
+          <div style="font-size:1.6rem;font-weight:700;color:var(--navy);margin:.5rem 0 .25rem">Sur devis</div>
+          <p style="font-size:.82rem;color:var(--gray);line-height:1.5">Accompagnement intégral de A à Z, du DCE jusqu'au dépôt.</p>
+        </div>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:.6rem;flex:1">
+          <li style="font-size:.875rem;color:var(--text);display:flex;gap:.6rem"><span style="color:var(--gold);flex-shrink:0">—</span>Dossier administratif complet et vérifié</li>
+          <li style="font-size:.875rem;color:var(--text);display:flex;gap:.6rem"><span style="color:var(--gold);flex-shrink:0">—</span>Mémoire technique structuré et optimisé</li>
+          <li style="font-size:.875rem;color:var(--text);display:flex;gap:.6rem"><span style="color:var(--gold);flex-shrink:0">—</span>Stratégie de prix et cohérence des pièces</li>
+          <li style="font-size:.875rem;color:var(--text);display:flex;gap:.6rem"><span style="color:var(--gold);flex-shrink:0">—</span>Relecture finale avant dépôt</li>
+          <li style="font-size:.875rem;color:var(--text);display:flex;gap:.6rem"><span style="color:var(--gold);flex-shrink:0">—</span>Préparation aux demandes de précision éventuelles</li>
+        </ul>
+        <a href="/#contact" style="display:inline-flex;align-items:center;justify-content:center;gap:.5rem;background:var(--cream);color:var(--navy);padding:.75rem 1.5rem;border-radius:4px;font-weight:600;font-size:.875rem;text-decoration:none;margin-top:.5rem;border:1px solid var(--gray-light)">
+          Préparer ma réponse
+        </a>
+      </div>
     </div>
     <div style="text-align:center;margin-top:2.5rem;padding:1.5rem;background:white;border-radius:8px;border-left:3px solid var(--gold);max-width:680px;margin-left:auto;margin-right:auto">
       <p style="font-size:.9rem;color:var(--navy);font-weight:600;margin-bottom:.4rem">🎯 Diagnostic gratuit d'abord</p>
@@ -487,7 +544,7 @@ footer a{color:var(--gold)}
     </div>
     <p style="text-align:center;color:rgba(255,255,255,.35);font-size:.75rem">
       © 2025 Stéphane Loudoux — Procurement Insider — Fort-de-France, Martinique
-    </p>
+     &nbsp;·&nbsp; <a href="/mentions-legales" style="color:var(--gold)">Mentions légales</a></p>
   </div>
 </footer>
 

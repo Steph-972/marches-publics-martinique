@@ -40,6 +40,10 @@
       "destination": "/robots.txt"
     },
     {
+      "source": "/mentions-legales",
+      "destination": "/mentions-legales.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
