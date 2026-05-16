@@ -1943,50 +1943,57 @@ window.addEventListener('scroll', () => {
 
 // ─── TÉLÉCHARGEMENT PDF ARTICLE ──────────────────────────────────────────────
 function downloadArticlePDF() {
-  // Lire directement depuis le modal (déjà chargé dans le DOM)
-  var title   = document.getElementById('art-modal-title')?.textContent || 'Article';
-  var cat     = document.getElementById('art-modal-cat')?.textContent   || '';
-  var date    = document.getElementById('art-modal-date')?.textContent  || '';
-  var body    = document.getElementById('art-modal-body')?.innerHTML    || '';
+  var titleEl = document.getElementById('art-modal-title');
+  var catEl   = document.getElementById('art-modal-cat');
+  var dateEl  = document.getElementById('art-modal-date');
+  var bodyEl  = document.getElementById('art-modal-body');
+  if (!titleEl) return;
+  var title = titleEl.textContent || 'Article';
+  var cat   = catEl  ? catEl.textContent  : '';
+  var date  = dateEl ? dateEl.textContent : '';
+  var body  = bodyEl ? bodyEl.innerHTML   : '';
 
-  var html = '<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8">'
-    + '<title>' + title + ' — Procurement Insider</title>'
-    + '<style>'
-    + '*{box-sizing:border-box;margin:0;padding:0}'
-    + 'body{font-family:Georgia,serif;color:#1C1C2E;line-height:1.8;max-width:740px;margin:0 auto;padding:3rem 2.5rem;font-size:11pt}'
-    + '.header{border-bottom:3px solid #C9A84C;padding-bottom:1.5rem;margin-bottom:2rem}'
-    + '.brand{font-family:Arial,sans-serif;font-size:9pt;letter-spacing:.15em;text-transform:uppercase;color:#C9A84C;font-weight:700;margin-bottom:.5rem}'
-    + '.cat{display:inline-block;background:#F5E9C0;color:#0F2342;font-family:Arial,sans-serif;font-size:8pt;padding:.2rem .6rem;border-radius:20px;margin-bottom:.75rem;font-weight:600}'
-    + 'h1{font-size:20pt;color:#0F2342;line-height:1.25;margin-bottom:.5rem}'
-    + '.meta{font-family:Arial,sans-serif;font-size:8.5pt;color:#6B7080}'
-    + 'h2{font-size:13pt;color:#0F2342;margin:2rem 0 .6rem;font-weight:700}'
-    + 'h3{font-size:11pt;color:#0F2342;margin:1.5rem 0 .4rem;font-weight:700}'
-    + 'p{margin-bottom:.9rem}'
-    + 'ul{padding-left:1.5rem;margin-bottom:.9rem}'
-    + 'li{margin-bottom:.35rem}'
-    + 'strong{color:#0F2342}'
-    + 'hr{border:none;border-top:1px solid #E8EBF0;margin:1.5rem 0}'
-    + 'table{width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:10pt}'
-    + 'th{background:#0F2342;color:white;padding:.5rem .8rem;text-align:left}'
-    + 'td{padding:.45rem .8rem;border-bottom:1px solid #E8EBF0}'
-    + 'a{color:#C9A84C;text-decoration:none}'
-    + '.footer{margin-top:3rem;padding-top:1.5rem;border-top:2px solid #0F2342;font-family:Arial,sans-serif;font-size:8.5pt;color:#6B7080}'
-    + '@media print{@page{margin:1.5cm}body{padding:0}}'
-    + '</style>'
-    + '</head><body>'
-    + '<div class="header">'
-    + '<div class="brand">PROCUREMENT INSIDER · L'ŒIL DE L'ACHETEUR</div>'
-    + '<div class="cat">' + cat + '</div>'
-    + '<h1>' + title + '</h1>'
-    + '<div class="meta">Stéphane Loudoux &nbsp;·&nbsp; ' + date + '</div>'
-    + '</div>'
-    + body
-    + '<div class="footer">'
-    + '<p><strong>Stéphane Loudoux</strong> — Responsable Achat &amp; Marchés Publics, ODYSSI – Régie des Eaux de la CACEM · Fondateur Procurement Insider</p>'
-    + '<p style="margin-top:.5rem">Fort-de-France, Martinique · loeildelacheteur@gmail.com · +596 696 266 231</p>'
-    + '</div>'
-    + '</body></html>';
+  var brandLine = 'PROCUREMENT INSIDER \u00b7 L\u2019\u0152IL DE L\u2019ACHETEUR';
+  var css = [
+    '*{box-sizing:border-box;margin:0;padding:0}',
+    'body{font-family:Georgia,serif;color:#1C1C2E;line-height:1.8;max-width:740px;margin:0 auto;padding:3rem 2.5rem;font-size:11pt}',
+    '.hd{border-bottom:3px solid #C9A84C;padding-bottom:1.5rem;margin-bottom:2rem}',
+    '.brand{font-family:Arial,sans-serif;font-size:9pt;letter-spacing:.15em;text-transform:uppercase;color:#C9A84C;font-weight:700;margin-bottom:.5rem}',
+    '.cat{display:inline-block;background:#F5E9C0;color:#0F2342;font-family:Arial,sans-serif;font-size:8pt;padding:.2rem .6rem;border-radius:20px;margin-bottom:.75rem;font-weight:600}',
+    'h1{font-size:20pt;color:#0F2342;line-height:1.25;margin-bottom:.5rem}',
+    '.meta{font-family:Arial,sans-serif;font-size:8.5pt;color:#6B7080}',
+    'h2{font-size:13pt;color:#0F2342;margin:2rem 0 .6rem;font-weight:700}',
+    'h3{font-size:11pt;color:#0F2342;margin:1.5rem 0 .4rem;font-weight:700}',
+    'p{margin-bottom:.9rem}',
+    'ul{padding-left:1.5rem;margin-bottom:.9rem}',
+    'li{margin-bottom:.35rem}',
+    'strong{color:#0F2342}',
+    'hr{border:none;border-top:1px solid #E8EBF0;margin:1.5rem 0}',
+    'table{width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:10pt}',
+    'th{background:#0F2342;color:white;padding:.5rem .8rem;text-align:left}',
+    'td{padding:.45rem .8rem;border-bottom:1px solid #E8EBF0}',
+    'a{color:#C9A84C;text-decoration:none}',
+    '.ft{margin-top:3rem;padding-top:1.5rem;border-top:2px solid #0F2342;font-family:Arial,sans-serif;font-size:8.5pt;color:#6B7080}',
+    '@media print{@page{margin:1.5cm}body{padding:0}}'
+  ].join('');
 
+  var parts = [
+    '<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8">',
+    '<title>', title, ' \u2014 Procurement Insider</title>',
+    '<style>', css, '</style></head><body>',
+    '<div class="hd">',
+    '<div class="brand">', brandLine, '</div>',
+    '<div class="cat">', cat, '</div>',
+    '<h1>', title, '</h1>',
+    '<div class="meta">Stéphane Loudoux &nbsp;\u00b7&nbsp; ', date, '</div>',
+    '</div>',
+    body,
+    '<div class="ft">',
+    '<p><strong>Stéphane Loudoux</strong> \u2014 Responsable Achat &amp; March\u00e9s Publics, ODYSSI \u2013 R\u00e9gie des Eaux de la CACEM</p>',
+    '<p style="margin-top:.5rem">Fort-de-France, Martinique &nbsp;\u00b7&nbsp; loeildelacheteur@gmail.com</p>',
+    '</div></body></html>'
+  ];
+  var html = parts.join('');
   var blob = new Blob([html], {type: 'text/html;charset=utf-8'});
   var url  = URL.createObjectURL(blob);
   var a_el = document.createElement('a');
@@ -1998,6 +2005,7 @@ function downloadArticlePDF() {
   document.body.removeChild(a_el);
   setTimeout(function(){ URL.revokeObjectURL(url); }, 30000);
 }
+
 </script>
 
 
