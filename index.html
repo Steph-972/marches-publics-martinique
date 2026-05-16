@@ -1993,123 +1993,79 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 
 // ─── TÉLÉCHARGEMENT PDF ARTICLE ──────────────────────────────────────────────
 function downloadArticlePDF(id) {
-  // Trouver l'article dans le DOM ou refetch
   fetch('articles.json?t=' + Date.now())
     .then(r => r.json())
     .then(articles => {
       const a = articles.find(x => x.id === id);
       if (!a) return;
-      const win = window.open('', '_blank');
-      win.document.write(`<!DOCTYPE html>
+
+      const html = `<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
 <title>${a.title} — Procurement Insider</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Georgia', serif;
-    color: #1C1C2E;
-    line-height: 1.8;
-    max-width: 740px;
-    margin: 0 auto;
-    padding: 3rem 2.5rem;
-    font-size: 11pt;
-  }
-  .header {
-    border-bottom: 3px solid #C9A84C;
-    padding-bottom: 1.5rem;
-    margin-bottom: 2rem;
-  }
-  .brand {
-    font-family: Arial, sans-serif;
-    font-size: 9pt;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: #C9A84C;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-  }
-  .category {
-    display: inline-block;
-    background: #F5E9C0;
-    color: #0F2342;
-    font-family: Arial, sans-serif;
-    font-size: 8pt;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 0.2rem 0.6rem;
-    border-radius: 20px;
-    margin-bottom: 0.75rem;
-    font-weight: 600;
-  }
-  h1 {
-    font-size: 20pt;
-    color: #0F2342;
-    line-height: 1.25;
-    margin-bottom: 0.5rem;
-  }
-  .meta {
-    font-family: Arial, sans-serif;
-    font-size: 8.5pt;
-    color: #6B7080;
-    margin-top: 0.5rem;
-  }
-  h2 {
-    font-size: 13pt;
-    color: #0F2342;
-    margin: 2rem 0 0.6rem;
-    font-weight: 700;
-  }
-  h3 {
-    font-size: 11.5pt;
-    color: #0F2342;
-    margin: 1.5rem 0 0.4rem;
-    font-weight: 700;
-  }
-  p { margin-bottom: 0.9rem; }
-  ul { padding-left: 1.5rem; margin-bottom: 0.9rem; }
-  li { margin-bottom: 0.35rem; }
-  strong { color: #0F2342; }
-  hr { border: none; border-top: 1px solid #E8EBF0; margin: 1.5rem 0; }
-  table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 10pt; }
-  th { background: #0F2342; color: white; padding: 0.5rem 0.8rem; text-align: left; font-family: Arial; font-size: 9pt; }
-  td { padding: 0.45rem 0.8rem; border-bottom: 1px solid #E8EBF0; }
-  .footer {
-    margin-top: 3rem;
-    padding-top: 1.5rem;
-    border-top: 2px solid #0F2342;
-    font-family: Arial, sans-serif;
-    font-size: 8.5pt;
-    color: #6B7080;
-  }
-  .footer strong { color: #0F2342; }
-  a { color: #C9A84C; }
-  @media print {
-    body { padding: 1.5rem; }
-    .no-print { display: none; }
-  }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Georgia,serif;color:#1C1C2E;line-height:1.8;max-width:740px;margin:0 auto;padding:3rem 2.5rem;font-size:11pt}
+.header{border-bottom:3px solid #C9A84C;padding-bottom:1.5rem;margin-bottom:2rem}
+.brand{font-family:Arial,sans-serif;font-size:9pt;letter-spacing:.15em;text-transform:uppercase;color:#C9A84C;font-weight:700;margin-bottom:.5rem}
+.category{display:inline-block;background:#F5E9C0;color:#0F2342;font-family:Arial,sans-serif;font-size:8pt;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .6rem;border-radius:20px;margin-bottom:.75rem;font-weight:600}
+h1{font-size:20pt;color:#0F2342;line-height:1.25;margin-bottom:.5rem}
+.meta{font-family:Arial,sans-serif;font-size:8.5pt;color:#6B7080;margin-top:.5rem}
+h2{font-size:13pt;color:#0F2342;margin:2rem 0 .6rem;font-weight:700}
+h3{font-size:11.5pt;color:#0F2342;margin:1.5rem 0 .4rem;font-weight:700}
+p{margin-bottom:.9rem}
+ul{padding-left:1.5rem;margin-bottom:.9rem}
+li{margin-bottom:.35rem}
+strong{color:#0F2342}
+hr{border:none;border-top:1px solid #E8EBF0;margin:1.5rem 0}
+table{width:100%;border-collapse:collapse;margin:1.25rem 0;font-size:10pt}
+th{background:#0F2342;color:white;padding:.5rem .8rem;text-align:left;font-family:Arial;font-size:9pt}
+td{padding:.45rem .8rem;border-bottom:1px solid #E8EBF0}
+.footer{margin-top:3rem;padding-top:1.5rem;border-top:2px solid #0F2342;font-family:Arial,sans-serif;font-size:8.5pt;color:#6B7080}
+a{color:#C9A84C;text-decoration:none}
+@media print{@page{margin:1.5cm}body{padding:0}}
 </style>
 </head>
 <body>
-  <div class="header">
-    <div class="brand">Procurement Insider · L'Œil de l'Acheteur</div>
-    <div class="category">${a.category}</div>
-    <h1>${a.title}</h1>
-    <div class="meta">${a.auteur || 'Stéphane Loudoux'} &nbsp;·&nbsp; ${a.dateLabel} &nbsp;·&nbsp; Lecture : ${a.lecture || '5 min'}</div>
-  </div>
-  ${a.content}
-  <div class="footer">
-    <p><strong>Stéphane Loudoux</strong> — Responsable Achat &amp; Marchés Publics, ODYSSI – Régie des Eaux de la CACEM · Fondateur Procurement Insider | L'Œil de l'Acheteur</p>
-    <p style="margin-top:.5rem">Fort-de-France, Martinique · loeildelacheteur@gmail.com · +596 696 266 231</p>
-    <p style="margin-top:.5rem;color:#aaa">Document généré depuis procurement-insider.fr · © ${new Date().getFullYear()} Procurement Insider</p>
-  </div>
-  <script>window.onload = function(){ window.print(); }<\/script>
+<div class="header">
+  <div class="brand">Procurement Insider · L'Œil de l'Acheteur</div>
+  <div class="category">${a.category}</div>
+  <h1>${a.title}</h1>
+  <div class="meta">${a.auteur || 'Stéphane Loudoux'} &nbsp;·&nbsp; ${a.dateLabel} &nbsp;·&nbsp; Lecture : ${a.lecture || '5 min'}</div>
+</div>
+${a.content}
+<div class="footer">
+  <p><strong>Stéphane Loudoux</strong> — Responsable Achat & Marchés Publics, ODYSSI – Régie des Eaux de la CACEM · Fondateur Procurement Insider</p>
+  <p style="margin-top:.5rem">Fort-de-France, Martinique · loeildelacheteur@gmail.com · +596 696 266 231</p>
+</div>
 </body>
-</html>`);
-      win.document.close();
-    });
+</html>`;
+
+      // Créer un Blob et déclencher le téléchargement directement — fonctionne sans popup
+      const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+      const url  = URL.createObjectURL(blob);
+
+      // Ouvrir dans un nouvel onglet pour impression → Enregistrer en PDF
+      const tab = window.open(url, '_blank');
+      if (tab) {
+        tab.addEventListener('load', function() {
+          setTimeout(function() { tab.print(); }, 800);
+        });
+      } else {
+        // Fallback si popup bloquée : téléchargement direct du .html
+        const a_el = document.createElement('a');
+        a_el.href = url;
+        a_el.download = a.title.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase() + '.html';
+        document.body.appendChild(a_el);
+        a_el.click();
+        document.body.removeChild(a_el);
+      }
+      setTimeout(() => URL.revokeObjectURL(url), 60000);
+    })
+    .catch(e => console.error('PDF error:', e));
 }
+
 
 // ─── SMOOTH SCROLL OFFSET (FIXED NAV) ────────────────────────────────────────
 document.querySelectorAll('a[href^="#"]').forEach(a => {
