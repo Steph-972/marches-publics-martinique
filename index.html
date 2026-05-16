@@ -1435,7 +1435,12 @@ body.splash-active section {
             <span style="font-family:var(--mono);font-size:.7rem;color:var(--gray)">${a.dateLabel}</span>
             <div style="display:flex;align-items:center;gap:.75rem">
               ${a.document ? '<span style="font-size:.78rem;color:var(--gold);font-weight:600">📎 Téléchargement</span>' : ''}
-              <span style="font-size:.8rem;color:var(--navy);font-weight:600">Lire →</span>
+              <div style="display:flex;align-items:center;gap:.75rem">
+                <button onclick="event.stopPropagation();downloadArticlePDF('${a.id}')" title="Télécharger PDF" style="background:none;border:none;cursor:pointer;color:var(--gray);padding:.25rem;display:flex;align-items:center;transition:color .2s" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--gray)'">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </button>
+                <span style="font-size:.8rem;color:var(--navy);font-weight:600">Lire →</span>
+              </div>
             </div>
           </div>
         </div>
@@ -1506,6 +1511,9 @@ function openArticle(id) {
       } else {
         dlBtn.style.display = 'none';
       }
+      // Brancher le bouton PDF
+      const pdfBtn = document.getElementById('art-modal-pdf');
+      if (pdfBtn) pdfBtn.onclick = function() { downloadArticlePDF(id); };
       modal.style.display = 'flex';
       document.body.style.overflow = 'hidden';
     });
@@ -1534,6 +1542,10 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') closeArticle(
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Télécharger : <span id="art-modal-dl-name"></span>
       </a>
+      <button id="art-modal-pdf" onclick="" style="display:inline-flex;align-items:center;gap:.5rem;background:var(--gold);color:var(--navy);border:none;padding:.7rem 1.4rem;border-radius:4px;cursor:pointer;font-size:.875rem;font-weight:700">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Télécharger PDF
+      </button>
       <button onclick="closeArticle()" style="background:var(--cream,#F8F5EF);color:var(--navy);border:1px solid var(--gray-light,#E8EBF0);padding:.7rem 1.4rem;border-radius:4px;cursor:pointer;font-size:.875rem">Fermer</button>
     </div>
   </div>
@@ -1977,6 +1989,127 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 (function() {
   if (window.location.hash === '#diagnostic') window.setFormMode && setFormMode('diagnostic');
 })();
+
+
+// ─── TÉLÉCHARGEMENT PDF ARTICLE ──────────────────────────────────────────────
+function downloadArticlePDF(id) {
+  // Trouver l'article dans le DOM ou refetch
+  fetch('articles.json?t=' + Date.now())
+    .then(r => r.json())
+    .then(articles => {
+      const a = articles.find(x => x.id === id);
+      if (!a) return;
+      const win = window.open('', '_blank');
+      win.document.write(`<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>${a.title} — Procurement Insider</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Georgia', serif;
+    color: #1C1C2E;
+    line-height: 1.8;
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 3rem 2.5rem;
+    font-size: 11pt;
+  }
+  .header {
+    border-bottom: 3px solid #C9A84C;
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .brand {
+    font-family: Arial, sans-serif;
+    font-size: 9pt;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #C9A84C;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .category {
+    display: inline-block;
+    background: #F5E9C0;
+    color: #0F2342;
+    font-family: Arial, sans-serif;
+    font-size: 8pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
+  h1 {
+    font-size: 20pt;
+    color: #0F2342;
+    line-height: 1.25;
+    margin-bottom: 0.5rem;
+  }
+  .meta {
+    font-family: Arial, sans-serif;
+    font-size: 8.5pt;
+    color: #6B7080;
+    margin-top: 0.5rem;
+  }
+  h2 {
+    font-size: 13pt;
+    color: #0F2342;
+    margin: 2rem 0 0.6rem;
+    font-weight: 700;
+  }
+  h3 {
+    font-size: 11.5pt;
+    color: #0F2342;
+    margin: 1.5rem 0 0.4rem;
+    font-weight: 700;
+  }
+  p { margin-bottom: 0.9rem; }
+  ul { padding-left: 1.5rem; margin-bottom: 0.9rem; }
+  li { margin-bottom: 0.35rem; }
+  strong { color: #0F2342; }
+  hr { border: none; border-top: 1px solid #E8EBF0; margin: 1.5rem 0; }
+  table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; font-size: 10pt; }
+  th { background: #0F2342; color: white; padding: 0.5rem 0.8rem; text-align: left; font-family: Arial; font-size: 9pt; }
+  td { padding: 0.45rem 0.8rem; border-bottom: 1px solid #E8EBF0; }
+  .footer {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid #0F2342;
+    font-family: Arial, sans-serif;
+    font-size: 8.5pt;
+    color: #6B7080;
+  }
+  .footer strong { color: #0F2342; }
+  a { color: #C9A84C; }
+  @media print {
+    body { padding: 1.5rem; }
+    .no-print { display: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div class="brand">Procurement Insider · L'Œil de l'Acheteur</div>
+    <div class="category">${a.category}</div>
+    <h1>${a.title}</h1>
+    <div class="meta">${a.auteur || 'Stéphane Loudoux'} &nbsp;·&nbsp; ${a.dateLabel} &nbsp;·&nbsp; Lecture : ${a.lecture || '5 min'}</div>
+  </div>
+  ${a.content}
+  <div class="footer">
+    <p><strong>Stéphane Loudoux</strong> — Responsable Achat &amp; Marchés Publics, ODYSSI – Régie des Eaux de la CACEM · Fondateur Procurement Insider | L'Œil de l'Acheteur</p>
+    <p style="margin-top:.5rem">Fort-de-France, Martinique · loeildelacheteur@gmail.com · +596 696 266 231</p>
+    <p style="margin-top:.5rem;color:#aaa">Document généré depuis procurement-insider.fr · © ${new Date().getFullYear()} Procurement Insider</p>
+  </div>
+  <script>window.onload = function(){ window.print(); }<\/script>
+</body>
+</html>`);
+      win.document.close();
+    });
+}
 
 // ─── SMOOTH SCROLL OFFSET (FIXED NAV) ────────────────────────────────────────
 document.querySelectorAll('a[href^="#"]').forEach(a => {
