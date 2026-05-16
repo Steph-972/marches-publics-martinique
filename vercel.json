@@ -44,6 +44,10 @@
       "destination": "/mentions-legales.html"
     },
     {
+      "source": "/grille-mapa",
+      "destination": "/grille-mapa.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, follow">
+<title>Grille de vérification — 12 points qui font perdre une offre en MAPA | Procurement Insider</title>
+<style>
+/* ── Variables ── */
+:root {
+  --navy: #0F2342;
+  --gold: #C9A84C;
+  --cream: #F8F5EF;
+  --gray: #6B7080;
+  --text: #1C1C2E;
+  --white: #FFFFFF;
+  --red: #C0392B;
+  --green: #1E6B3C;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Georgia', serif;
+  color: var(--text);
+  background: var(--white);
+  line-height: 1.6;
+  font-size: 11pt;
+}
+
+/* ── Barre d'action (masquée à l'impression) ── */
+.action-bar {
+  background: var(--navy);
+  padding: .85rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.action-bar .brand {
+  color: var(--gold);
+  font-family: Arial, sans-serif;
+  font-weight: 900;
+  font-size: .9rem;
+  letter-spacing: .1em;
+}
+.action-bar .actions { display: flex; gap: .75rem; }
+.btn-print {
+  background: var(--gold);
+  color: var(--navy);
+  border: none;
+  padding: .55rem 1.25rem;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: .85rem;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+}
+.btn-back {
+  background: rgba(255,255,255,.1);
+  color: white;
+  border: 1px solid rgba(255,255,255,.25);
+  padding: .55rem 1.25rem;
+  border-radius: 4px;
+  font-size: .85rem;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ── Document ── */
+.doc {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2.5rem 3rem 4rem;
+}
+
+/* ── En-tête ── */
+.doc-header {
+  border-bottom: 3px solid var(--navy);
+  padding-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  gap: 2rem;
+}
+.doc-brand {
+  font-family: Arial, sans-serif;
+  font-size: 8pt;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: .35rem;
+}
+.doc-title {
+  font-size: 18pt;
+  color: var(--navy);
+  line-height: 1.2;
+  font-weight: 700;
+}
+.doc-subtitle {
+  font-size: 10pt;
+  color: var(--gray);
+  font-style: italic;
+  margin-top: .4rem;
+}
+.doc-meta {
+  text-align: right;
+  font-family: Arial, sans-serif;
+  font-size: 8pt;
+  color: var(--gray);
+  line-height: 1.6;
+}
+.doc-meta .badge {
+  background: var(--navy);
+  color: white;
+  padding: .25rem .6rem;
+  border-radius: 2px;
+  font-size: 7pt;
+  letter-spacing: .1em;
+  display: inline-block;
+  margin-bottom: .35rem;
+}
+
+/* ── Intro ── */
+.intro {
+  background: #EFF3F8;
+  border-left: 3px solid var(--navy);
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem;
+  font-size: 9.5pt;
+  line-height: 1.7;
+  color: var(--text);
+}
+.intro strong { color: var(--navy); }
+
+/* ── Catégories ── */
+.category {
+  margin-bottom: 2rem;
+}
+.category-title {
+  font-family: Arial, sans-serif;
+  font-size: 7.5pt;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--gold);
+  padding: .35rem 0;
+  border-bottom: 1px solid var(--gold);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+}
+.category-title span { font-size: 1rem; }
+
+/* ── Points ── */
+.point {
+  display: grid;
+  grid-template-columns: 28px auto 1fr auto;
+  gap: .6rem;
+  align-items: start;
+  padding: .65rem 0;
+  border-bottom: 1px solid #E8EBF0;
+}
+.point:last-child { border-bottom: none; }
+.point-num {
+  font-family: Arial, sans-serif;
+  font-size: 8pt;
+  font-weight: 700;
+  color: var(--gold);
+  padding-top: 2px;
+}
+.point-check {
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid #999;
+  border-radius: 2px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.point-content {}
+.point-label {
+  font-size: 10pt;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: .2rem;
+}
+.point-detail {
+  font-size: 8.5pt;
+  color: var(--gray);
+  line-height: 1.55;
+}
+.point-risk {
+  font-family: Arial, sans-serif;
+  font-size: 7pt;
+  padding: .15rem .45rem;
+  border-radius: 2px;
+  white-space: nowrap;
+  margin-top: 2px;
+  font-weight: 600;
+}
+.risk-elim { background: #FDECEB; color: var(--red); }
+.risk-note { background: #FEF9EC; color: #7D5A0B; }
+.risk-malus { background: #FDEEE8; color: #8B3A0F; }
+
+/* ── Légende ── */
+.legend {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-family: Arial, sans-serif;
+  font-size: 7.5pt;
+  flex-wrap: wrap;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: .35rem;
+  color: var(--gray);
+}
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+/* ── Zone notes ── */
+.notes-zone {
+  margin-top: 2rem;
+  border: 1px solid #E8EBF0;
+  border-radius: 4px;
+  padding: 1.25rem;
+}
+.notes-title {
+  font-family: Arial, sans-serif;
+  font-size: 7.5pt;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-bottom: .75rem;
+  font-weight: 700;
+}
+.notes-lines {
+  display: flex;
+  flex-direction: column;
+  gap: .85rem;
+}
+.notes-line {
+  border-bottom: 1px solid #E8EBF0;
+  height: 1.2rem;
+}
+
+/* ── Footer ── */
+.doc-footer {
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 2px solid var(--navy);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 2rem;
+  font-family: Arial, sans-serif;
+  font-size: 7.5pt;
+  color: var(--gray);
+}
+.doc-footer .brand-footer { color: var(--navy); font-weight: 700; }
+.doc-footer .disclaimer { font-style: italic; font-size: 7pt; text-align: right; line-height: 1.5; }
+
+/* ── Print ── */
+@media print {
+  .action-bar { display: none !important; }
+  body { font-size: 10pt; }
+  .doc { padding: 0; max-width: 100%; }
+  .point { break-inside: avoid; }
+  .category { break-inside: avoid; }
+  @page { margin: 1.5cm 2cm; size: A4; }
+}
+</style>
+</head>
+<body>
+
+<!-- Barre d'action (masquée à l'impression) -->
+<div class="action-bar no-print">
+  <div class="brand">PROCUREMENT INSIDER · L'ŒIL DE L'ACHETEUR</div>
+  <div class="actions">
+    <a href="/" class="btn-back">← Retour au site</a>
+    <button class="btn-print" onclick="window.print()">⬇ Enregistrer en PDF</button>
+  </div>
+</div>
+
+<!-- Document -->
+<div class="doc">
+
+  <!-- En-tête -->
+  <div class="doc-header">
+    <div>
+      <div class="doc-brand">Procurement Insider · L'Œil de l'Acheteur</div>
+      <h1 class="doc-title">Grille de vérification :<br>les 12 points qui font perdre une offre en MAPA</h1>
+      <p class="doc-subtitle">À compléter avant tout dépôt — MAPA et procédures adaptées</p>
+    </div>
+    <div class="doc-meta">
+      <div class="badge">OUTIL GRATUIT</div><br>
+      Stéphane Loudoux<br>
+      Responsable Achat & MP, ODYSSI<br>
+      Fondateur Procurement Insider<br>
+      Martinique · Mai 2025
+    </div>
+  </div>
+
+  <!-- Intro -->
+  <div class="intro">
+    <strong>Comment utiliser cette grille :</strong> Avant de déposer votre offre, cochez chaque point. Un point non coché est un risque identifié. Les risques <strong style="color:#C0392B">ÉLIMINATOIRE</strong> sont prioritaires : ils peuvent rendre votre offre irrecevable avant même qu'elle soit lue. Les risques <strong style="color:#7D5A0B">NOTATION</strong> pénalisent votre score. Les risques <strong style="color:#8B3A0F">MALUS</strong> fragilisent votre crédibilité globale.
+  </div>
+
+  <!-- Légende -->
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#FDECEB;border:1px solid #C0392B"></div>ÉLIMINATOIRE — offre irrecevable</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#FEF9EC;border:1px solid #7D5A0B"></div>NOTATION — pénalise le score</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#FDEEE8;border:1px solid #8B3A0F"></div>MALUS — fragilise la crédibilité</div>
+  </div>
+
+  <!-- ── CATÉGORIE 1 : RECEVABILITÉ ADMINISTRATIVE ── -->
+  <div class="category">
+    <div class="category-title"><span>📋</span> Recevabilité administrative</div>
+
+    <div class="point">
+      <div class="point-num">01</div>
+      <div class="point-check"></div>
+      <div class="point-content">
+        <div class="point-label">DC1 signé par tous les membres</div>
+        <div class="point-detail">En cas de groupement, le DC1 doit être signé par chaque membre — pas uniquement par le mandataire. La signature d'un seul membre rend le dossier irrecevable en procédure formalisée. Vérifier également que la case F1 est cochée.</div>
+      </div>
+      <div class="point-risk risk-elim">ÉLIMINATOIRE</div>
+    </div>
+
+    <div class="point">
+      <div class="point-num">02</div>
+      <div class="point-check"></div>
+      <div class="point-content">
+        <div class="point-label">Acte d'engagement signé et daté</div>
+        <div class="point-detail">L'acte d'engagement (AE) doit être signé par le représentant légal habilité. Une signature manquante ou une date absente entraîne le rejet immédiat. Vérifier que le signataire dispose d'une délégation de pouvoir si ce n'est pas le dirigeant.</div>
+      </div>
+      <div class="point-risk risk-elim">ÉLIMINATOIRE</div>
+    </div>
+
+    <div class="point">
+      <div class="point-num">03</div>
+      <div class="point-check"></div>
+      <div class="point-content">
+        <div class="point-label">Pièces administratives à jour (Kbis, attestations)</div>
+        <div class="point-detail">Extrait Kbis de moins de 3 mois, attestations fiscales et sociales en cours de validité, assurance professionnelle valide. Les attestations URSSAF et fiscales doivent couvrir la période en cours. Une pièce expirée peut rendre la candidature irrecevable.</div>
+      </div>
+      <div class="point-risk risk-elim">ÉLIMINATOIRE</div>
+    </div>
+
+    <div class="point">
+      <div class="point-num">04</div>
+      <div class="point-check"></div>
+      <div class="point-content">
+        <div class="point-label">Dépôt effectué avant la date et l'heure limites</div>
+        <div class="point-detail">Un retard d'une minute entraîne l'élimination automatique. L'acheteur n'a aucun pouvoir discrétionnaire sur ce point. Déposez au minimum 48h avant la clôture pour absorber les aléas techniques, notamment les coupures de connexion fréquentes en Martinique.</div>
+      </div>
+      <div class="point-risk risk-elim">ÉLIMINATOIRE</div>
+    </div>
+
+  </div>
+
+  <!-- ── CATÉGORIE 2 : COHÉRENCE DE L'OFFRE ── -->
+  <div class="category">
+    <div class="category-title"><span>🎯</span> Cohérence et conformité de l'offre</div>
+
+    <div class="point">
+      <div class="point-num">05</div>
+      <div class="point-check"></div>
+      <div class="point-content">
+        <div class="point-label">Le mémoire répond à chaque critère du RC</div>
+        <div class="point-detail">Avez-vous lu la grille de notation du règlement de consultation ? Chaque sous-critère noté doit trouver une réponse explicite dans votre mémoire. Un sous-critère non traité peut être noté zéro, indépendamment de la qualité du reste du dossier.</div>
+      </div>
+      <div class="point-risk risk-note">NOTATION</div>
+    </div>
+
+    <div class="point">
+      <div class="point-num">06</div>
+      <div class="point-check"></div>
+      <div class="point-content">
+        <div class="point-label">Le prix est cohérent avec la prestation décrite</div>
+        <div class="point-detail">Une incohérence entre le prix proposé et les moyens ou délais annoncés dans le mémoire fragilise la crédibilité de l'offre. L'acheteur peut rejeter une offre anormalement basse s'il n'est pas convaincu par les justifications. Vérifiez la cohérence interne avant de déposer.</div>
+      </div>
+      <div class="point-risk risk-malus">MALUS</div>
+    </div>
+
+    <div class="point">
+      <div class="point-num">07</div>
+      <div class="point-check"></div>
+      <div class="point-content">
+        <div class="point-label">Les variantes sont autorisées si vous en proposez une</div>
+        <div class="point-detail">Si le règlement de consultation ne mentionne pas expressément les variantes, elles sont interdites. Proposer une variante non autorisée rend l'offre irrégulière. Vérifiez systématiquement l'article "Variantes" du RC avant toute proposition complémentaire.</div>
+      </div>
+      <div class="point-risk risk-elim">ÉLIMINATOIRE</div>
+    </div>
+
+  </div>
+
+  <!-- ── CATÉGORIE 3 : QUALITÉ DU MÉMOIRE ── -->
+  <div class="category">
+    <div class="category-title"><span>✍️</span> Qualité du mémoire technique</div>
+
+    <div class="point">
+      <div class="point-num">08</div>
+      <div class="point-check"></div>
+      <div class="point-content">
+        <div class="point-label">Le mémoire n'est pas une copie du marché précédent</div>
+        <div class="point-detail">Un mémoire générique qui ne répond pas aux spécificités du cahier des charges est immédiatement identifiable par un acheteur expérimenté. Vérifiez que le nom du marché, les délais, les références et la méthodologie sont adaptés à ce marché précis — pas à un autre.</div>
+      </div>
+      <div class="point-risk risk-note">NOTATION</div>
+    </div>
+
+    <div class="point">
+      <div class="point-num">09</div>
+      <div class="point-check"></div>
+      <div class="point-content">
+        <div class="point-label">Les références sont pertinentes et vérifiables</div>
+        <div class="point-detail">Les références doivent être comparables en nature et en montant avec le marché visé. Elles doivent mentionner le nom du client, la nature de la prestation, le montant et la date. Les références non vérifiables ou sans contact risquent d'être écartées par l'acheteur.</div>
+      </div>
+      <div class="point-risk risk-note">NOTATION</div>
+    </div>
+
+    <div class="point">
+      <div class="point-num">10</div>
+      <div class="point-check"></div>
+      <div class="point-content">
+        <div class="point-label">Les moyens humains et matériels sont concrets et chiffrés</div>
+        <div class="point-detail">Nommer les intervenants (même sans prénom si confidentiel), préciser leurs qualifications, indiquer le nombre d'heures, le matériel prévu, les sous-traitants éventuels. Un mémoire vague sur les moyens est systématiquement pénalisé par rapport à un concurrent qui chiffre et détaille.</div>
+      </div>
+      <div class="point-risk risk-note">NOTATION</div>
+    </div>
+
+  </div>
+
+  <!-- ── CATÉGORIE 4 : POINTS DE VIGILANCE SPÉCIFIQUES ── -->
+  <div class="category">
+    <div class="category-title"><span>⚠️</span> Points de vigilance spécifiques</div>
+
+    <div class="point">
+      <div class="point-num">11</div>
+      <div class="point-check"></div>
+      <div class="point-content">
+        <div class="point-label">La visite obligatoire a bien été effectuée (si exigée)</div>
+        <div class="point-detail">Certains RC imposent une visite de site préalable au dépôt. L'attestation de visite doit figurer dans le dossier. Son absence rend le dossier irrecevable — la jurisprudence le confirme (TA Rennes, 2024). Vérifiez l'article "Visite" du RC dès réception du DCE.</div>
+      </div>
+      <div class="point-risk risk-elim">ÉLIMINATOIRE</div>
+    </div>
+
+    <div class="point">
+      <div class="point-num">12</div>
+      <div class="point-check"></div>
+      <div class="point-content">
+        <div class="point-label">Les clauses sociales et environnementales ont été traitées</div>
+        <div class="point-detail">De plus en plus fréquentes dans les marchés martiniquais, les clauses RSE (insertion, emploi local, critère environnemental) peuvent être des conditions d'exécution ou des critères de notation. Les ignorer, c'est perdre des points — ou produire une offre non conforme. Lisez l'intégralité du CCAP et du RC.</div>
+      </div>
+      <div class="point-risk risk-note">NOTATION</div>
+    </div>
+
+  </div>
+
+  <!-- Zone notes -->
+  <div class="notes-zone">
+    <div class="notes-title">Notes / Points à corriger avant le prochain dépôt</div>
+    <div class="notes-lines">
+      <div class="notes-line"></div>
+      <div class="notes-line"></div>
+      <div class="notes-line"></div>
+      <div class="notes-line"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="doc-footer">
+    <div>
+      <div class="brand-footer">Stéphane Loudoux — Procurement Insider | L'Œil de l'Acheteur</div>
+      Responsable Achat & Marchés Publics, ODYSSI – Régie des Eaux de la CACEM · Fondateur Procurement Insider<br>
+      Fort-de-France, Martinique · <a href="mailto:loeildelacheteur@gmail.com" style="color:var(--navy)">loeildelacheteur@gmail.com</a> · +596 696 266 231
+    </div>
+    <div class="disclaimer">
+      Document gratuit à usage pédagogique.<br>
+      Ne constitue pas un conseil juridique.<br>
+      © 2025 Procurement Insider — reproduction<br>
+      autorisée avec mention de la source.
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

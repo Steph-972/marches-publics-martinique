@@ -1811,7 +1811,8 @@ document.addEventListener('keydown', e => { if(e.key === 'Escape') closeArticle(
         <div id="lead-success" style="display:none;text-align:center;padding:1.5rem 0">
           <div style="font-size:2rem;margin-bottom:.75rem">✓</div>
           <p style="font-weight:600;color:var(--navy);margin-bottom:.5rem">Demande bien reçue.</p>
-          <p style="font-size:.875rem;color:var(--gray);line-height:1.6">La grille vous sera transmise dès l'activation de l'envoi automatisé. En attendant, n'hésitez pas à me contacter directement par email ou téléphone.</p>
+          <p style="font-size:.875rem;color:var(--gray);line-height:1.6;margin-bottom:1rem">La grille vient de vous être envoyée par email. Vérifiez vos spams si vous ne la recevez pas dans 5 minutes.</p>
+          <a href="/grille-mapa" target="_blank" style="display:inline-flex;align-items:center;gap:.5rem;background:var(--gold);color:var(--navy);padding:.65rem 1.25rem;border-radius:4px;font-weight:700;font-size:.85rem;text-decoration:none">Accéder directement à la grille →</a>
         </div>
       </div>
     </div>
@@ -2180,22 +2181,55 @@ document.getElementById('contact-form').addEventListener('submit', async functio
 
 
 // ─── LEAD MAGNET ──────────────────────────────────────────────────────────────
-function submitLeadForm() {
-  var prenom  = document.getElementById('lead-prenom');
-  var email   = document.getElementById('lead-email');
-  var profil  = document.getElementById('lead-profil');
-  var consent = document.getElementById('lead-consent');
-  
-  if (!prenom || !prenom.value.trim()) { prenom && (prenom.style.borderColor = '#E53935'); return; }
-  if (!email || !email.value.trim() || !email.value.includes('@')) { email && (email.style.borderColor = '#E53935'); return; }
-  if (!consent || !consent.checked) { alert('Merci de cocher la case de consentement.'); return; }
-  
-  // TODO: intégrer Brevo ou un autre service d'envoi email pour transmission automatique
-  // Pour l'instant, on affiche le message de confirmation
-  var fields  = document.getElementById('lead-form-fields');
-  var success = document.getElementById('lead-success');
-  if (fields)  fields.style.display  = 'none';
-  if (success) success.style.display = 'block';
+async function submitLeadForm() {
+  var prenomEl  = document.getElementById('lead-prenom');
+  var emailEl   = document.getElementById('lead-email');
+  var profilEl  = document.getElementById('lead-profil');
+  var consentEl = document.getElementById('lead-consent');
+  var btn       = document.querySelector('#lead-form-fields button');
+
+  // Validation
+  var ok = true;
+  if (!prenomEl || !prenomEl.value.trim()) {
+    if (prenomEl) prenomEl.style.borderColor = '#E53935';
+    ok = false;
+  }
+  if (!emailEl || !emailEl.value.trim() || !emailEl.value.includes('@')) {
+    if (emailEl) emailEl.style.borderColor = '#E53935';
+    ok = false;
+  }
+  if (!consentEl || !consentEl.checked) {
+    alert('Merci de cocher la case de consentement pour recevoir la grille.');
+    ok = false;
+  }
+  if (!ok) return;
+
+  // État chargement
+  if (btn) { btn.disabled = true; btn.textContent = 'Envoi en cours…'; }
+
+  try {
+    var resp = await fetch('/api/lead-magnet', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        prenom: prenomEl.value.trim(),
+        email:  emailEl.value.trim(),
+        profil: profilEl ? profilEl.value : ''
+      })
+    });
+
+    if (resp.ok) {
+      var fields  = document.getElementById('lead-form-fields');
+      var success = document.getElementById('lead-success');
+      if (fields)  fields.style.display  = 'none';
+      if (success) success.style.display = 'block';
+    } else {
+      throw new Error('Erreur serveur');
+    }
+  } catch (e) {
+    if (btn) { btn.disabled = false; btn.textContent = 'Recevoir la grille gratuite'; }
+    alert('Une erreur est survenue. Écrivez-moi directement à loeildelacheteur@gmail.com pour recevoir la grille.');
+  }
 }
 
 // ─── ACTIVE NAV LINK ─────────────────────────────────────────────────────────
