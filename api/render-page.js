@@ -113,6 +113,21 @@ function removeAccueilNavLink(html) {
     .replace(/\s*<a\s+href=["']\/["']>Accueil<\/a>/gi, '');
 }
 
+function normalizeFounderSignature(html, file) {
+  // La FAQ conserve volontairement les mentions détaillées demandées par le client.
+  if (file === 'faq.html') return html;
+
+  return html
+    .replace(/Stéphane Loudoux<br>\s*Responsable Achat & MP, ODYSSI<br>\s*Fondateur Procurement Insider/gi,
+      'Stéphane Loudoux<br>\n      Fondateur Procurement Insider')
+    .replace(/Stéphane Loudoux<br>\s*Responsable Achat &amp; MP, ODYSSI<br>\s*Fondateur Procurement Insider/gi,
+      'Stéphane Loudoux<br>\n      Fondateur Procurement Insider')
+    .replace(/<div class="brand-footer">Stéphane Loudoux — Procurement Insider \| L'Œil de l'Acheteur<\/div>\s*Responsable Achat & Marchés Publics, ODYSSI – Régie des Eaux de la CACEM · Fondateur Procurement Insider<br>/gi,
+      '<div class="brand-footer">Stéphane Loudoux<br>Fondateur Procurement Insider</div>')
+    .replace(/<div class="brand-footer">Stéphane Loudoux — Procurement Insider \| L'Œil de l'Acheteur<\/div>\s*Responsable Achat &amp; Marchés Publics, ODYSSI – Régie des Eaux de la CACEM · Fondateur Procurement Insider<br>/gi,
+      '<div class="brand-footer">Stéphane Loudoux<br>Fondateur Procurement Insider</div>');
+}
+
 module.exports = async function handler(req, res) {
   const file = safeFile(req.query.file);
 
@@ -142,6 +157,9 @@ module.exports = async function handler(req, res) {
 
     // Harmonise la navigation des pages secondaires : pas de bouton texte Accueil.
     html = removeAccueilNavLink(html);
+
+    // Harmonise la signature publique hors FAQ.
+    html = normalizeFounderSignature(html, file);
 
     // Sécurise aussi le JS sur les pages où document.querySelector('nav') existe.
     html = html
