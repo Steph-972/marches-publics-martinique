@@ -73,10 +73,13 @@ body.splash-active section{visibility:visible!important}
       'Le dossier a gagné en clarté, en preuves et en cohérence. Résultat : une réponse nettement plus professionnelle et mieux alignée sur les attentes de l’acheteur.')
     .replace(/<strong class="about-temoignage-name">M\. C\.<\/strong>/g, '<strong class="about-temoignage-name">Cas client anonymisé</strong>')
     .replace(/required id="message"><\/textarea>/g, 'required></textarea>')
-    .replace(/<p><strong>Stéphane Loudoux<\/strong> — Responsable Achat &amp; March\\u00e9s Publics, ODYSSI \\u2013 R\\u00e9gie des Eaux de la CACEM<\/p>/g,
-      '<p><strong>Stéphane Loudoux</strong> — Fondateur Procurement Insider</p>')
+    .replace(/Stéphane Loudoux<\/strong>\s*—\s*Responsable Achat &amp; March(?:é|\\u00e9)s Publics, ODYSSI(?:\s*–|\s*\\u2013)\s*R(?:é|\\u00e9)gie des Eaux de la CACEM/gi,
+      'Stéphane Loudoux</strong> — Fondateur Procurement Insider')
+    .replace(/Stéphane Loudoux<\/strong>\s*—\s*Fondateur Procurement Insider<\/p>'/g,
+      "Stéphane Loudoux</strong> — Fondateur Procurement Insider</p>'")
     .replace(/<p style="margin-top:\.5rem">Fort-de-France, Martinique[\s\S]*?<\/p>/g,
-      '<p style="margin-top:.5rem">Martinique · loeildelacheteur@gmail.com</p>');
+      '<p style="margin-top:.5rem">Martinique · loeildelacheteur@gmail.com</p>')
+    .replace(/Fort-de-France, Martinique/g, 'Martinique');
 
   html = html.replace('</head>', `<script type="application/ld+json">${jsonLdFor(file)}</script>\n${hardeningCss}\n</head>`);
   return html;
