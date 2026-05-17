@@ -96,6 +96,13 @@ function normalizeContactForm(html) {
     .replace(/Je réponds personnellement à chaque message sous 48h ouvrées\./g, 'Je reviens vers vous personnellement, en général sous 48h ouvrées.');
 }
 
+function normalizeHomeInsights(html) {
+  return html
+    .replace(/const published = articles\.filter\(a => a\.published\);/g, 'const published = articles.filter(a => a.published);\n    const visibleArticles = published.slice(0, 6);')
+    .replace(/grid\.innerHTML = published\.map\(a => `/g, 'grid.innerHTML = visibleArticles.map(a => `')
+    .replace(/<p style=\"color:var\(--gray\);margin-bottom:1\.5rem;font-size:\.95rem\">Recevez les prochains insights directement par email<\/p>\s*<a href=\"#contact\"([\s\S]*?)>\s*<svg[\s\S]*?<\/svg>\s*S'inscrire à la veille\s*<\/a>/g, '<p style="color:var(--gray);margin-bottom:1.5rem;font-size:.95rem">Consultez toute la veille Procurement Insider : jurisprudence, seuils, MAPA, mémoire technique et stratégie d’offre.</p><a href="/insights" style="display:inline-flex;align-items:center;gap:.5rem;background:var(--navy);color:#fff;padding:.8rem 2rem;border-radius:var(--radius);font-weight:600;font-size:.9rem;transition:all var(--transition)">Voir plus d’articles →</a>');
+}
+
 function hardenMobileAndCompliance(html) {
   let output = html;
   output = insertToolsInDesktopNav(output);
@@ -104,6 +111,7 @@ function hardenMobileAndCompliance(html) {
   output = normalizeFreeToolsFunnel(output);
   output = normalizeLegalMentions(output);
   output = normalizeContactForm(output);
+  output = normalizeHomeInsights(output);
   return output;
 }
 
