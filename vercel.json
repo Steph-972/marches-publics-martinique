@@ -13,6 +13,7 @@
       },
       "continue": true
     },
+    { "src": "^/__render-test$", "dest": "/api/render-page?file=index.html" },
     { "src": "^/$", "dest": "/api/render-page-postprocess?file=index.html" },
     { "src": "^/entites-publiques$", "dest": "/api/render-page-postprocess?file=entites-publiques.html" },
     { "src": "^/entreprises-privees$", "dest": "/api/render-page-postprocess?file=entreprises-privees.html" },
