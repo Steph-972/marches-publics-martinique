@@ -44,7 +44,13 @@ function neutralizeRiskyCommercialClaims(html) {
     .replace(/Ce que je garantis\s*:\s*un dossier irréprochable, une offre valorisée, une stratégie adaptée\. Le reste appartient à l['’]acheteur\./gi, NEUTRAL_GUARANTEE)
     .replace(/Ce que je garantis\s*:\s*un dossier irreprochable, une offre valorisee, une strategie adaptee\. Le reste appartient a l['’]acheteur\./gi, NEUTRAL_GUARANTEE)
     .replace(/Ce que je garantis\s*:\s*un dossier irréprochable, une offre valorisée, une stratégie adaptée\./gi, 'Ce que je vise : un dossier plus clair, plus cohérent et mieux aligné avec les critères.')
-    .replace(/Ce que je garantis\s*:\s*un dossier irreprochable, une offre valorisee, une strategie adaptee\./gi, 'Ce que je vise : un dossier plus clair, plus cohérent et mieux aligné avec les critères.');
+    .replace(/Ce que je garantis\s*:\s*un dossier irreprochable, une offre valorisee, une strategie adaptee\./gi, 'Ce que je vise : un dossier plus clair, plus cohérent et mieux aligné avec les critères.')
+    .replace(/Ce que je garantis, c'est la qualité et la rigueur de mon travail[^<]*<strong>maximiser vos chances<\/strong>[^<]*\./gi, 'Ce que je vise, c’est un accompagnement rigoureux : un dossier mieux sécurisé, un mémoire technique mieux adapté aux critères et une réponse plus cohérente.')
+    .replace(/Ce que je garantis, c'est la qualité de mon travail[^.]*\. Nos clients remportent significativement plus de marchés après notre accompagnement[^.]*\./gi, 'Ce que je vise, c’est un dossier structuré, valorisé et mieux aligné avec les attentes de l’acheteur. L’accompagnement ne garantit jamais l’obtention du marché.')
+    .replace(/maximiser vos chances/gi, 'renforcer la qualité de votre réponse')
+    .replace(/améliorer leurs réponses et augmenter leurs chances aux appels d'offres/gi, 'améliorer leurs réponses aux appels d’offres')
+    .replace(/Seuils applicables au 1er janvier 2026/gi, 'Seuils de procédure à vérifier avant chaque consultation')
+    .replace(/Mis à jour en mai 2025 · Seuils 2026-2027 en vigueur\./gi, 'Information indicative : les seuils doivent être vérifiés dans les sources officielles au moment du lancement de la consultation.');
 }
 
 function normalizeFreeToolsFunnel(html) {
