@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'Prénom et email obligatoires' });
   }
 
-  const BASE_URL = 'https://procurement-insider-git-main-procurement-insiders-projects.vercel.app';
+  const BASE_URL = 'https://marches-publics-martinique.vercel.app';
   const GRILLE_URL = `${BASE_URL}/grille-mapa`;
 
   const headers = {
@@ -101,11 +101,11 @@ export default async function handler(req, res) {
     <p style="color:rgba(255,255,255,0.7);font-size:.8rem;margin:0;line-height:1.7">
       <strong style="color:#C9A84C">Stéphane Loudoux</strong><br>
       Procurement Insider — L'Œil de l'Acheteur<br>
-      Responsable Achat & Marchés Publics, ODYSSI – Régie des Eaux de la CACEM<br>
-      Fort-de-France, Martinique · +596 696 266 231
+      Conseil en marchés publics et stratégie achat<br>
+      Martinique · +596 696 266 231
     </p>
     <p style="color:rgba(255,255,255,0.3);font-size:.7rem;margin-top:.75rem">
-      Vous recevez cet email car vous avez demandé la grille de vérification sur procurement-insider.vercel.app.
+      Vous recevez cet email car vous avez demandé la grille de vérification sur le site Procurement Insider.
       Pour ne plus recevoir d'emails de notre part, répondez à ce message avec "désinscription".
     </p>
   </div>
