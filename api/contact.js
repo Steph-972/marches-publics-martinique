@@ -9,7 +9,7 @@ export default async function handler(req, res) {
   const BREVO_KEY = process.env.BREVO_API_KEY;
   if (!BREVO_KEY) return res.status(500).json({ error: 'API key not configured' });
 
-  const { prenom, nom, email, organisation, profil, sujet, message } = req.body;
+  const { prenom, nom, email, telephone, organisation, profil, sujet, message } = req.body;
   if (!prenom || !nom || !email || !sujet || !message) {
     return res.status(400).json({ error: 'Champs obligatoires manquants' });
   }
@@ -26,7 +26,14 @@ export default async function handler(req, res) {
       method: 'POST', headers,
       body: JSON.stringify({
         email,
-        attributes: { PRENOM: prenom, NOM: nom, COMPANY: organisation || '' },
+        attributes: {
+          PRENOM: prenom,
+          NOM: nom,
+          SMS: telephone || undefined,
+          COMPANY: organisation || '',
+          PROFIL_LEAD: profil || 'non renseigné',
+          SOURCE: 'formulaire-contact-site'
+        },
         listIds: [2],
         updateEnabled: true
       })
@@ -50,6 +57,7 @@ export default async function handler(req, res) {
             <table style="width:100%;border-collapse:collapse">
               <tr style="border-bottom:1px solid #E8EBF0"><td style="padding:.6rem 0;color:#6B7080;font-size:.85rem;width:140px">De</td><td style="padding:.6rem 0;font-weight:600;color:#0F2342">${prenom} ${nom}</td></tr>
               <tr style="border-bottom:1px solid #E8EBF0"><td style="padding:.6rem 0;color:#6B7080;font-size:.85rem">Email</td><td style="padding:.6rem 0"><a href="mailto:${email}" style="color:#1A3A6B">${email}</a></td></tr>
+              ${telephone ? `<tr style="border-bottom:1px solid #E8EBF0"><td style="padding:.6rem 0;color:#6B7080;font-size:.85rem">Téléphone</td><td style="padding:.6rem 0"><a href="tel:${telephone}" style="color:#1A3A6B">${telephone}</a></td></tr>` : ''}
               ${organisation ? `<tr style="border-bottom:1px solid #E8EBF0"><td style="padding:.6rem 0;color:#6B7080;font-size:.85rem">Organisation</td><td style="padding:.6rem 0">${organisation}</td></tr>` : ''}
               <tr style="border-bottom:1px solid #E8EBF0"><td style="padding:.6rem 0;color:#6B7080;font-size:.85rem">Profil</td><td style="padding:.6rem 0">${profil || '-'}</td></tr>
               <tr style="border-bottom:1px solid #E8EBF0"><td style="padding:.6rem 0;color:#6B7080;font-size:.85rem">Objet</td><td style="padding:.6rem 0;font-weight:600;color:#C9A84C">${sujet}</td></tr>
@@ -59,6 +67,7 @@ export default async function handler(req, res) {
             </div>
             <div style="margin-top:1.5rem">
               <a href="mailto:${email}?subject=RE: ${sujet}" style="background:#0F2342;color:white;padding:.75rem 1.5rem;border-radius:4px;text-decoration:none;font-weight:600;display:inline-block">Répondre à ${prenom}</a>
+              ${telephone ? `<a href="https://wa.me/${telephone.replace(/[^0-9]/g,'')}" style="background:#25D366;color:white;padding:.75rem 1.5rem;border-radius:4px;text-decoration:none;font-weight:600;display:inline-block;margin-left:.5rem">WhatsApp</a>` : ''}
             </div>
           </div>
           <div style="background:#0F2342;padding:1rem 2rem;text-align:center">
@@ -82,9 +91,9 @@ export default async function handler(req, res) {
           </div>
           <div style="background:white;padding:2rem">
             <h2 style="color:#0F2342;margin-bottom:1rem">Bonjour ${prenom},</h2>
-            <p style="color:#333;line-height:1.7;margin-bottom:1.25rem">Merci pour votre message. Je l'ai bien reçu et vous répondrai personnellement <strong>sous 48h ouvrées</strong>.</p>
+            <p style="color:#333;line-height:1.7;margin-bottom:1.25rem">Merci pour votre message. Je l'ai bien reçu et je reviens vers vous personnellement, en général <strong>sous 48h ouvrées</strong>.</p>
             <div style="background:#F8F5EF;border-left:3px solid #C9A84C;padding:1rem 1.25rem;margin-bottom:1.5rem">
-              <p style="color:#0F2342;font-style:italic;margin:0">« Je reviens vers vous rapidement avec une première analyse de votre situation. »</p>
+              <p style="color:#0F2342;font-style:italic;margin:0">« Je reviens vers vous rapidement avec une première lecture de votre situation. »</p>
               <p style="color:#6B7080;font-size:.8rem;margin-top:.5rem">— Stéphane Loudoux</p>
             </div>
             <p style="color:#6B7080;font-size:.875rem">Cordialement,<br><strong style="color:#0F2342">Stéphane Loudoux</strong><br>Procurement Insider — L'Œil de l'Acheteur<br>+596 696 266 231</p>
