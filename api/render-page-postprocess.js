@@ -1,10 +1,12 @@
 const baseHandler = require('./render-page');
 
 const NEUTRAL_CASE_RESULT = "Le dossier a gagné en clarté, en preuves et en cohérence. Résultat : une réponse nettement plus professionnelle, mieux structurée et mieux alignée sur les attentes de l’acheteur.";
+const NEUTRAL_GUARANTEE = "Ce que je vise : un dossier plus clair, plus cohérent et mieux aligné avec les critères. La décision finale appartient exclusivement à l’acheteur.";
 
 function insertToolsInDesktopNav(html) {
   return html.replace(/(<ul class=\"nav-links\">)([\s\S]*?)(<\/ul>)/g, (match, open, body, close) => {
-    if (body.includes('/outils-gratuits')) return match;
+    const normalizedBody = body.toLowerCase();
+    if (normalizedBody.includes('/outils-gratuits')) return match;
     const item = '        <li><a href="/outils-gratuits">Outils gratuits</a></li>\n';
     if (/\s*<li><a[^>]*class=\"nav-cta\"[\s\S]*?<\/li>/.test(body)) {
       body = body.replace(/(\s*<li><a[^>]*class=\"nav-cta\"[\s\S]*?<\/li>)/, '\n' + item + '$1');
@@ -19,7 +21,8 @@ function insertToolsInDesktopNav(html) {
 
 function insertToolsInMobileMenu(html) {
   return html.replace(/(<div class=\"mobile-menu\"[^>]*>)([\s\S]*?)(<\/div>)/g, (match, open, body, close) => {
-    if (body.includes('/outils-gratuits')) return match;
+    const normalizedBody = body.toLowerCase();
+    if (normalizedBody.includes('/outils-gratuits')) return match;
     const link = '  <a href="/outils-gratuits" onclick="toggleMenu()">Outils gratuits</a>\n';
     if (/\s*<a href=\"(?:#|\/#)?contact\"[^>]*>Contact<\/a>/.test(body)) {
       body = body.replace(/(\s*<a href=\"(?:#|\/#)?contact\"[^>]*>Contact<\/a>)/, '\n' + link + '$1');
@@ -38,8 +41,10 @@ function neutralizeRiskyCommercialClaims(html) {
     .replace(/Deux mois plus tard, nous decrochions un marche de 280(?:&nbsp;|\s|\u00a0)*000(?:&nbsp;|\s|\u00a0)*€ avec une collectivite avec laquelle nous n'avions jamais travaille\./gi, NEUTRAL_CASE_RESULT)
     .replace(/Prêt à déposer un dossier qui gagne \?/g, 'Prêt à déposer un dossier plus solide ?')
     .replace(/Prêt à déposer un dossier qui gagne\?/g, 'Prêt à déposer un dossier plus solide ?')
-    .replace(/Ce que je garantis : un dossier irréprochable, une offre valorisée, une stratégie adaptée\. Le reste appartient à l'acheteur\./g, "Ce que je vise : un dossier plus clair, plus cohérent et mieux aligné avec les critères. La décision finale appartient exclusivement à l’acheteur.")
-    .replace(/Ce que je garantis : un dossier irreprochable, une offre valorisee, une strategie adaptee\. Le reste appartient a l'acheteur\./gi, "Ce que je vise : un dossier plus clair, plus cohérent et mieux aligné avec les critères. La décision finale appartient exclusivement à l’acheteur.");
+    .replace(/Ce que je garantis\s*:\s*un dossier irréprochable, une offre valorisée, une stratégie adaptée\. Le reste appartient à l['’]acheteur\./gi, NEUTRAL_GUARANTEE)
+    .replace(/Ce que je garantis\s*:\s*un dossier irreprochable, une offre valorisee, une strategie adaptee\. Le reste appartient a l['’]acheteur\./gi, NEUTRAL_GUARANTEE)
+    .replace(/Ce que je garantis\s*:\s*un dossier irréprochable, une offre valorisée, une stratégie adaptée\./gi, 'Ce que je vise : un dossier plus clair, plus cohérent et mieux aligné avec les critères.')
+    .replace(/Ce que je garantis\s*:\s*un dossier irreprochable, une offre valorisee, une strategie adaptee\./gi, 'Ce que je vise : un dossier plus clair, plus cohérent et mieux aligné avec les critères.');
 }
 
 function normalizeFreeToolsFunnel(html) {
