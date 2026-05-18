@@ -6,7 +6,7 @@ function addLegalLinks(out) {
 
 function addStyle(out) {
   if (out.indexOf('pi-compliance-style') !== -1) return out;
-  var style = '<style id="pi-compliance-style">#cookie-banner{display:none!important}#pi-legal-links{max-width:1180px;margin:0 auto;padding:18px 24px;display:flex;flex-wrap:wrap;gap:12px;justify-content:center;font-size:13px;background:#07172D;color:rgba(255,255,255,.68)}#pi-legal-links a{color:#C9A84C;text-decoration:none;font-weight:700}#pi-legal-links span{color:#fff;font-weight:800}.pi-form-legal{font-size:12px;line-height:1.55;color:#6B7080;margin-top:12px}.pi-cookie-box{position:fixed;left:16px;right:16px;bottom:16px;z-index:99999;background:#0F2342;color:white;border:1px solid #C9A84C;border-radius:14px;padding:14px;display:flex;gap:10px;align-items:center;justify-content:space-between;box-shadow:0 20px 60px rgba(0,0,0,.25)}.pi-cookie-box p{margin:0;font-size:13px;line-height:1.45;color:rgba(255,255,255,.78)}.pi-cookie-box a{border:1px solid rgba(255,255,255,.35);color:white;border-radius:999px;padding:8px 12px;font-weight:700;text-decoration:none;font-size:12px}.pi-cookie-box a:last-child{background:#C9A84C;color:#0F2342;border-color:#C9A84C}.pi-mobile-fallback{display:none}@media(max-width:768px){.pi-cookie-box{position:static;margin:12px;flex-direction:column;align-items:flex-start}.pi-mobile-fallback{display:block;position:fixed;right:18px;top:14px;z-index:10050}.pi-mobile-fallback summary{list-style:none;background:#C9A84C;color:#0F2342;border-radius:4px;padding:8px 12px;font-weight:800;cursor:pointer}.pi-mobile-fallback summary::-webkit-details-marker{display:none}.pi-mobile-fallback div{position:fixed;left:0;right:0;top:58px;background:#0F2342;padding:24px;display:flex;flex-direction:column;gap:14px;box-shadow:0 20px 60px rgba(0,0,0,.32)}.pi-mobile-fallback a{color:#fff;text-decoration:none;font-size:18px;font-family:Georgia,serif}.pi-mobile-fallback a:hover{color:#C9A84C}}</style>';
+  var style = '<style id="pi-compliance-style">#cookie-banner{display:none!important}#pi-legal-links{max-width:1180px;margin:0 auto;padding:18px 24px;display:flex;flex-wrap:wrap;gap:12px;justify-content:center;font-size:13px;background:#07172D;color:rgba(255,255,255,.68)}#pi-legal-links a{color:#C9A84C;text-decoration:none;font-weight:700}#pi-legal-links span{color:#fff;font-weight:800}.pi-form-legal{font-size:12px;line-height:1.55;color:#6B7080;margin-top:12px}.pi-cookie-box{position:fixed;left:16px;right:16px;bottom:16px;z-index:99999;background:#0F2342;color:white;border:1px solid #C9A84C;border-radius:14px;padding:14px;display:flex;gap:10px;align-items:center;justify-content:space-between;box-shadow:0 20px 60px rgba(0,0,0,.25)}.pi-cookie-box p{margin:0;font-size:13px;line-height:1.45;color:rgba(255,255,255,.78)}.pi-cookie-box a{border:1px solid rgba(255,255,255,.35);color:white;border-radius:999px;padding:8px 12px;font-weight:700;text-decoration:none;font-size:12px}.pi-cookie-box a:last-child{background:#C9A84C;color:#0F2342;border-color:#C9A84C}.pi-mobile-fallback{display:none}.pi-conversion-note{background:#fff9ec;border-left:4px solid #C9A84C;border-radius:12px;padding:14px 16px;margin:18px auto;font-size:14px;line-height:1.6;color:#0F2342;max-width:920px}@media(max-width:768px){.pi-cookie-box{position:static;margin:12px;flex-direction:column;align-items:flex-start}.pi-mobile-fallback{display:block;position:fixed;right:18px;top:14px;z-index:10050}.pi-mobile-fallback summary{list-style:none;background:#C9A84C;color:#0F2342;border-radius:4px;padding:8px 12px;font-weight:800;cursor:pointer}.pi-mobile-fallback summary::-webkit-details-marker{display:none}.pi-mobile-fallback div{position:fixed;left:0;right:0;top:58px;background:#0F2342;padding:24px;display:flex;flex-direction:column;gap:14px;box-shadow:0 20px 60px rgba(0,0,0,.32)}.pi-mobile-fallback a{color:#fff;text-decoration:none;font-size:18px;font-family:Georgia,serif}.pi-mobile-fallback a:hover{color:#C9A84C}}</style>';
   return out.replace('</head>', style + '</head>');
 }
 
@@ -30,6 +30,28 @@ function addFallbackMobileMenu(out) {
   return out.replace('</body>', menu + '</body>');
 }
 
+function optimizeConversionCopy(out) {
+  return String(out || '')
+    .replace(/Diagnostic gratuit/g, 'Diagnostic gratuit de votre besoin')
+    .replace(/Demander un diagnostic/g, 'Demander un diagnostic gratuit')
+    .replace(/Optimiser mon mémoire/g, 'Faire relire mon mémoire technique')
+    .replace(/Voir les offres/g, 'Comparer les accompagnements')
+    .replace(/Recevoir la grille gratuite/g, 'Recevoir la grille MAPA gratuite')
+    .replace(/Télécharger la grille/g, 'Recevoir la grille MAPA')
+    .replace(/Envoyer ma demande/g, 'Envoyer ma demande confidentielle')
+    .replace(/Réserver mon appel/g, 'Présenter mon besoin')
+    .replace(/Prendre rendez-vous/g, 'Demander un échange de cadrage')
+    .replace(/Parler de mon projet/g, 'Présenter mon contexte')
+    .replace(/Je veux être accompagné/g, 'Demander un accompagnement');
+}
+
+function addConversionNote(out) {
+  if (out.indexOf('pi-conversion-note') !== -1) return out;
+  if (out.indexOf('id="contact"') === -1 && out.indexOf('id="lead-form"') === -1) return out;
+  var note = '<div class="pi-conversion-note"><strong>Avant toute mission :</strong> un premier échange permet de cadrer votre besoin, vérifier les délais, identifier les documents disponibles et écarter toute incompatibilité déontologique. L’accompagnement repose toujours sur une obligation de moyens.</div>';
+  return out.replace(/(<section[^>]*id="contact"[\s\S]*?>)/i, '$1' + note).replace(/(<form[^>]*id="lead-form"[\s\S]*?>)/i, note + '$1');
+}
+
 function addFormNotice(out) {
   if (out.indexOf('pi-form-legal') !== -1) return out;
   var notice = '<p class="pi-form-legal">Les informations transmises sont traitees pour repondre a votre demande. Les prestations reposent sur une obligation de moyens. Consultez les <a href="/conditions-generales-prestations-services">CGPS</a>, la <a href="/politique-confidentialite">Confidentialite</a> et la <a href="/deontologie">Deontologie</a>.</p>';
@@ -49,6 +71,8 @@ function applyComplianceLayer(html) {
   out = addStyle(out);
   out = addHeaderLinks(out);
   out = addFallbackMobileMenu(out);
+  out = optimizeConversionCopy(out);
+  out = addConversionNote(out);
   out = addFormNotice(out);
   out = addLegalLinks(out);
   out = addCookieBox(out);
