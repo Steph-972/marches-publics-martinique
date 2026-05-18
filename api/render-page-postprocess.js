@@ -1,4 +1,5 @@
 const baseHandler = require('./render-page');
+const { applyComplianceLayer } = require('./compliance-layer');
 
 const PUBLIC_BASE = 'https://marches-publics-martinique.vercel.app';
 const NEUTRAL_CASE_RESULT = "Le dossier a gagné en clarté, en preuves et en cohérence. Résultat : une réponse nettement plus professionnelle, mieux structurée et mieux alignée sur les attentes de l’acheteur.";
@@ -33,25 +34,19 @@ function insertToolsInNav(html) {
     else body += '\n' + item;
     return open + body + close;
   });
-
   output = output.replace(/(<div class=\"mobile-menu\"[^>]*>)([\s\S]*?)(<\/div>)/g, (match, open, body, close) => {
     if (body.toLowerCase().includes('/outils-gratuits')) return match;
     return open + body + '\n  <a href="/outils-gratuits" onclick="toggleMenu()">Outils gratuits</a>\n' + close;
   });
-
   return output;
 }
 
 function normalizeFreeTools(html) {
   return html
-    .replace(/<a href=\"\/grille-mapa\" target=\"_blank\" style=\"display:inline-flex;align-items:center;gap:\.5rem;background:var\(--navy\);color:white;padding:\.65rem 1\.25rem;border-radius:4px;font-weight:600;font-size:\.85rem\">([\s\S]*?)(Voir la grille PDF|Consulter la grille)\s*<\/a>/g, '<a href="#lead-form-fields-1" style="display:inline-flex;align-items:center;gap:.5rem;background:var(--navy);color:white;padding:.65rem 1.25rem;border-radius:4px;font-weight:600;font-size:.85rem">$1S’inscrire pour recevoir la grille</a>')
-    .replace(/<a href=\"\/grille-mapa\" target=\"_blank\"([^>]*)>\s*Consulter la grille\s*<\/a>/g, '<a href="#lead-form-fields-1"$1>S’inscrire pour recevoir la grille</a>')
     .replace(/Accès immédiat après inscription/g, 'Accès gratuit après inscription')
     .replace(/Accès libre immédiat/g, 'Accès après inscription gratuite')
     .replace(/Accès immédiat · Sans engagement · Déontologie respectée/g, 'Inscription gratuite · Sans compte utilisateur · Déontologie respectée')
     .replace(/Recevoir aussi la grille par email/g, 'Recevoir la grille gratuite')
-    .replace(/Inscription optionnelle : recevez le lien PDF et les futures ressources utiles par email\./g, 'Inscription rapide : recevez la grille par email, puis accédez immédiatement au lien direct.')
-    .replace(/Accès immédiat par email \+ lien vers la version PDF imprimable\./g, 'Inscription rapide : la grille est envoyée par email et le lien direct apparaît après validation du formulaire.')
     .replace(/Gratuits, sans engagement\./g, 'Gratuits, sans compte utilisateur et sans engagement.');
 }
 
@@ -64,21 +59,11 @@ function normalizeContactForm(html) {
 function normalizeHomeInsights(html) {
   return html
     .replace(/const published = articles\.filter\(a => a\.published\);/g, 'const published = articles.filter(a => a.published);\n    const visibleArticles = published.slice(0, 6);')
-    .replace(/grid\.innerHTML = published\.map\(a => `/g, 'grid.innerHTML = visibleArticles.map(a => `')
-    .replace(/<p style=\"color:var\(--gray\);margin-bottom:1\.5rem;font-size:\.95rem\">Recevez les prochains insights directement par email<\/p>\s*<a href=\"#contact\"([\s\S]*?)>\s*<svg[\s\S]*?<\/svg>\s*S'inscrire à la veille\s*<\/a>/g, '<p style="color:var(--gray);margin-bottom:1.5rem;font-size:.95rem">Consultez toute la veille Procurement Insider : jurisprudence, seuils, MAPA, mémoire technique et stratégie d’offre.</p><a href="/insights" style="display:inline-flex;align-items:center;gap:.5rem;background:var(--navy);color:#fff;padding:.8rem 2rem;border-radius:var(--radius);font-weight:600;font-size:.9rem;transition:all var(--transition)">Voir plus d’articles →</a>');
+    .replace(/grid\.innerHTML = published\.map\(a => `/g, 'grid.innerHTML = visibleArticles.map(a => `');
 }
 
 function normalizeInternalLinks(html) {
   return html
-    .replace(/href=\"\/entreprises-privees\" class=\"agency-card agency-path\"/g, 'href="/accompagnement-appel-offres-martinique" class="agency-card agency-path"')
-    .replace(/href=\"\/entites-publiques\" class=\"agency-card agency-path\"/g, 'href="/conseil-acheteur-public-martinique" class="agency-card agency-path"')
-    .replace(/href=\"\/entreprises-privees\" class=\"target-block\"/g, 'href="/accompagnement-appel-offres-martinique" class="target-block"')
-    .replace(/href=\"\/entites-publiques\" class=\"target-block\"/g, 'href="/conseil-acheteur-public-martinique" class="target-block"')
-    .replace(/href=\"\/entreprises-privees#tarifs\"/g, 'href="/accompagnement-appel-offres-martinique#packs"')
-    .replace(/href=\"\/entites-publiques#tarifs\"/g, 'href="/conseil-acheteur-public-martinique#missions"')
-    .replace(/<a href=\"\/entreprises-privees\">Accompagnement réponse AO<\/a>/g, '<a href="/accompagnement-appel-offres-martinique">Accompagnement réponse AO</a>')
-    .replace(/<a href=\"\/entites-publiques\">Rédaction DCE \/ CCTP<\/a>/g, '<a href="/conseil-acheteur-public-martinique">Rédaction DCE / CCTP</a>')
-    .replace(/<a href=\"\/entites-publiques\">Formation marchés publics<\/a>/g, '<a href="/conseil-acheteur-public-martinique">Formation marchés publics</a>')
     .replace(/href=\"#insights\">Insights<\/a>/g, 'href="/insights">Insights</a>')
     .replace(/href=\"#insights\" onclick=\"toggleMenu\(\)\">Insights<\/a>/g, 'href="/insights" onclick="toggleMenu()">Insights</a>');
 }
@@ -98,12 +83,11 @@ function hardenMobileAndCompliance(html) {
   output = normalizeHomeInsights(output);
   output = normalizeInternalLinks(output);
   output = insertSeoCrosslinks(output);
-  return output;
+  return applyComplianceLayer(output);
 }
 
 module.exports = async function handler(req, res) {
   const originalEnd = res.end.bind(res);
-
   res.end = function patchedEnd(chunk, encoding, callback) {
     try {
       const contentType = typeof res.getHeader === 'function' ? String(res.getHeader('Content-Type') || '') : '';
@@ -116,6 +100,5 @@ module.exports = async function handler(req, res) {
       return originalEnd(chunk, encoding, callback);
     }
   };
-
   return baseHandler(req, res);
 };
