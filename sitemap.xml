@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://marches-publics-martinique.vercel.app/</loc><lastmod>2026-05-17</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://marches-publics-martinique.vercel.app/services</loc><lastmod>2026-05-17</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://marches-publics-martinique.vercel.app/entites-publiques</loc><lastmod>2026-05-17</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://marches-publics-martinique.vercel.app/entreprises-privees</loc><lastmod>2026-05-17</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://marches-publics-martinique.vercel.app/accompagnement-appel-offres-martinique</loc><lastmod>2026-05-17</lastmod><changefreq>monthly</changefreq><priority>0.92</priority></url>
-  <url><loc>https://marches-publics-martinique.vercel.app/conseil-acheteur-public-martinique</loc><lastmod>2026-05-17</lastmod><changefreq>monthly</changefreq><priority>0.91</priority></url>
-  <url><loc>https://marches-publics-martinique.vercel.app/outils-gratuits</loc><lastmod>2026-05-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://marches-publics-martinique.vercel.app/insights</loc><lastmod>2026-05-17</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://marches-publics-martinique.vercel.app/insights/seuils-marches-publics-2026-pouvoirs-entites</loc><lastmod>2026-05-17</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://marches-publics-martinique.vercel.app/insights/trois-devis-commune-tilly-sur-seulles</loc><lastmod>2026-05-17</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://marches-publics-martinique.vercel.app/insights/criteres-sociaux-rse-commande-publique</loc><lastmod>2026-05-17</lastmod><changefreq>monthly</changefreq><priority>0.75</priority></url>
-  <url><loc>https://marches-publics-martinique.vercel.app/insights/mapa-martinique-erreurs-avant-depot</loc><lastmod>2026-05-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://marches-publics-martinique.vercel.app/insights/memoire-technique-criteres</loc><lastmod>2026-05-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://marches-publics-martinique.vercel.app/insights/prix-anormalement-bas</loc><lastmod>2026-05-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://marches-publics-martinique.vercel.app/insights/dce-cctp-incoherences</loc><lastmod>2026-05-17</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://marches-publics-martinique.vercel.app/faq</loc><lastmod>2026-05-17</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+<url><loc>https://marches-publics-martinique.vercel.app/</loc><lastmod>2026-05-17</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+<url><loc>https://marches-publics-martinique.vercel.app/services</loc><lastmod>2026-05-17</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+<url><loc>https://marches-publics-martinique.vercel.app/entites-publiques</loc><lastmod>2026-05-17</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+<url><loc>https://marches-publics-martinique.vercel.app/entreprises-privees</loc><lastmod>2026-05-17</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+<url><loc>https://marches-publics-martinique.vercel.app/accompagnement-appel-offres-martinique</loc><lastmod>2026-05-17</lastmod><changefreq>monthly</changefreq><priority>0.92</priority></url>
+<url><loc>https://marches-publics-martinique.vercel.app/conseil-acheteur-public-martinique</loc><lastmod>2026-05-17</lastmod><changefreq>monthly</changefreq><priority>0.91</priority></url>
+<url><loc>https://marches-publics-martinique.vercel.app/outils-gratuits</loc><lastmod>2026-05-17</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url><loc>https://marches-publics-martinique.vercel.app/insights</loc><lastmod>2026-05-17</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+<url><loc>https://marches-publics-martinique.vercel.app/mentions-legales</loc><lastmod>2026-05-17</lastmod><changefreq>yearly</changefreq><priority>0.45</priority></url>
+<url><loc>https://marches-publics-martinique.vercel.app/conditions-generales-prestations-services</loc><lastmod>2026-05-17</lastmod><changefreq>yearly</changefreq><priority>0.45</priority></url>
+<url><loc>https://marches-publics-martinique.vercel.app/politique-confidentialite</loc><lastmod>2026-05-17</lastmod><changefreq>yearly</changefreq><priority>0.4</priority></url>
+<url><loc>https://marches-publics-martinique.vercel.app/politique-cookies</loc><lastmod>2026-05-17</lastmod><changefreq>yearly</changefreq><priority>0.35</priority></url>
+<url><loc>https://marches-publics-martinique.vercel.app/deontologie</loc><lastmod>2026-05-17</lastmod><changefreq>yearly</changefreq><priority>0.45</priority></url>
+<url><loc>https://marches-publics-martinique.vercel.app/faq</loc><lastmod>2026-05-17</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
 </urlset>
