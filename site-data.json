@@ -1,28 +1,28 @@
 {
   "stats": [
     {
-      "value": "52",
-      "suffix": "+",
-      "label": "Dossiers analysés",
-      "icon": "📁"
-    },
-    {
-      "value": "93",
-      "suffix": "%",
-      "label": "Satisfaction clients",
-      "icon": "⭐"
-    },
-    {
       "value": "4",
       "suffix": "",
-      "label": "Collectivités accompagnées",
-      "icon": "🏛️"
+      "label": "Axes d’accompagnement",
+      "icon": "🎯"
     },
     {
       "value": "7",
       "suffix": "",
-      "label": "Formations dispensées",
+      "label": "Modules pratiques",
       "icon": "🎓"
+    },
+    {
+      "value": "1",
+      "suffix": "",
+      "label": "Cadre déontologique strict",
+      "icon": "⚖️"
+    },
+    {
+      "value": "0",
+      "suffix": "",
+      "label": "Promesse d’attribution",
+      "icon": "🛡️"
     }
   ],
   "faq": [
