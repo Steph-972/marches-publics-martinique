@@ -15,9 +15,11 @@ function simplifyHeaderLinks(out) {
     body = body
       .replace(/\s*<li><a href="\/entites-publiques"[^>]*>[^<]*<\/a><\/li>/gi, '')
       .replace(/\s*<li><a href="\/entreprises-privees"[^>]*>[^<]*<\/a><\/li>/gi, '')
-      .replace(/\s*<li><a href="\/formation-marches-publics-martinique"[^>]*>[^<]*<\/a><\/li>/gi, '')
       .replace(/\s*<li><a href="\/a-propos"[^>]*>[^<]*<\/a><\/li>/gi, '')
       .replace(/\s*<li><a href="\/faq"[^>]*>[^<]*<\/a><\/li>/gi, '');
+    if (body.indexOf('/formation-marches-publics-martinique') === -1) {
+      body = body.replace(/(<li><a href="\/services"[^>]*>Services<\/a><\/li>)/i, '$1\n        <li><a href="/formation-marches-publics-martinique">Formation</a></li>');
+    }
     return open + body + close;
   });
   out = out.replace(/(<div class="mobile-menu"[\s\S]*?>)([\s\S]*?)(<\/div>)/i, function(m, open, body, close) {
@@ -32,7 +34,7 @@ function simplifyHeaderLinks(out) {
 
 function addFallbackMobileMenu(out) {
   if (out.indexOf('pi-mobile-fallback') !== -1 || out.indexOf('mobile-menu') !== -1) return out;
-  var menu = '<details class="pi-mobile-fallback"><summary>Menu</summary><div><a href="/services">Services</a><a href="/outils-gratuits">Outils gratuits</a><a href="/insights">Insights</a><a href="/#contact">Contact</a><a href="/entites-publiques">Entites publiques</a><a href="/entreprises-privees">Entreprises privees</a><a href="/formation-marches-publics-martinique">Formation</a><a href="/a-propos">A propos</a></div></details>';
+  var menu = '<details class="pi-mobile-fallback"><summary>Menu</summary><div><a href="/services">Services</a><a href="/formation-marches-publics-martinique">Formation</a><a href="/outils-gratuits">Outils gratuits</a><a href="/insights">Insights</a><a href="/#contact">Contact</a><a href="/entites-publiques">Entites publiques</a><a href="/entreprises-privees">Entreprises privees</a><a href="/a-propos">A propos</a></div></details>';
   return out.replace('</body>', menu + '</body>');
 }
 
