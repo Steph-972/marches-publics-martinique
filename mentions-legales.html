@@ -1,119 +1,796 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="robots" content="noindex, follow">
-<title>Mentions légales | Procurement Insider</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
-<style>
-:root{--navy:#0F2342;--gold:#C9A84C;--cream:#F8F5EF;--gray:#6B7080;--gray-light:#E8EBF0;--text:#1C1C2E;--white:#FFFFFF;--serif:'Playfair Display',Georgia,serif;--sans:'DM Sans',system-ui,sans-serif;--mono:'DM Mono',monospace}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:var(--sans);color:var(--text);background:var(--white);line-height:1.7}
-.container{max-width:860px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem)}
-nav{background:var(--navy);padding:1.1rem 0}
-.nav-inner{display:flex;align-items:center;justify-content:space-between}
-.nav-inner a{color:rgba(255,255,255,.75);font-size:.85rem;text-decoration:none}
-.nav-inner a:hover{color:var(--gold)}
-.page-header{background:var(--navy);padding:5rem 0 3rem;text-align:center}
-.page-header h1{font-family:var(--serif);font-size:clamp(1.75rem,4vw,2.5rem);color:white}
-.page-header p{color:rgba(255,255,255,.55);font-size:.875rem;margin-top:.75rem;font-family:var(--mono)}
-.content{padding:clamp(3rem,5vw,5rem) 0}
-h2{font-family:var(--serif);color:var(--navy);font-size:1.3rem;margin:2.5rem 0 .75rem;padding-bottom:.5rem;border-bottom:1px solid var(--gray-light)}
-h2:first-child{margin-top:0}
-h3{font-size:1rem;font-weight:600;color:var(--navy);margin:1.5rem 0 .5rem}
-p{margin-bottom:.9rem;font-size:.925rem;color:var(--text)}
-.placeholder{background:var(--cream);border:1px dashed var(--gold);border-radius:4px;padding:.6rem 1rem;font-family:var(--mono);font-size:.8rem;color:var(--gray);margin:.75rem 0;display:inline-block}
-ul{padding-left:1.5rem;margin-bottom:.9rem}
-li{font-size:.925rem;margin-bottom:.35rem}
-a{color:var(--gold)}
-footer{background:var(--navy);padding:1.5rem 0;text-align:center;font-size:.8rem;color:rgba(255,255,255,.4)}
-footer a{color:var(--gold)}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Mentions légales | Procurement Insider — L'Œil de l'Acheteur</title>
+  <meta
+    name="description"
+    content="Mentions légales de Procurement Insider — L'Œil de l'Acheteur, conseil en marchés publics, commande publique, accompagnement appels d'offres et stratégie achat en Martinique et aux Antilles françaises."
+  />
+
+  <link rel="canonical" href="https://procurement-insider.fr/mentions-legales" />
+
+  <meta property="og:title" content="Mentions légales | Procurement Insider — L'Œil de l'Acheteur" />
+  <meta
+    property="og:description"
+    content="Mentions légales de Procurement Insider, conseil en marchés publics, commande publique et accompagnement appels d'offres en Martinique."
+  />
+  <meta property="og:url" content="https://procurement-insider.fr/mentions-legales" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:site_name" content="Procurement Insider — L'Œil de l'Acheteur" />
+
+  <style>
+    :root {
+      --pi-navy: #0f1f33;
+      --pi-gold: #c9a45c;
+      --pi-ink: #18202b;
+      --pi-muted: #5d6675;
+      --pi-bg: #f7f5f0;
+      --pi-card: #ffffff;
+      --pi-border: #e6e0d5;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--pi-ink);
+      background: var(--pi-bg);
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--pi-navy);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--pi-gold);
+    }
+
+    .site-header {
+      background: var(--pi-card);
+      border-bottom: 1px solid var(--pi-border);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .nav-wrapper {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      color: var(--pi-navy);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .brand span {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--pi-muted);
+      letter-spacing: 0;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 0.95rem;
+    }
+
+    .main-nav a {
+      color: var(--pi-ink);
+      font-weight: 600;
+    }
+
+    .main-nav a:hover {
+      color: var(--pi-gold);
+    }
+
+    .nav-cta {
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: var(--pi-navy);
+      color: #ffffff !important;
+      box-shadow: 0 8px 20px rgba(15, 31, 51, 0.16);
+    }
+
+    .nav-cta:hover {
+      background: #172f4d;
+      color: #ffffff !important;
+    }
+
+    .page-hero {
+      background: linear-gradient(135deg, #0f1f33 0%, #172f4d 100%);
+      color: #ffffff;
+      padding: 72px 24px 64px;
+    }
+
+    .page-hero-inner {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--pi-gold);
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 4vw, 4rem);
+      line-height: 1.08;
+      margin: 0 0 18px;
+      letter-spacing: -0.04em;
+    }
+
+    .hero-text {
+      max-width: 760px;
+      color: rgba(255, 255, 255, 0.84);
+      font-size: 1.08rem;
+      margin: 0;
+    }
+
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 56px 24px 80px;
+    }
+
+    .legal-card {
+      background: var(--pi-card);
+      border: 1px solid var(--pi-border);
+      border-radius: 24px;
+      padding: clamp(24px, 4vw, 46px);
+      box-shadow: 0 18px 40px rgba(15, 31, 51, 0.06);
+    }
+
+    .last-update {
+      color: var(--pi-muted);
+      font-size: 0.95rem;
+      margin: 0 0 28px;
+    }
+
+    h2 {
+      color: var(--pi-navy);
+      font-size: 1.35rem;
+      line-height: 1.25;
+      margin: 42px 0 14px;
+      letter-spacing: -0.02em;
+    }
+
+    h2:first-of-type {
+      margin-top: 0;
+    }
+
+    p {
+      margin: 0 0 16px;
+    }
+
+    ul {
+      margin: 0 0 18px 20px;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+
+    .info-list {
+      list-style: none;
+      margin: 0 0 20px;
+      padding: 0;
+      border: 1px solid var(--pi-border);
+      border-radius: 18px;
+      overflow: hidden;
+      background: #fbfaf7;
+    }
+
+    .info-list li {
+      margin: 0;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--pi-border);
+    }
+
+    .info-list li:last-child {
+      border-bottom: none;
+    }
+
+    .info-list strong {
+      color: var(--pi-navy);
+    }
+
+    .legal-warning {
+      border-left: 4px solid var(--pi-gold);
+      background: #fff9ec;
+      padding: 18px 20px;
+      border-radius: 14px;
+      margin: 24px 0;
+    }
+
+    .site-footer {
+      background: var(--pi-navy);
+      color: rgba(255, 255, 255, 0.82);
+      padding: 42px 24px;
+    }
+
+    .footer-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 28px;
+    }
+
+    .footer-title {
+      color: #ffffff;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .footer-inner a {
+      color: rgba(255, 255, 255, 0.82);
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    .footer-inner a:hover {
+      color: var(--pi-gold);
+    }
+
+    .footer-small {
+      max-width: 1180px;
+      margin: 30px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.14);
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.64);
+    }
+
+    @media (max-width: 920px) {
+      .nav-wrapper {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .main-nav {
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<nav>
-  <div class="container">
-    <div class="nav-inner">
-      <a href="/" style="font-weight:700;color:var(--gold)">PROCUREMENT INSIDER</a>
-      <a href="/">← Retour au site</a>
+  <header class="site-header">
+    <div class="nav-wrapper">
+      <a href="/" class="brand" aria-label="Accueil Procurement Insider">
+        Procurement Insider
+        <span>L'Œil de l'Acheteur</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Navigation principale">
+        <a href="/services">Services</a>
+        <a href="/entites-publiques">Entités publiques</a>
+        <a href="/entreprises-privees">Entreprises privées</a>
+        <a href="/insights">Insights</a>
+        <a href="/outils-gratuits">Outils gratuits</a>
+        <a href="/faq">FAQ</a>
+        <a href="/#contact" class="nav-cta">Diagnostic gratuit</a>
+      </nav>
     </div>
-  </div>
-</nav>
+  </header>
 
-<div class="page-header">
-  <div class="container">
-    <h1>Mentions légales</h1>
-    <p>Dernière mise à jour : mai 2025</p>
-  </div>
-</div>
+  <section class="page-hero">
+    <div class="page-hero-inner">
+      <p class="eyebrow">Mentions légales</p>
+      <h1>Procurement Insider — L'Œil de l'Acheteur</h1>
+      <p class="hero-text">
+        Informations légales relatives à l’éditeur, à l’hébergement, à la propriété intellectuelle,
+        aux responsabilités, aux données personnelles et aux conditions d’utilisation du site.
+      </p>
+    </div>
+  </section>
 
-<div class="content">
-  <div class="container">
+  <main>
+    <article class="legal-card">
+      <p class="last-update">Dernière mise à jour : 17 mai 2026</p>
 
-    <h2>1. Éditeur du site</h2>
-    <p>Le site <strong>procurement-insider.fr</strong> (actuellement accessible à l'adresse provisoire <em>marches-publics-martinique.vercel.app</em>) est édité par :</p>
-    <ul>
-      <li><strong>Nom et prénom :</strong> Stéphane LOUDOUX</li>
-      <li><strong>Statut :</strong> <span class="placeholder">Entrepreneur individuel / statut juridique à compléter</span></li>
-      <li><strong>SIRET :</strong> <span class="placeholder">SIRET : en cours d'immatriculation — information mise à jour dès finalisation de l'immatriculation</span></li>
-      <li><strong>Adresse professionnelle :</strong> <span class="placeholder">À compléter — Fort-de-France, Martinique (97200)</span></li>
-      <li><strong>Email :</strong> <a href="mailto:loeildelacheteur@gmail.com">loeildelacheteur@gmail.com</a></li>
-      <li><strong>Téléphone :</strong> +596 696 266 231</li>
-    </ul>
-    <p><strong>Directeur de la publication :</strong> Stéphane LOUDOUX</p>
+      <!--
+        TODO avant publication finale :
+        - insérer le numéro SIREN / SIRET définitif ;
+        - confirmer le régime TVA définitif ;
+        - insérer l’adresse email professionnelle rattachée au domaine propre ;
+        - insérer le médiateur de la consommation désigné si l’activité s’adresse aussi à des consommateurs ;
+        - insérer les informations d’assurance responsabilité civile professionnelle ;
+        - confirmer le domaine actif définitif ;
+        - insérer les liens vers CGPS, Politique de confidentialité et Déontologie.
+      -->
 
-    <h2>2. Hébergement</h2>
-    <p>Ce site est hébergé par :</p>
-    <ul>
-      <li><strong>Société :</strong> Vercel Inc.</li>
-      <li><strong>Adresse :</strong> 340 Pine Street, Suite 700, San Francisco, CA 94104, États-Unis</li>
-      <li><strong>Site :</strong> <a href="https://vercel.com" target="_blank" rel="noopener">vercel.com</a></li>
-    </ul>
+      <h2>1. Éditeur du site</h2>
 
-    <h2>3. Propriété intellectuelle</h2>
-    <p>L'ensemble du contenu de ce site (textes, articles, structure, charte graphique) est la propriété exclusive de Stéphane LOUDOUX — Procurement Insider, sauf mention contraire expresse.</p>
-    <p>Toute reproduction, représentation, modification, publication ou adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite sans autorisation écrite préalable.</p>
-    <p>Les articles publiés dans la section Insights & Veille sont des œuvres de l'esprit protégées par le droit d'auteur. Toute citation doit mentionner clairement la source avec un lien vers le site.</p>
+      <p>Le présent site est édité par :</p>
 
-    <h2>4. Données personnelles et RGPD</h2>
-    <p>Les données collectées sur ce site (formulaire de contact, formulaire de demande de grille gratuite) sont utilisées exclusivement pour :</p>
-    <ul>
-      <li>Traiter et répondre aux demandes de contact ou de devis ;</li>
-      <li>Transmettre les outils gratuits demandés ;</li>
-      <li>Vous recontacter dans le cadre d'un éventuel accompagnement.</li>
-    </ul>
-    <p>Aucune donnée n'est transmise à des tiers à des fins commerciales. Les données ne sont pas revendues.</p>
-    <p>Conformément au Règlement Général sur la Protection des Données (RGPD — UE 2016/679), vous disposez d'un droit d'accès, de rectification, d'effacement, de portabilité et d'opposition à tout moment en écrivant à : <a href="mailto:loeildelacheteur@gmail.com">loeildelacheteur@gmail.com</a></p>
-    <p><strong>Durée de conservation :</strong> les données de contact sont conservées pendant la durée de la relation commerciale ou professionnelle, et au maximum 3 ans à compter du dernier contact.</p>
+      <ul class="info-list">
+        <li><strong>Nom commercial :</strong> Procurement Insider</li>
+        <li><strong>Forme d’exercice :</strong> Micro-entrepreneur</li>
+        <li><strong>Nom juridique :</strong> Stéphane LOUDOUX EI</li>
+        <li><strong>Adresse professionnelle :</strong> Quartier Lowinsky, 97211 Rivière-Pilote, Martinique</li>
+        <li>
+          <strong>Numéro SIREN / SIRET :</strong>
+          [SIRET_À_INSÉRER]
+          <!-- TODO: insérer le numéro SIREN / SIRET réel dès obtention -->
+        </li>
+        <li>
+          <strong>Adresse électronique de contact :</strong>
+          <a href="mailto:[EMAIL_PRO_À_INSÉRER]">[EMAIL_PRO_À_INSÉRER]</a>
+          <!-- TODO: remplacer par email domaine propre -->
+        </li>
+        <li><strong>Numéro de téléphone professionnel :</strong> +596 696 26 62 31</li>
+        <li>
+          <strong>Site internet :</strong>
+          Le site est actuellement accessible à l'adresse
+          [DOMAINE_ACTIF_À_INSÉRER].
+          <!-- TODO: insérer le domaine actif au moment de publication -->
+          L'éditeur est en cours de migration vers le domaine définitif procurement-insider.fr.
+        </li>
+      </ul>
 
-    <h2>5. Cookies</h2>
-    <p>Ce site n'utilise pas de cookies de traçage, de publicité ou d'analyse comportementale tiers.</p>
-    <p>Un cookie de session technique peut être utilisé pour mémoriser votre choix concernant la bannière d'information sur les cookies. Ce cookie est strictement nécessaire au fonctionnement du site et ne nécessite pas de consentement au sens du RGPD.</p>
+      <p>
+        Procurement Insider exerce une activité de conseil opérationnel, accompagnement méthodologique,
+        formation, audit, veille, analyse documentaire et assistance à la structuration de démarches liées
+        à la commande publique.
+      </p>
 
-    <h2>6. Responsabilité</h2>
-    <p>Les informations publiées sur ce site ont un caractère informatif et général. Elles ne constituent pas un conseil juridique ou professionnel au sens strict.</p>
-    <p>Stéphane LOUDOUX — Procurement Insider s'efforce de maintenir les informations à jour, notamment en ce qui concerne les seuils réglementaires et la jurisprudence en commande publique. Cependant, la réglementation évoluant régulièrement, il appartient à chaque lecteur de vérifier la conformité des informations avec les textes en vigueur au moment de leur utilisation.</p>
-    <p>Le site peut contenir des liens vers des sites tiers. Ces liens sont fournis à titre indicatif. Stéphane LOUDOUX — Procurement Insider n'est pas responsable du contenu des sites vers lesquels ces liens pointent.</p>
+      <p>
+        Les prestations sont destinées à des clients professionnels, notamment entreprises, indépendants,
+        associations, acheteurs publics, organismes publics, établissements publics, régies, SEM, SPL et
+        acteurs institutionnels.
+      </p>
 
-    <h2>7. Note déontologique</h2>
-    <p>Procurement Insider est une activité de conseil indépendante exercée en conformité avec les règles déontologiques applicables aux agents publics exerçant une activité accessoire.</p>
-    <p>Aucune intervention n'est réalisée sur des procédures présentant un conflit d'intérêts avec l'employeur public actuel ou d'anciens employeurs récents. Chaque mission fait l'objet d'un contrôle préalable de compatibilité déontologique.</p>
+      <p>
+        Procurement Insider n’intervient pas pour garantir l’obtention d’un marché public, influencer une
+        décision d’attribution, contourner les règles de la commande publique ou se substituer à l’appréciation
+        d’un acheteur public, d’une autorité de contrôle, d’une juridiction ou d’un professionnel du droit habilité.
+      </p>
 
-    <h2>8. Droit applicable</h2>
-    <p>Le présent site et ses contenus sont soumis au droit français. Tout litige relatif à l'utilisation de ce site relève de la compétence exclusive des tribunaux compétents de Fort-de-France, Martinique.</p>
+      <h2>2. Directeur de la publication</h2>
 
-    <h2>9. Médiation</h2>
-    <p>En cas de litige, vous pouvez recourir à un médiateur de la consommation ou à toute autre procédure amiable. <span class="placeholder">Coordonnées du médiateur : à compléter si activité BtoC soumise à obligation de médiation</span></p>
+      <p>Directeur de la publication : Stéphane LOUDOUX.</p>
 
-  </div>
-</div>
+      <p>
+        Le directeur de la publication est responsable du contenu éditorial du site, sous réserve des contenus,
+        liens, ressources, outils ou informations provenant de tiers.
+      </p>
 
-<footer>
-  <div class="container">
-    <p>© 2025 Stéphane Loudoux — Procurement Insider · <a href="/">Retour au site</a> · <a href="/mentions-legales">Mentions légales</a></p>
-  </div>
-</footer>
+      <h2>3. Hébergeur du site</h2>
+
+      <p>Le site est hébergé par :</p>
+
+      <ul class="info-list">
+        <li><strong>Hébergeur :</strong> Vercel Inc.</li>
+        <li><strong>Adresse :</strong> 440 N Barranca Avenue #4133, Covina, CA 91723, United States</li>
+        <li><strong>Site internet de l’hébergeur :</strong> <a href="https://vercel.com" target="_blank" rel="noopener noreferrer">https://vercel.com</a></li>
+      </ul>
+
+      <!-- TODO: vérifier avant publication le mode de contact officiel de l’hébergeur à faire figurer selon les informations disponibles dans le compte client ou la documentation contractuelle. -->
+
+      <h2>4. Immatriculation et statut</h2>
+
+      <p>
+        Procurement Insider est le nom commercial utilisé par Stéphane LOUDOUX EI dans le cadre de son activité
+        exercée sous le statut de Micro-entrepreneur.
+      </p>
+
+      <ul class="info-list">
+        <li>
+          <strong>Numéro SIREN / SIRET :</strong>
+          [SIRET_À_INSÉRER]
+          <!-- TODO: insérer le numéro SIREN / SIRET réel dès obtention -->
+        </li>
+        <li>
+          <strong>RNE / registre compétent :</strong>
+          [RNE_OU_REGISTRE_À_INSÉRER]
+          <!-- TODO: compléter selon les informations issues de l’immatriculation -->
+        </li>
+        <li>
+          <strong>Régime TVA définitif :</strong>
+          [RÉGIME_TVA_À_INSÉRER]
+          <!-- TODO: confirmer après immatriculation -->
+        </li>
+      </ul>
+
+      <p>
+        Si le prestataire bénéficie de la franchise en base de TVA, les factures porteront la mention suivante :
+        TVA non applicable, article 293 B du Code général des impôts.
+      </p>
+
+      <h2>5. Assurance professionnelle</h2>
+
+      <p>
+        Assurance responsabilité civile professionnelle :
+        [ASSURANCE_RC_PRO_À_INSÉRER].
+        <!-- TODO: compléter dès obtention de l’attestation d’assurance responsabilité civile professionnelle -->
+      </p>
+
+      <p>
+        Les informations relatives à l’assureur, au numéro de contrat, à l’étendue territoriale des garanties
+        et aux plafonds applicables seront complétées dès obtention de l’attestation d’assurance.
+      </p>
+
+      <h2>6. Conditions générales de prestations de services</h2>
+
+      <p>
+        Les prestations proposées par Procurement Insider sont soumises aux Conditions générales de prestations
+        de services accessibles sur le site à l’adresse suivante :
+      </p>
+
+      <p>
+        <a href="/conditions-generales-prestations-services">Conditions générales de prestations de services</a>.
+        <!-- TODO: vérifier l’URL définitive de la page Conditions générales de prestations de services -->
+      </p>
+
+      <p>
+        Toute demande de prestation, acceptation de devis, émission de bon de commande ou paiement d’un acompte
+        implique l’acceptation des Conditions générales de prestations de services, sauf stipulation particulière
+        contraire acceptée par écrit.
+      </p>
+
+      <h2>7. Nature des contenus publiés</h2>
+
+      <p>
+        Les contenus publiés sur le site ont une finalité informative, pédagogique, stratégique, opérationnelle
+        ou commerciale.
+      </p>
+
+      <p>
+        Ils portent notamment sur la commande publique, les marchés publics, les appels d’offres, la structuration
+        des réponses, les mémoires techniques, l’analyse documentaire, les méthodes d’achat, la veille et les
+        pratiques professionnelles liées aux achats publics ou institutionnels.
+      </p>
+
+      <p>
+        Les contenus du site ne constituent pas une consultation juridique personnalisée, une assistance contentieuse,
+        une rédaction de recours, une validation juridique définitive ou une garantie de conformité applicable à une
+        situation particulière.
+      </p>
+
+      <p>
+        L’utilisateur demeure seul responsable de l’usage qu’il fait des informations, modèles, guides, checklists,
+        articles, outils ou ressources mis à disposition sur le site.
+      </p>
+
+      <p>
+        En cas de difficulté juridique substantielle, précontentieuse ou contentieuse, l’utilisateur est invité à
+        consulter un avocat ou un professionnel du droit habilité.
+      </p>
+
+      <h2>8. Déontologie et prévention des conflits d’intérêts</h2>
+
+      <p>
+        Procurement Insider applique une politique stricte de prévention des conflits d’intérêts.
+      </p>
+
+      <p>
+        Aucune mission n’est acceptée lorsqu’elle concerne directement ou indirectement l’employeur public ou assimilé
+        de l’entrepreneur individuel, son périmètre fonctionnel, une procédure dont il aurait connaissance dans le cadre
+        de ses fonctions, un opérateur lié à une telle procédure ou une information non publique.
+      </p>
+
+      <p>
+        Procurement Insider refuse toute mission susceptible de créer un conflit d’intérêts réel, potentiel ou apparent,
+        ou de porter atteinte aux principes de probité, indépendance, impartialité, neutralité, confidentialité, égalité
+        de traitement et transparence.
+      </p>
+
+      <p>
+        Une page Déontologie distincte peut préciser ces engagements.
+        <!-- TODO: créer ou confirmer l’URL de la page Déontologie -->
+      </p>
+
+      <h2>9. Propriété intellectuelle</h2>
+
+      <p>
+        L’ensemble des contenus présents sur le site, notamment textes, articles, analyses, guides, checklists, modèles,
+        outils, méthodes, structures de documents, visuels, graphismes, logos, éléments de marque, architecture
+        éditoriale, supports téléchargeables et éléments de présentation, est protégé par le droit de la propriété
+        intellectuelle, sauf mention contraire.
+      </p>
+
+      <p>
+        Toute reproduction, représentation, adaptation, modification, diffusion, extraction, réutilisation, publication,
+        transmission ou exploitation, totale ou partielle, des contenus du site, sans autorisation préalable écrite de
+        Procurement Insider, est interdite, sauf usage strictement personnel, interne et non commercial autorisé par les
+        conditions applicables.
+      </p>
+
+      <p>
+        Les marques, logos, noms commerciaux, signes distinctifs et éléments graphiques appartenant à des tiers demeurent
+        la propriété de leurs titulaires respectifs.
+      </p>
+
+      <p>
+        Les ressources gratuites ou payantes mises à disposition sur le site peuvent être utilisées dans les limites
+        prévues par leurs conditions spécifiques ou par les Conditions générales de prestations de services.
+      </p>
+
+      <h2>10. Responsabilité</h2>
+
+      <p>
+        Procurement Insider s’efforce de fournir des informations fiables, actualisées et vérifiées, mais ne garantit
+        pas l’exhaustivité, l’absence d’erreur, l’actualité permanente ou l’adaptation des contenus à une situation
+        particulière.
+      </p>
+
+      <p>
+        Les règles applicables à la commande publique, à la fiscalité, aux données personnelles, aux obligations
+        professionnelles et aux pratiques administratives peuvent évoluer. L’utilisateur est invité à vérifier les
+        informations importantes auprès des sources officielles ou de professionnels compétents.
+      </p>
+
+      <p>Procurement Insider ne saurait être tenu responsable :</p>
+
+      <ul>
+        <li>d’une mauvaise interprétation des contenus publiés ;</li>
+        <li>d’une utilisation inadaptée d’un modèle, guide, checklist ou outil ;</li>
+        <li>d’une décision prise par un utilisateur à partir d’un contenu général ;</li>
+        <li>d’une décision d’un acheteur public, d’une autorité de contrôle ou d’une juridiction ;</li>
+        <li>du rejet d’une candidature ou d’une offre ;</li>
+        <li>de la non-attribution d’un marché public ;</li>
+        <li>d’une erreur, omission, indisponibilité ou interruption temporaire du site ;</li>
+        <li>des contenus accessibles par des liens externes.</li>
+      </ul>
+
+      <p>
+        L’accès au site peut être suspendu, limité ou interrompu à tout moment, notamment pour maintenance, mise à jour,
+        sécurité, incident technique ou force majeure.
+      </p>
+
+      <h2>11. Liens externes</h2>
+
+      <p>
+        Le site peut contenir des liens vers des sites tiers, notamment sites institutionnels, plateformes publiques,
+        sources réglementaires, outils professionnels, réseaux sociaux ou ressources documentaires.
+      </p>
+
+      <p>
+        Procurement Insider n’exerce aucun contrôle permanent sur ces sites tiers et ne peut être tenu responsable de
+        leur contenu, de leur disponibilité, de leur sécurité, de leurs pratiques en matière de données personnelles ou
+        de leur évolution.
+      </p>
+
+      <p>
+        L’insertion d’un lien externe ne vaut pas approbation, validation ou garantie du contenu du site concerné.
+      </p>
+
+      <h2>12. Données personnelles</h2>
+
+      <p>
+        Dans le cadre du site, Procurement Insider peut être amené à collecter et traiter des données personnelles,
+        notamment via les formulaires de contact, demandes de devis, inscriptions à la newsletter, téléchargements de
+        ressources, demandes d’accès à des outils gratuits ou échanges électroniques.
+      </p>
+
+      <p>
+        Les données susceptibles d’être collectées comprennent notamment : nom, prénom, fonction, organisation, adresse
+        électronique, informations professionnelles, message libre, documents transmis et données techniques nécessaires
+        au fonctionnement du site.
+      </p>
+
+      <p>Les traitements sont réalisés pour les finalités suivantes :</p>
+
+      <ul>
+        <li>gestion des demandes de contact ;</li>
+        <li>traitement des demandes de devis ;</li>
+        <li>exécution des prestations ;</li>
+        <li>gestion de la relation client ;</li>
+        <li>envoi de ressources, newsletters ou communications professionnelles ;</li>
+        <li>gestion des téléchargements ;</li>
+        <li>amélioration du site et des services ;</li>
+        <li>respect des obligations légales, comptables et fiscales.</li>
+      </ul>
+
+      <p>
+        Le point de contact pour les demandes relatives aux données personnelles est :
+        <a href="mailto:[EMAIL_PRO_À_INSÉRER]">[EMAIL_PRO_À_INSÉRER]</a>.
+        <!-- TODO: remplacer par email domaine propre -->
+      </p>
+
+      <p>
+        Les modalités détaillées de traitement des données personnelles, les bases légales, durées de conservation,
+        destinataires, droits des personnes concernées et modalités d’exercice des droits sont précisées dans la
+        Politique de confidentialité du site.
+        <!-- TODO: créer ou confirmer l’URL de la Politique de confidentialité -->
+      </p>
+
+      <h2>13. Cookies et traceurs</h2>
+
+      <p>
+        Le site peut utiliser des cookies ou traceurs nécessaires à son fonctionnement, à la mesure d’audience, à
+        l’amélioration de l’expérience utilisateur, à la sécurité, à l’intégration de services tiers ou à la communication
+        professionnelle.
+      </p>
+
+      <p>
+        Les cookies strictement nécessaires au fonctionnement du site peuvent être déposés sans consentement préalable
+        lorsqu’ils ont pour seule finalité de permettre ou faciliter la communication électronique ou lorsqu’ils sont
+        strictement nécessaires à la fourniture d’un service demandé par l’utilisateur.
+      </p>
+
+      <p>
+        Les cookies non strictement nécessaires, notamment certains cookies de mesure d’audience, de publicité, de réseaux
+        sociaux ou de suivi marketing, ne peuvent être déposés qu’avec le consentement préalable de l’utilisateur lorsque
+        celui-ci est requis.
+      </p>
+
+      <p>
+        Les modalités détaillées de gestion des cookies, les finalités poursuivies, les outils utilisés et les moyens de
+        paramétrage sont précisés dans la Politique de confidentialité ou dans une Politique cookies distincte.
+      </p>
+
+      <h2>14. Newsletter et communications professionnelles</h2>
+
+      <p>
+        L’utilisateur peut s’inscrire à une newsletter ou accepter de recevoir des communications professionnelles de
+        Procurement Insider.
+      </p>
+
+      <p>
+        L’utilisateur peut se désinscrire à tout moment au moyen du lien de désinscription figurant dans les communications
+        reçues ou en adressant une demande à l’adresse suivante :
+        <a href="mailto:[EMAIL_PRO_À_INSÉRER]">[EMAIL_PRO_À_INSÉRER]</a>.
+        <!-- TODO: remplacer par email domaine propre -->
+      </p>
+
+      <h2>15. Médiation et traitement des réclamations</h2>
+
+      <p>
+        Le site et les prestations de Procurement Insider sont destinés principalement à des clients professionnels.
+      </p>
+
+      <p>
+        Toute réclamation relative au site ou à une prestation peut être adressée à :
+        <a href="mailto:[EMAIL_PRO_À_INSÉRER]">[EMAIL_PRO_À_INSÉRER]</a>.
+        <!-- TODO: remplacer par email domaine propre -->
+      </p>
+
+      <p>
+        En cas de litige relatif à une prestation de services, vous pouvez recourir à un médiateur de la consommation.
+        Conformément aux articles L.612-1 et suivants du Code de la consommation, le consommateur peut saisir gratuitement
+        le médiateur compétent. Coordonnées du médiateur désigné :
+        [MÉDIATEUR_À_INSÉRER].
+        <!-- TODO: insérer le médiateur de la consommation désigné -->
+        En l'absence de désignation, le consommateur peut accéder à la plateforme européenne de règlement en ligne des
+        litiges :
+        <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer">
+          https://ec.europa.eu/consumers/odr
+        </a>.
+      </p>
+
+      <p>
+        Les parties rechercheront, lorsque cela est pertinent, une solution amiable avant tout contentieux, sous réserve
+        des cas d’urgence, de référé, de mesure conservatoire, d’impayé manifeste ou de nécessité de préserver un droit.
+      </p>
+
+      <h2>16. Droit applicable</h2>
+
+      <p>
+        Le présent site est soumis au droit français.
+      </p>
+
+      <p>
+        Lorsque l’utilisateur est une personne publique ou lorsque le contrat présente les caractéristiques d’un contrat
+        administratif, les règles propres au droit public et à la compétence juridictionnelle administrative peuvent
+        s’appliquer.
+      </p>
+
+      <p>
+        Lorsque le litige relève du droit privé, les juridictions compétentes sont déterminées conformément aux règles
+        applicables, sous réserve des stipulations contractuelles valablement acceptées entre professionnels.
+      </p>
+
+      <p>
+        Dans la mesure juridiquement admissible, les juridictions compétentes du ressort de Fort-de-France peuvent être
+        désignées pour connaître des litiges relevant du droit privé entre professionnels.
+      </p>
+
+      <h2>17. Modification des mentions légales</h2>
+
+      <p>
+        Procurement Insider se réserve le droit de modifier les présentes mentions légales à tout moment, notamment pour
+        tenir compte de l’évolution du site, de l’activité, des outils utilisés, du droit applicable, de l’immatriculation,
+        du régime fiscal ou des informations relatives à l’hébergement.
+      </p>
+
+      <p>
+        La version applicable est celle publiée sur le site à la date de consultation.
+      </p>
+
+      <div class="legal-warning">
+        <p>
+          <strong>Note de prudence :</strong> les présentes mentions légales doivent être relues avant publication finale
+          après obtention du SIRET, confirmation du régime TVA, souscription de l’assurance professionnelle et choix du
+          médiateur compétent.
+        </p>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <p class="footer-title">Procurement Insider — L'Œil de l'Acheteur</p>
+        <p>
+          Conseil en marchés publics, commande publique, stratégie achat et accompagnement appels d’offres
+          en Martinique et aux Antilles françaises.
+        </p>
+        <p>
+          Adresse professionnelle : Quartier Lowinsky, 97211 Rivière-Pilote, Martinique
+        </p>
+        <p>
+          Contact :
+          <a href="mailto:[EMAIL_PRO_À_INSÉRER]">[EMAIL_PRO_À_INSÉRER]</a>
+          <!-- TODO: remplacer par email domaine propre -->
+        </p>
+      </div>
+
+      <div>
+        <p class="footer-title">Navigation</p>
+        <a href="/services">Services</a><br />
+        <a href="/entites-publiques">Entités publiques</a><br />
+        <a href="/entreprises-privees">Entreprises privées</a><br />
+        <a href="/insights">Insights</a><br />
+        <a href="/outils-gratuits">Outils gratuits</a><br />
+        <a href="/faq">FAQ</a>
+      </div>
+
+      <div>
+        <p class="footer-title">Ressources et conformité</p>
+        <a href="/a-propos">À propos</a><br />
+        <a href="/formation-marches-publics-martinique">Formation marchés publics Martinique</a><br />
+        <a href="/mentions-legales">Mentions légales</a><br />
+        <a href="/conditions-generales-prestations-services">Conditions générales de prestations de services</a><br />
+        <a href="/politique-confidentialite">Politique de confidentialité</a><br />
+        <a href="/deontologie">Déontologie</a>
+      </div>
+    </div>
+
+    <div class="footer-small">
+      <p>
+        © Procurement Insider – Tous droits réservés.
+        Micro-entrepreneur.
+        SIRET :
+        [SIRET_À_INSÉRER].
+        <!-- TODO: insérer le numéro SIREN / SIRET réel dès obtention -->
+      </p>
+    </div>
+  </footer>
 </body>
 </html>
