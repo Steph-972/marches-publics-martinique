@@ -27,7 +27,9 @@ function addHeaderLinks(out) {
 function addFormNotice(out) {
   if (out.indexOf('pi-form-legal') !== -1) return out;
   var notice = '<p class="pi-form-legal">Les informations transmises sont traitees pour repondre a votre demande. Les prestations reposent sur une obligation de moyens. Consultez les <a href="/conditions-generales-prestations-services">CGPS</a>, la <a href="/politique-confidentialite">Confidentialite</a> et la <a href="/deontologie">Deontologie</a>.</p>';
-  return out.replace(/(<button[^>]*type=["']submit["'][\s\S]*?<\/button>)/i, '$1' + notice);
+  out = out.replace(/(<button[^>]*type=["']submit["'][\s\S]*?<\/button>)/i, '$1' + notice);
+  out = out.replace(/(<button[^>]*class=["'][^"']*btn-submit-tool[^"']*["'][\s\S]*?<\/button>)/i, '$1' + notice);
+  return out;
 }
 
 function addCookieBox(out) {
