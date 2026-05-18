@@ -4,12 +4,7 @@ const REPO_OWNER = 'Steph-972';
 const REPO_NAME = 'marches-publics-martinique';
 const CANONICAL_BASE = process.env.SITE_BASE || 'https://marches-publics-martinique.vercel.app';
 
-const MAIN_LOGO_SVG = `<svg viewBox="0 0 310 52" xmlns="http://www.w3.org/2000/svg" style="height:36px;width:auto;display:block" aria-hidden="true">
-  <rect x="0" y="4" width="5" height="44" rx="2.5" fill="#C9A84C"/>
-  <text x="13" y="32" font-family="Arial Black,Arial,sans-serif" font-size="18" font-weight="900" fill="currentColor" letter-spacing="0.8">PROCUREMENT INSIDER</text>
-  <rect x="13" y="37" width="291" height="1" fill="#C9A84C"/>
-  <text x="13" y="48" font-family="Arial,sans-serif" font-size="7.5" fill="#C9A84C" letter-spacing="3">L'ŒIL DE L'ACHETEUR</text>
-</svg><span class="sr-only">Procurement Insider — L'Œil de l'Acheteur</span>`;
+const MAIN_LOGO_SVG = `<svg viewBox="0 0 310 52" xmlns="http://www.w3.org/2000/svg" style="height:36px;width:auto;display:block" aria-hidden="true"><rect x="0" y="4" width="5" height="44" rx="2.5" fill="#C9A84C"/><text x="13" y="32" font-family="Arial Black,Arial,sans-serif" font-size="18" font-weight="900" fill="currentColor" letter-spacing="0.8">PROCUREMENT INSIDER</text><rect x="13" y="37" width="291" height="1" fill="#C9A84C"/><text x="13" y="48" font-family="Arial,sans-serif" font-size="7.5" fill="#C9A84C" letter-spacing="3">L'ŒIL DE L'ACHETEUR</text></svg><span class="sr-only">Procurement Insider — L'Œil de l'Acheteur</span>`;
 
 const ALLOWED_FILES = new Set([
   'mentions-legales.html',
@@ -39,11 +34,23 @@ function normalizeTechnicalDomains(html) {
     .replace(/https:\/\/procurement-insider-[a-z0-9-]+-procurement-insiders-projects\.vercel\.app/g, CANONICAL_BASE);
 }
 
+function normalizePublicPlaceholders(html) {
+  return String(html || '')
+    .replace(/\[EMAIL_PRO_À_INSÉRER\]/g, 'loeildelacheteur@gmail.com')
+    .replace(/\[DOMAINE_ACTIF_À_INSÉRER\]/g, CANONICAL_BASE)
+    .replace(/\[SIRET_À_INSÉRER\]/g, 'en cours d’immatriculation')
+    .replace(/\[RNE_OU_REGISTRE_À_INSÉRER\]/g, 'à compléter après immatriculation')
+    .replace(/\[RÉGIME_TVA_À_INSÉRER\]/g, 'à confirmer après immatriculation')
+    .replace(/\[ASSURANCE_RC_PRO_À_INSÉRER\]/g, 'en cours de souscription')
+    .replace(/\[MÉDIATEUR_À_INSÉRER\]/g, 'à désigner si l’activité est ouverte à des consommateurs au sens du Code de la consommation');
+}
+
 function harmonizeLogo(html) {
+  const override = `.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.brand,.nav-logo{display:flex!important;align-items:center;color:#fff!important}.site-header,.top{background:#0F2342!important;border-bottom:1px solid rgba(201,168,76,.22)!important}.main-nav a,.links a{color:rgba(255,255,255,.86)!important}.main-nav a:hover,.links a:hover{color:#C9A84C!important}.nav-cta{background:#C9A84C!important;color:#0F2342!important}.site-footer,.pi-legal-footer{background:#0F2342!important}`;
   return String(html || '')
     .replace(/<a([^>]*class=["'][^"']*\bbrand\b[^"']*["'][^>]*)>[\s\S]*?<\/a>/i, `<a$1>${MAIN_LOGO_SVG}</a>`)
     .replace(/<a([^>]*class=["'][^"']*\bnav-logo\b[^"']*["'][^>]*)>[\s\S]*?<\/a>/i, `<a$1>${MAIN_LOGO_SVG}</a>`)
-    .replace(/<\/style>/i, `.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.brand,.nav-logo{display:flex!important;align-items:center;color:inherit}</style>`);
+    .replace(/<\/style>/i, override + '</style>');
 }
 
 function legalFooter() {
@@ -78,7 +85,7 @@ module.exports = async function handler(req, res) {
     const source = await fetch(rawUrl, { headers: { 'User-Agent': 'Procurement-Insider-source-renderer/1.0' } });
     if (!source.ok) throw new Error(`Unable to fetch ${file} from GitHub raw: ${source.status}`);
 
-    const html = harmonizeLogo(shellMinimalLegalPage(normalizeTechnicalDomains(await source.text()), file));
+    const html = harmonizeLogo(shellMinimalLegalPage(normalizePublicPlaceholders(normalizeTechnicalDomains(await source.text())), file));
     res.statusCode = 200;
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     res.setHeader('Cache-Control', 'public, max-age=0, must-revalidate');
